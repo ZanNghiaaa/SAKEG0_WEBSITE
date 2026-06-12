@@ -6,118 +6,11 @@ const VIDEO_URL = 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIX
 
 const HeroSection = () => {
   const videoRef = useRef(null);
-  const fadeFrameRef = useRef(null);
-  const monitorFrameRef = useRef(null);
-  const fadeTimeoutRef = useRef(null);
-  const fadingOutRef = useRef(false);
-
-  const cancelFadeFrame = () => {
-    if (fadeFrameRef.current) {
-      cancelAnimationFrame(fadeFrameRef.current);
-      fadeFrameRef.current = null;
-    }
-  };
-
-  const stopMonitorFrame = () => {
-    if (monitorFrameRef.current) {
-      cancelAnimationFrame(monitorFrameRef.current);
-      monitorFrameRef.current = null;
-    }
-  };
-
-  const fadeVideoTo = (targetOpacity, duration = 250) => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    cancelFadeFrame();
-
-    const startOpacity = Number.parseFloat(video.style.opacity || '0');
-    const startedAt = performance.now();
-
-    const step = (now) => {
-      const progress = Math.min((now - startedAt) / duration, 1);
-      const nextOpacity = startOpacity + ((targetOpacity - startOpacity) * progress);
-
-      video.style.opacity = String(nextOpacity);
-
-      if (progress < 1) {
-        fadeFrameRef.current = requestAnimationFrame(step);
-        return;
-      }
-
-      fadeFrameRef.current = null;
-    };
-
-    fadeFrameRef.current = requestAnimationFrame(step);
-  };
-
-  const startFadeIn = () => {
-    fadingOutRef.current = false;
-    fadeVideoTo(1, 250);
-  };
-
-  const loopVideo = () => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.duration && Number.isFinite(video.duration)) {
-      const remaining = video.duration - video.currentTime;
-      if (remaining <= 0.55 && !fadingOutRef.current) {
-        fadingOutRef.current = true;
-        fadeVideoTo(0, 250);
-      }
-    }
-
-    monitorFrameRef.current = requestAnimationFrame(loopVideo);
-  };
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return undefined;
-
-    const handleLoadedData = () => {
-      video.play().catch(() => {});
-      startFadeIn();
-      stopMonitorFrame();
-      monitorFrameRef.current = requestAnimationFrame(loopVideo);
-    };
-
-    const handlePlaying = () => {
-      startFadeIn();
-    };
-
-    const handleEnded = () => {
-      cancelFadeFrame();
-      fadingOutRef.current = false;
-      video.style.opacity = '0';
-
-      if (fadeTimeoutRef.current) {
-        clearTimeout(fadeTimeoutRef.current);
-      }
-
-      fadeTimeoutRef.current = setTimeout(() => {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-        startFadeIn();
-      }, 100);
-    };
-
-    video.style.opacity = '0';
-    video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('playing', handlePlaying);
-    video.addEventListener('ended', handleEnded);
-
-    return () => {
-      video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('playing', handlePlaying);
-      video.removeEventListener('ended', handleEnded);
-      cancelFadeFrame();
-      stopMonitorFrame();
-
-      if (fadeTimeoutRef.current) {
-        clearTimeout(fadeTimeoutRef.current);
-      }
-    };
+    if (!video) return;
+    video.play().catch(() => {});
   }, []);
 
   const chips = [
@@ -134,6 +27,7 @@ const HeroSection = () => {
           className="hero-sakego__video"
           autoPlay
           muted
+          loop
           playsInline
           preload="auto"
           src={VIDEO_URL}
@@ -192,7 +86,7 @@ const HeroSection = () => {
 
               <div className="hero-sakego__scene-core">
                 <img src={linhvatImage} alt="Linh vật SaKeGo" className="hero-sakego__mascot" />
-                <span className="hero-sakego__scene-core-label">SaKeGo</span>
+                <span className="hero-sakego__scene-core-label"></span>
                 {/* <strong>Không gian xanh</strong>
                 <p>Tối giản, tự nhiên và có chiều sâu để làm nổi bật tinh thần thương hiệu.</p> */}
               </div>

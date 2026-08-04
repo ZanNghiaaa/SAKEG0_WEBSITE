@@ -16,6 +16,7 @@ const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [orders, setOrders] = useState([]);
   const [activeTab, setActiveTab] = useState('all');
+  const [showContactModal, setShowContactModal] = useState(false);
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -338,10 +339,10 @@ const Profile = () => {
                   </div>
                   <div className={`shopee-tab ${activeTab === 'completed' ? 'active' : ''}`} onClick={() => setActiveTab('completed')}>
                     <div className="shopee-tab-icon">
-                      <i className="fas fa-star"></i>
+                      <i className="fas fa-check-circle"></i>
                       {orders.filter(o => o.status === 'completed').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'completed').length}</span>}
                     </div>
-                    <span>Đánh giá</span>
+                    <span>Hoàn thành</span>
                   </div>
                 </div>
 
@@ -401,7 +402,7 @@ const Profile = () => {
                             </div>
                             <div className="order-actions">
                               {order.status === 'completed' && <button className="btn-shopee btn-repurchase" onClick={() => navigate('/products')}>Mua lại</button>}
-                              <button className="btn-shopee btn-contact">Liên hệ Người bán</button>
+                              <button className="btn-shopee btn-contact" onClick={() => setShowContactModal(true)}>Liên hệ Người bán</button>
                             </div>
                           </div>
                         </div>
@@ -414,6 +415,56 @@ const Profile = () => {
           </div>
         </div>
       </section>
+
+      {/* Contact Modal */}
+      {showContactModal && (
+        <div className="contact-modal-overlay" onClick={() => setShowContactModal(false)}>
+          <div className="contact-modal" onClick={e => e.stopPropagation()}>
+            <div className="contact-modal-header">
+              <h3><i className="fas fa-headset"></i> Liên hệ Người bán</h3>
+              <button className="contact-modal-close" onClick={() => setShowContactModal(false)}>
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+            <div className="contact-modal-body">
+              <p className="contact-modal-desc">Bạn cần hỗ trợ? Hãy liên hệ với chúng tôi qua các kênh bên dưới:</p>
+              <div className="contact-item">
+                <div className="contact-icon-wrap">
+                  <i className="fas fa-envelope"></i>
+                </div>
+                <div className="contact-info">
+                  <span className="contact-label">Email</span>
+                  <a href="mailto:Sakego25@gmail.com" className="contact-value">Sakego25@gmail.com</a>
+                </div>
+              </div>
+              <div className="contact-item">
+                <div className="contact-icon-wrap">
+                  <i className="fas fa-phone-alt"></i>
+                </div>
+                <div className="contact-info">
+                  <span className="contact-label">Hotline</span>
+                  <a href="tel:0392020136" className="contact-value">039 2020 136</a>
+                </div>
+              </div>
+              <div className="contact-item">
+                <div className="contact-icon-wrap">
+                  <i className="fab fa-facebook"></i>
+                </div>
+                <div className="contact-info">
+                  <span className="contact-label">Facebook</span>
+                  <a href="https://www.facebook.com" target="_blank" rel="noreferrer" className="contact-value">Sakego - Trái Sa Kê Tươi</a>
+                </div>
+              </div>
+            </div>
+            <div className="contact-modal-footer">
+              <a href="mailto:Sakego25@gmail.com" className="btn-send-email">
+                <i className="fas fa-paper-plane"></i>
+                Gửi email ngay
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 };

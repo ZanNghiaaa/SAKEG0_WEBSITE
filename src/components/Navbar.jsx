@@ -188,16 +188,20 @@ const Navbar = () => {
             </div>
           </div>
           
-          {/* Combined Menu Button for Mobile */}
-          <div className="combined-menu-wrapper">
-            <button 
-              className="combined-menu-btn"
-              onClick={() => setShowCombinedMenu(!showCombinedMenu)}
-            >
-              <i className="fas fa-bars"></i>
-              <span>MENU</span>
-            </button>
+          {/* Mobile Nav Tools (Search + Menu) */}
+          <div className="mobile-nav-tools">
+            <div className="mobile-search-bar">
+              <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+              <button><i className="fas fa-search"></i></button>
+            </div>
             
+            <div className="combined-menu-wrapper">
+              <button 
+                className="combined-menu-btn"
+                onClick={() => setShowCombinedMenu(!showCombinedMenu)}
+              >
+                <i className="fas fa-bars"></i>
+              </button>
             {showCombinedMenu && (
               <>
                 <div 
@@ -221,6 +225,7 @@ const Navbar = () => {
                       <li><Link to="/thuc-trang" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-chart-line"></i> Thực trạng</Link></li>
                       <li><Link to="/products" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-box"></i> Sản phẩm</Link></li>
                       <li><Link to="/contact" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-envelope"></i> Liên hệ</Link></li>
+                      <li><Link to="/ar" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-cube"></i> Công nghệ AR</Link></li>
                     </ul>
                   </div>
 
@@ -235,6 +240,7 @@ const Navbar = () => {
                 </div>
               </>
             )}
+            </div>
           </div>
 
           {/* Desktop Navigation Menu */}
@@ -244,6 +250,7 @@ const Navbar = () => {
             <li><Link to="/thuc-trang" className={location.pathname === '/thuc-trang' || location.pathname === '/sustainability' ? 'active' : ''}>Thực trạng</Link></li>
             <li><Link to="/products" className={location.pathname === '/products' ? 'active' : ''}>Sản phẩm</Link></li>
             <li><Link to="/contact" className={location.pathname === '/contact' ? 'active' : ''}>Liên hệ</Link></li>
+            <li><Link to="/ar" className={location.pathname === '/ar' ? 'active' : ''}>Công nghệ AR</Link></li>
           </ul>
 
           <div className="search-box">

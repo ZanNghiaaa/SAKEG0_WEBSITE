@@ -4,6 +4,8 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollToTopButton from './ScrollToTopButton';
 
+import AIChatbot from './AIChatbot';
+
 const Layout = () => {
   return (
     <>
@@ -11,6 +13,7 @@ const Layout = () => {
       <Outlet />
       <Footer />
       <ScrollToTopButton />
+      <AIChatbot />
     </>
   );
 };

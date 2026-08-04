@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
-import FeaturesSection from '../components/FeaturesSection';
 import CategoriesSection from '../components/CategoriesSection';
 import MarqueeTicker from '../components/MarqueeTicker';
 import ProductCard from '../components/ProductCard';
@@ -101,7 +100,6 @@ const Home = () => {
   return (
     <main>
       <HeroSection />
-      <FeaturesSection />
       <CategoriesSection />
 
       {/* ══════════════════════════════════════

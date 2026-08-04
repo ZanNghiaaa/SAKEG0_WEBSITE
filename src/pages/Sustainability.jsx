@@ -13,7 +13,7 @@ const Sustainability = () => {
     }, { threshold: 0.15 });
 
     const elements = document.querySelectorAll(
-      '.esg-label-anim, .esg-title-anim, .esg-desc-anim, .esg-card-anim'
+      '.sol-anim'
     );
     elements.forEach(el => observer.observe(el));
 
@@ -226,78 +226,73 @@ const Sustainability = () => {
         </div>
       </section>
 
-      {/* ESG Section - Artistic Redesign */}
-      <section className="esg-section">
+      {/* SAKEGO Solutions Section - Dynamic Redesign */}
+      <section className="solutions-section">
         {/* Artistic Background Elements */}
-        <div className="esg-art-bg" aria-hidden="true">
+        <div className="sol-art-bg" aria-hidden="true">
           <div className="art-glow art-glow-1"></div>
           <div className="art-glow art-glow-2"></div>
           <div className="art-glow art-glow-3"></div>
-
-          <svg className="esg-connection-lines" viewBox="0 0 1200 600" preserveAspectRatio="none">
-            <path d="M200,300 C400,100 800,500 1000,300" className="art-path" />
-            <path d="M200,300 C400,500 800,100 1000,300" className="art-path" />
-          </svg>
         </div>
 
         <div className="container relative z-10">
-          <div className="section-header esg-header">
-            <span className="section-label esg-label-anim">ESG</span>
-            <h2 className="section-title esg-title-anim">
-              Hệ sinh thái <span className="highlight">cân bằng hoàn mỹ</span>
+          <div className="section-header sol-header">
+            <span className="section-label sol-anim">Giải pháp SAKEGO</span>
+            <h2 className="section-title sol-anim">
+              Cách chúng tôi <span className="highlight">thay đổi cục diện</span>
             </h2>
-            <p className="section-description esg-desc-anim">
-              SAKEGO định hướng phát triển dựa trên 3 trụ cột ESG: Môi trường, Xã hội và Quản trị
-              để cân bằng giữa tăng trưởng và tạo dựng giá trị lâu dài cho thế hệ mai sau.
+            <p className="section-description sol-anim">
+              Từ những trăn trở về thực trạng, SAKEGO mang đến các giải pháp toàn diện 
+              để đánh thức tiềm năng của cây sa kê Việt Nam, cân bằng giá trị hiện đại.
             </p>
           </div>
 
-          <div className="esg-grid">
-            {/* E - Environment */}
-            <div className="esg-card esg-card-anim" style={{ transitionDelay: '0.1s' }}>
-              <div className="esg-card-inner">
-                <div className="esg-number">E</div>
-                <div className="esg-card-content">
-                  <h3>Environment</h3>
-                  <p>
-                    Canh tác sinh thái, phục hồi độ màu mỡ của đất, tối ưu hóa năng lượng
-                    và bảo vệ đa dạng sinh học bản địa.
-                  </p>
-                  <div className="esg-bar"><span style={{ width: '88%' }}></span></div>
-                  <small>Trọng tâm: Nông nghiệp xanh, Không rác thải</small>
+          <div className="solutions-grid">
+            {/* Solution 1 */}
+            <div className="sol-card sol-anim" style={{ transitionDelay: '0.1s' }}>
+              <div className="sol-card-inner">
+                <div className="sol-icon">
+                  <i className="fas fa-box-open"></i>
                 </div>
+                <h3>Sản phẩm tiện lợi</h3>
+                <p>
+                  Đa dạng hóa các dòng sản phẩm chế biến sẵn từ sa kê, 
+                  giúp khách hàng trẻ và gia đình hiện đại dễ dàng tiếp cận mỗi ngày.
+                </p>
+                <div className="sol-bar"><span style={{ width: '85%' }}></span></div>
+                <small>Trọng tâm: Tiện lợi, Dinh dưỡng</small>
               </div>
             </div>
 
-            {/* S - Social */}
-            <div className="esg-card esg-card-anim" style={{ transitionDelay: '0.3s' }}>
-              <div className="esg-card-inner">
-                <div className="esg-number">S</div>
-                <div className="esg-card-content">
-                  <h3>Social</h3>
-                  <p>
-                    Đồng hành cùng người nông dân, đảm bảo sinh kế ổn định và
-                    kiến tạo cộng đồng tiêu dùng có trách nhiệm.
-                  </p>
-                  <div className="esg-bar"><span style={{ width: '82%' }}></span></div>
-                  <small>Trọng tâm: Sinh kế bền vững, Kết nối cộng đồng</small>
+            {/* Solution 2 */}
+            <div className="sol-card sol-anim" style={{ transitionDelay: '0.3s' }}>
+              <div className="sol-card-inner">
+                <div className="sol-icon">
+                  <i className="fas fa-route"></i>
                 </div>
+                <h3>Chuẩn hóa quy trình</h3>
+                <p>
+                  Xây dựng chuỗi cung ứng khép kín từ vùng trồng đến nhà máy, 
+                  áp dụng tiêu chuẩn khắt khe để đảm bảo chất lượng tuyệt đối.
+                </p>
+                <div className="sol-bar"><span style={{ width: '92%' }}></span></div>
+                <small>Trọng tâm: Khép kín, Chất lượng</small>
               </div>
             </div>
 
-            {/* G - Governance */}
-            <div className="esg-card esg-card-anim" style={{ transitionDelay: '0.5s' }}>
-              <div className="esg-card-inner">
-                <div className="esg-number">G</div>
-                <div className="esg-card-content">
-                  <h3>Governance</h3>
-                  <p>
-                    Chuẩn hóa mọi quy trình từ nông trại đến bàn ăn, đảm bảo tính minh bạch,
-                    đạo đức kinh doanh và chất lượng.
-                  </p>
-                  <div className="esg-bar"><span style={{ width: '90%' }}></span></div>
-                  <small>Trọng tâm: Minh bạch thông tin, Đạo đức kinh doanh</small>
+            {/* Solution 3 */}
+            <div className="sol-card sol-anim" style={{ transitionDelay: '0.5s' }}>
+              <div className="sol-card-inner">
+                <div className="sol-icon">
+                  <i className="fas fa-bullhorn"></i>
                 </div>
+                <h3>Nâng tầm thương hiệu</h3>
+                <p>
+                  Thiết kế hiện đại, bao bì bắt mắt cùng thông điệp xanh 
+                  giúp thay đổi hoàn toàn góc nhìn về một loại nông sản truyền thống.
+                </p>
+                <div className="sol-bar"><span style={{ width: '88%' }}></span></div>
+                <small>Trọng tâm: Hình ảnh, Lan tỏa</small>
               </div>
             </div>
           </div>

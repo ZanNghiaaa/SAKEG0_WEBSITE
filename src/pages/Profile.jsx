@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { getCurrentUser, updateUserProfile, logoutUser } from '../controllers/UserController';
 import { getOrdersByUserId, ORDER_STATUS_TEXT } from '../controllers/OrderController';
 import '../assets/css/profile-page.css';
 
 const Profile = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const orderSuccess = location.state?.orderSuccess;
+  const orderNumber = location.state?.orderNumber;
+  const orderTotal = location.state?.totalAmount;
+
+  const [showSuccessBanner, setShowSuccessBanner] = useState(orderSuccess || false);
   const [user, setUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [activeTab, setActiveTab] = useState('all');
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -22,7 +29,7 @@ const Profile = () => {
       navigate('/login');
       return;
     }
-    
+
     setUser(currentUser);
     setFormData({
       fullname: currentUser.fullname,
@@ -30,14 +37,22 @@ const Profile = () => {
       phone: currentUser.phone,
       address: currentUser.address || ''
     });
-    
+
     // Load user orders
     const loadOrders = async () => {
       const userOrders = await getOrdersByUserId();
       setOrders(userOrders);
     };
     loadOrders();
-  }, [navigate]);
+
+    // Auto hide success banner after 5 seconds
+    if (showSuccessBanner) {
+      const timer = setTimeout(() => {
+        setShowSuccessBanner(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [navigate, showSuccessBanner]);
 
   const handleChange = (e) => {
     setFormData({
@@ -48,7 +63,7 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     try {
       const updatedUser = updateUserProfile(user.id, formData);
       setUser(updatedUser);
@@ -89,13 +104,33 @@ const Profile = () => {
 
       <section className="profile-section">
         <div className="container">
+
+          {/* Banner đặt hàng thành công */}
+          {showSuccessBanner && (
+            <div className="success-order-banner">
+              <div className="success-icon">
+                <i className="fas fa-check-circle"></i>
+              </div>
+              <div className="success-content">
+                <h3>Đặt hàng thành công! 🎉</h3>
+                <p>Chúng tôi sẽ sớm liên hệ và giao hàng tận nơi tại Cần Thơ. Cảm ơn bạn đã tin tưởng Sakego! 🌿</p>
+                {(orderNumber || orderTotal) && (
+                  <div className="success-order-details">
+                    {orderNumber && <span><i className="fas fa-receipt"></i> Mã đơn: <strong>#{String(orderNumber).slice(-6).toUpperCase()}</strong></span>}
+                    {orderTotal && <span><i className="fas fa-money-bill-wave"></i> Tổng tiền: <strong>{orderTotal.toLocaleString('vi-VN')}đ</strong></span>}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="profile-grid">
             {/* Sidebar */}
             <div className="profile-sidebar">
               <div className="profile-avatar">
                 <div className="avatar-circle">
-                  <img 
-                    src="/assets/images/AVATAR.png" 
+                  <img
+                    src="/assets/images/AVATAR.png"
                     alt="Avatar"
                     className="profile-avatar-img"
                     onError={(e) => {
@@ -111,47 +146,25 @@ const Profile = () => {
                 </span>
               </div>
 
-              <div className="profile-stats">
-                <div className="stat-item">
-                  <i className="fas fa-shopping-bag"></i>
-                  <div>
-                    <span className="stat-number">{orders.length}</span>
-                    <span className="stat-label">Đơn hàng</span>
-                  </div>
-                </div>
-                <div className="stat-item">
-                  <i className="fas fa-heart"></i>
-                  <div>
-                    <span className="stat-number">0</span>
-                    <span className="stat-label">Yêu thích</span>
-                  </div>
-                </div>
-                <div className="stat-item">
-                  <i className="fas fa-star"></i>
-                  <div>
-                    <span className="stat-number">5.0</span>
-                    <span className="stat-label">Điểm tích lũy</span>
-                  </div>
-                </div>
-              </div>
+
 
               <div className="profile-actions">
-                <button 
-                  className="btn-action btn-primary"
+                <button
+                  className="profile-btn-action btn-primary"
                   onClick={() => navigate('/cart')}
                 >
                   <i className="fas fa-shopping-cart"></i>
                   Giỏ hàng
                 </button>
-                <button 
-                  className="btn-action btn-secondary"
+                <button
+                  className="profile-btn-action btn-secondary"
                   onClick={() => navigate('/products')}
                 >
                   <i className="fas fa-store"></i>
                   Tiếp tục mua sắm
                 </button>
-                <button 
-                  className="btn-action btn-danger"
+                <button
+                  className="profile-btn-action btn-danger"
                   onClick={handleLogout}
                 >
                   <i className="fas fa-sign-out-alt"></i>
@@ -169,7 +182,7 @@ const Profile = () => {
                     Thông tin cá nhân
                   </h2>
                   {!isEditing && (
-                    <button 
+                    <button
                       className="btn-edit"
                       onClick={() => setIsEditing(true)}
                     >
@@ -273,8 +286,8 @@ const Profile = () => {
                         <i className="fas fa-save"></i>
                         Lưu thay đổi
                       </button>
-                      <button 
-                        type="button" 
+                      <button
+                        type="button"
                         className="btn-cancel"
                         onClick={() => {
                           setIsEditing(false);
@@ -294,88 +307,102 @@ const Profile = () => {
                 )}
               </div>
 
-              {/* Order History */}
-              <div className="profile-card">
-                <div className="card-header">
-                  <h2>
-                    <i className="fas fa-history"></i>
-                    Lịch sử đơn hàng
-                  </h2>
-                  <span className="order-count-badge">{orders.length} đơn</span>
+              {/* Shopee-style Order History */}
+              <div className="profile-card shopee-orders-card">
+                <div className="shopee-orders-header" onClick={() => setActiveTab('all')}>
+                  <h2>Đơn mua</h2>
+                  <span className="view-all-text">Xem lịch sử mua hàng <i className="fas fa-chevron-right"></i></span>
                 </div>
-                {orders.length === 0 ? (
+
+                <div className="shopee-orders-tabs">
+                  <div className={`shopee-tab ${activeTab === 'pending' ? 'active' : ''}`} onClick={() => setActiveTab('pending')}>
+                    <div className="shopee-tab-icon">
+                      <i className="fas fa-wallet"></i>
+                      {orders.filter(o => o.status === 'pending').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'pending').length}</span>}
+                    </div>
+                    <span>Chờ xác nhận</span>
+                  </div>
+                  <div className={`shopee-tab ${activeTab === 'preparing' ? 'active' : ''}`} onClick={() => setActiveTab('preparing')}>
+                    <div className="shopee-tab-icon">
+                      <i className="fas fa-box"></i>
+                      {orders.filter(o => o.status === 'preparing').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'preparing').length}</span>}
+                    </div>
+                    <span>Chờ lấy hàng</span>
+                  </div>
+                  <div className={`shopee-tab ${activeTab === 'delivering' ? 'active' : ''}`} onClick={() => setActiveTab('delivering')}>
+                    <div className="shopee-tab-icon">
+                      <i className="fas fa-truck"></i>
+                      {orders.filter(o => o.status === 'delivering').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'delivering').length}</span>}
+                    </div>
+                    <span>Chờ giao hàng</span>
+                  </div>
+                  <div className={`shopee-tab ${activeTab === 'completed' ? 'active' : ''}`} onClick={() => setActiveTab('completed')}>
+                    <div className="shopee-tab-icon">
+                      <i className="fas fa-star"></i>
+                      {orders.filter(o => o.status === 'completed').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'completed').length}</span>}
+                    </div>
+                    <span>Đánh giá</span>
+                  </div>
+                </div>
+
+                {orders.filter(o => activeTab === 'all' || o.status === activeTab).length === 0 ? (
                   <div className="empty-state">
-                    <i className="fas fa-shopping-bag"></i>
-                    <p>Bạn chưa có đơn hàng nào</p>
-                    <button 
-                      className="btn-shop-now"
-                      onClick={() => navigate('/products')}
-                    >
-                      Mua sắm ngay
-                    </button>
+                    <i className="fas fa-receipt"></i>
+                    <p>Chưa có đơn hàng</p>
+                    <button className="btn-shop-now" onClick={() => navigate('/products')}>Mua sắm ngay</button>
                   </div>
                 ) : (
-                  <div className="orders-list">
-                    {orders.map(order => {
-                      const getStatusClass = (status) => {
-                        const classes = {
-                          pending: 'status-pending',
-                          confirmed: 'status-confirmed',
-                          preparing: 'status-preparing',
-                          delivering: 'status-delivering',
-                          completed: 'status-completed',
-                          cancelled: 'status-cancelled'
-                        };
-                        return classes[status] || '';
-                      };
+                  <div className="shopee-orders-list">
+                    {orders.filter(o => activeTab === 'all' || o.status === activeTab).map(order => {
+                      const getStatusText = (status) => ORDER_STATUS_TEXT[status] || status;
 
                       return (
-                        <div key={order.id} className="order-item">
-                          <div className="order-header">
-                            <div className="order-id">
-                              <i className="fas fa-receipt"></i>
-                              <strong>{order.id}</strong>
+                        <div key={order.id} className="shopee-order-item">
+                          <div className="shopee-order-shop">
+                            <div className="shop-name">
+                              <i className="fas fa-store"></i>
+                              <span>Sakego</span>
                             </div>
-                            <span className={`order-status ${getStatusClass(order.status)}`}>
-                              {ORDER_STATUS_TEXT[order.status]}
-                            </span>
-                          </div>
-                          <div className="order-info">
-                            <div className="order-date">
-                              <i className="fas fa-calendar"></i>
-                              {new Date(order.createdAt).toLocaleDateString('vi-VN', {
-                                day: '2-digit',
-                                month: '2-digit',
-                                year: 'numeric',
-                                hour: '2-digit',
-                                minute: '2-digit'
-                              })}
-                            </div>
-                            <div className="order-items-count">
-                              <i className="fas fa-box"></i>
-                              {order.items.length} sản phẩm
-                            </div>
-                            <div className="order-total">
-                              <i className="fas fa-money-bill-wave"></i>
-                              <strong>{order.totalAmount.toLocaleString('vi-VN')}đ</strong>
+                            <div className="shopee-order-status">
+                              {getStatusText(order.status).toUpperCase()}
                             </div>
                           </div>
-                          <div className="order-address">
-                            <i className="fas fa-map-marker-alt"></i>
-                            <span>{order.customerInfo.address}, {order.customerInfo.ward}, {order.customerInfo.district}, Cần Thơ</span>
-                          </div>
-                          <div className="order-products">
-                            {order.items.slice(0, 3).map((item, idx) => (
-                              <div key={idx} className="order-product-mini">
-                                <img src={item.image} alt={item.name} />
-                                <span>x{item.quantity}</span>
+
+                          {order.items.map((item, idx) => {
+                            const getDisplayImage = (item) => {
+                              let displayImage = item.image;
+                              if (item.name === 'DOUBLE CHILL') displayImage = '/assets/images/Combo_2chill.png';
+                              else if (item.name === 'COUPLE CHILL') displayImage = '/assets/images/combo_2chill.jpg';
+                              else if (item.name === 'CHILL MỘT MÌNH') displayImage = '/assets/images/combo_1chilll.png';
+                              else if (item.name === 'ÍCH KỶ') displayImage = '/assets/images/combo_ichki.jpg';
+                              else if (item.name === 'SAKE PARTY') displayImage = '/assets/images/combo_PT.jpg';
+                              else if (item.name === 'Combo Sa Kê Đa Dạng') displayImage = '/assets/images/combo_PT.jpg';
+                              return displayImage;
+                            };
+                            return (
+                              <div key={idx} className="shopee-order-product">
+                                <img src={getDisplayImage(item)} alt={item.name} onError={(e) => { e.target.src = '/assets/images/default_product.png'; }} />
+                                <div className="product-details">
+                                  <h4>{item.name}</h4>
+                                  <div className="product-meta">
+                                    <span>x{item.quantity}</span>
+                                  </div>
+                                </div>
+                                <div className="product-price">
+                                  ₫{(item.price || 0).toLocaleString('vi-VN')}
+                                </div>
                               </div>
-                            ))}
-                            {order.items.length > 3 && (
-                              <div className="order-product-more">
-                                +{order.items.length - 3}
-                              </div>
-                            )}
+                            );
+                          })}
+
+                          <div className="shopee-order-footer">
+                            <div className="order-total-price">
+                              Thành tiền: <span>₫{order.totalAmount.toLocaleString('vi-VN')}</span>
+                            </div>
+                            <div className="order-actions">
+                              {order.status === 'completed' && <button className="btn-shopee btn-repurchase" onClick={() => navigate('/products')}>Mua lại</button>}
+                              <button className="btn-shopee btn-contact">Liên hệ Người bán</button>
+                            </div>
                           </div>
                         </div>
                       );

@@ -1,16 +1,18 @@
-import { getProductById } from './ProductController';
+// ============================================================
+// OrderController.js
+// Gọi backend API thật thay vì dùng localStorage
+// ============================================================
 
-// Local storage key
-const ORDERS_KEY = 'sakefruit_orders';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // Order status constants
 export const ORDER_STATUS = {
-  PENDING: 'pending',           // Chờ xác nhận
-  CONFIRMED: 'confirmed',       // Đã xác nhận
-  PREPARING: 'preparing',       // Đang chuẩn bị
-  DELIVERING: 'delivering',     // Đang giao
-  COMPLETED: 'completed',       // Hoàn thành
-  CANCELLED: 'cancelled'        // Đã hủy
+  PENDING: 'pending',
+  CONFIRMED: 'confirmed',
+  PREPARING: 'preparing',
+  DELIVERING: 'delivering',
+  COMPLETED: 'completed',
+  CANCELLED: 'cancelled'
 };
 
 export const ORDER_STATUS_TEXT = {
@@ -24,294 +26,191 @@ export const ORDER_STATUS_TEXT = {
 
 // Can Tho districts
 export const CAN_THO_DISTRICTS = [
-  'Ninh Kiều',
-  'Bình Thủy',
-  'Cái Răng',
-  'Ô Môn',
-  'Thốt Nốt',
-  'Phong Điền',
-  'Cờ Đỏ',
-  'Vĩnh Thạnh',
-  'Thới Lai'
+  'Ninh Kiều', 'Bình Thủy', 'Cái Răng', 'Ô Môn',
+  'Thốt Nốt', 'Phong Điền', 'Cờ Đỏ', 'Vĩnh Thạnh', 'Thới Lai'
 ];
 
-// Initial mock orders to seed the system
-const defaultOrders = [
-  {
-    id: 'ORD1718223301234',
-    _id: 'ORD1718223301234',
-    userId: 2, // customer 1 (user01)
-    customerInfo: {
-      fullname: 'Nguyễn Văn A',
-      email: 'user01@gmail.com',
-      phone: '0123456789',
-      address: '123 Đường 3/2, Ninh Kiều',
-      district: 'Ninh Kiều',
-      ward: 'Xuân Khánh',
-      notes: 'Giao hàng giờ hành chính'
-    },
-    items: [
-      {
-        id: 'prod_1',
-        productId: 'prod_1',
-        name: 'Trà lá sa kê',
-        price: 10000,
-        quantity: 2,
-        image: '/assets/images/Trà sake.png',
-        category: 'tea'
-      },
-      {
-        id: 'prod_6',
-        productId: 'prod_6',
-        name: 'Bánh mochi dâu',
-        price: 20000,
-        quantity: 1,
-        image: '/assets/images/banhmochi.jpg',
-        category: 'mochi'
-      }
-    ],
-    totalAmount: 40000,
-    paymentMethod: 'cod',
-    status: 'pending',
-    statusHistory: [
-      {
-        status: 'pending',
-        timestamp: new Date(Date.now() - 3600000).toISOString(),
-        note: 'Đơn hàng được tạo thành công'
-      }
-    ],
-    createdAt: new Date(Date.now() - 3600000).toISOString()
-  },
-  {
-    id: 'ORD1718223305678',
-    _id: 'ORD1718223305678',
-    userId: 2,
-    customerInfo: {
-      fullname: 'Nguyễn Văn A',
-      email: 'user01@gmail.com',
-      phone: '0123456789',
-      address: '123 Đường 3/2, Ninh Kiều',
-      district: 'Ninh Kiều',
-      ward: 'Xuân Khánh',
-      notes: ''
-    },
-    items: [
-      {
-        id: 'prod_2',
-        productId: 'prod_2',
-        name: 'Sữa gạo sa kê nguyên bản',
-        price: 15000,
-        quantity: 3,
-        image: '/assets/images/suagao.png',
-        category: 'rice-milk'
-      }
-    ],
-    totalAmount: 45000,
-    paymentMethod: 'cod',
-    status: 'completed',
-    statusHistory: [
-      {
-        status: 'pending',
-        timestamp: new Date(Date.now() - 86400000).toISOString(),
-        note: 'Đơn hàng được tạo thành công'
-      },
-      {
-        status: 'completed',
-        timestamp: new Date(Date.now() - 80000000).toISOString(),
-        note: 'Giao hàng thành công'
-      }
-    ],
-    createdAt: new Date(Date.now() - 86400000).toISOString()
-  }
-];
-
-// Initialize orders in localStorage if empty
-const getStoredOrders = () => {
-  let stored = localStorage.getItem(ORDERS_KEY);
-  let needsReset = false;
-  if (stored) {
-    const parsed = JSON.parse(stored);
-    if (parsed.some(order => order.items.some(item => item.name === 'Trà Sa Kê Ô Long Cao Cấp'))) {
-      needsReset = true;
-    }
-  }
-
-  if (!stored || needsReset) {
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(defaultOrders));
-    stored = JSON.stringify(defaultOrders);
-  }
-  return JSON.parse(stored);
+// Lấy auth header
+const getAuthHeader = () => {
+  const token = localStorage.getItem('token');
+  return token
+    ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
+    : { 'Content-Type': 'application/json' };
 };
 
-// Create new order (Local Storage)
+// Chuẩn hóa order từ backend
+const normalizeOrder = (order) => ({
+  ...order,
+  id: order._id?.toString() || order.id,
+  _id: order._id?.toString() || order.id,
+  items: (order.items || []).map(item => ({
+    ...item,
+    id: item.productId?._id?.toString() || item.productId?.toString() || item.id,
+    productId: item.productId?._id?.toString() || item.productId?.toString() || item.id,
+    name: item.name || item.productId?.name || 'Sản phẩm',
+    price: item.price || item.productId?.price || 0,
+    image: item.image || item.productId?.image || '/assets/images/hero_tea.jpg',
+    category: item.category || item.productId?.category || ''
+  }))
+});
+
+// -------------------------------------------------------
+// Tạo đơn hàng mới (Customer)
+// -------------------------------------------------------
 export const createOrder = async (orderData) => {
   try {
-    const orders = getStoredOrders();
-    
-    // Resolve current user info
-    const currentUserStr = localStorage.getItem('sakefruit_current_user');
-    const currentUser = currentUserStr ? JSON.parse(currentUserStr) : null;
-    const userId = currentUser ? currentUser.id : 'guest';
-
-    // Resolve details from ProductController
-    const resolvedItems = orderData.items.map(item => {
-      const prod = getProductById(item.id || item.productId);
-      return {
-        id: item.id || item.productId,
-        productId: item.id || item.productId,
-        name: prod ? prod.name : item.name || 'Sản phẩm',
-        price: prod ? prod.price : item.price || 0,
-        quantity: item.quantity,
-        image: prod ? prod.image : item.image || '',
-        category: prod ? prod.category : item.category || ''
-      };
+    const res = await fetch(`${API_URL}/orders`, {
+      method: 'POST',
+      headers: getAuthHeader(),
+      body: JSON.stringify({
+        customerInfo: {
+          fullname: orderData.fullname,
+          email: orderData.email,
+          phone: orderData.phone,
+          address: orderData.address,
+          district: orderData.district,
+          ward: orderData.ward || '',
+        },
+        notes: orderData.notes || '',
+        items: orderData.items.map(item => ({
+          productId: item._id || item.id || item.productId,
+          quantity: item.quantity
+        })),
+        paymentMethod: orderData.paymentMethod || 'cod'
+      })
     });
 
-    const totalAmount = resolvedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const orderId = 'ORD' + Date.now();
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Đặt hàng thất bại!');
 
-    const newOrder = {
-      id: orderId,
-      _id: orderId,
-      userId: userId,
-      customerInfo: {
-        fullname: orderData.fullname,
-        email: orderData.email,
-        phone: orderData.phone,
-        address: orderData.address,
-        district: orderData.district,
-        ward: orderData.ward,
-        notes: orderData.notes || ''
-      },
-      items: resolvedItems,
-      totalAmount: totalAmount,
-      paymentMethod: orderData.paymentMethod || 'cod',
-      status: ORDER_STATUS.PENDING,
-      statusHistory: [{
-        status: ORDER_STATUS.PENDING,
-        timestamp: new Date().toISOString(),
-        note: 'Đơn hàng được tạo thành công'
-      }],
-      createdAt: new Date().toISOString()
-    };
-
-    orders.push(newOrder);
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-
-    // Dispatch custom event to notify components/tabs about new orders
     window.dispatchEvent(new Event('newNotification'));
-
-    return newOrder;
+    return normalizeOrder(data.order);
   } catch (error) {
-    console.error('Error creating order locally:', error);
+    console.error('Error creating order:', error);
     throw error;
   }
 };
 
-// Get user's orders
+// -------------------------------------------------------
+// Lấy đơn hàng của user hiện tại
+// -------------------------------------------------------
 export const getOrdersByUserId = async () => {
   try {
-    const currentUserStr = localStorage.getItem('sakefruit_current_user');
-    if (!currentUserStr) {
-      return [];
-    }
-    const currentUser = JSON.parse(currentUserStr);
-    const userId = currentUser.id;
-
-    const orders = getStoredOrders();
-    // Filter matching user ID (both string/number checks)
-    return orders.filter(order => order.userId.toString() === userId.toString())
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const res = await fetch(`${API_URL}/orders/my-orders`, {
+      headers: getAuthHeader()
+    });
+    const data = await res.json();
+    if (!data.success) return [];
+    return (data.orders || []).map(normalizeOrder);
   } catch (error) {
-    console.error('Error fetching orders locally:', error);
+    console.error('Error fetching orders:', error);
     return [];
   }
 };
 
-// Get order by ID
+// -------------------------------------------------------
+// Lấy đơn hàng theo ID
+// -------------------------------------------------------
 export const getOrderById = async (orderId) => {
   try {
-    const orders = getStoredOrders();
-    const order = orders.find(o => o.id.toString() === orderId.toString() || o._id.toString() === orderId.toString());
-    if (!order) {
-      throw new Error('Không tìm thấy đơn hàng!');
-    }
-    return order;
+    const res = await fetch(`${API_URL}/orders/${orderId}`, {
+      headers: getAuthHeader()
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Không tìm thấy đơn hàng!');
+    return normalizeOrder(data.order);
   } catch (error) {
-    console.error('Error fetching order locally:', error);
+    console.error('Error fetching order:', error);
     throw error;
   }
 };
 
-// Get all orders (Admin only)
+// -------------------------------------------------------
+// Lấy tất cả đơn hàng (Admin only)
+// -------------------------------------------------------
 export const getAllOrders = async () => {
   try {
-    const orders = getStoredOrders();
-    return orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const res = await fetch(`${API_URL}/admin/orders`, {
+      headers: getAuthHeader()
+    });
+    const data = await res.json();
+    if (!data.success) return [];
+    return (data.orders || []).map(normalizeOrder);
   } catch (error) {
-    console.error('Error fetching all orders locally:', error);
+    console.error('Error fetching all orders:', error);
     return [];
   }
 };
 
-// Update order status (Admin only)
+// -------------------------------------------------------
+// Cập nhật trạng thái đơn hàng (Admin only)
+// -------------------------------------------------------
 export const updateOrderStatus = async (orderId, newStatus, note = '') => {
   try {
-    const orders = getStoredOrders();
-    const idx = orders.findIndex(o => o.id.toString() === orderId.toString() || o._id.toString() === orderId.toString());
-    if (idx === -1) {
-      throw new Error('Đơn hàng không tồn tại!');
-    }
-
-    const currentOrder = orders[idx];
-    currentOrder.status = newStatus;
-    
-    if (!currentOrder.statusHistory) {
-      currentOrder.statusHistory = [];
-    }
-
-    currentOrder.statusHistory.push({
-      status: newStatus,
-      timestamp: new Date().toISOString(),
-      note: note || `Cập nhật trạng thái sang ${ORDER_STATUS_TEXT[newStatus]}`
+    const res = await fetch(`${API_URL}/admin/orders/${orderId}/status`, {
+      method: 'PUT',
+      headers: getAuthHeader(),
+      body: JSON.stringify({
+        status: newStatus,
+        note: note || `Cập nhật trạng thái sang ${ORDER_STATUS_TEXT[newStatus]}`
+      })
     });
-
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-    return currentOrder;
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Cập nhật thất bại!');
+    return normalizeOrder(data.order);
   } catch (error) {
-    console.error('Error updating order status locally:', error);
+    console.error('Error updating order status:', error);
     throw error;
   }
 };
 
-// Helper functions for statistics (work with local storage data)
+// -------------------------------------------------------
+// Hủy đơn hàng (Customer)
+// -------------------------------------------------------
+export const cancelOrder = async (orderId, reason = '') => {
+  try {
+    const res = await fetch(`${API_URL}/orders/${orderId}/cancel`, {
+      method: 'PUT',
+      headers: getAuthHeader(),
+      body: JSON.stringify({ reason })
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error(data.message || 'Hủy đơn thất bại!');
+    return normalizeOrder(data.order);
+  } catch (error) {
+    console.error('Error cancelling order:', error);
+    throw error;
+  }
+};
+
+// -------------------------------------------------------
+// Thống kê đơn hàng (Admin)
+// -------------------------------------------------------
 export const getOrdersStatistics = async () => {
   try {
-    const orders = await getAllOrders();
+    const res = await fetch(`${API_URL}/admin/statistics`, {
+      headers: getAuthHeader()
+    });
+    const data = await res.json();
+    if (!data.success) throw new Error('Lỗi thống kê');
     
+    // Map dữ liệu từ backend sang format Frontend cần
+    const stats = data.statistics?.orders || {};
     return {
-      total: orders.length,
-      pending: orders.filter(o => o.status === ORDER_STATUS.PENDING).length,
-      confirmed: orders.filter(o => o.status === ORDER_STATUS.CONFIRMED).length,
-      preparing: orders.filter(o => o.status === ORDER_STATUS.PREPARING).length,
-      delivering: orders.filter(o => o.status === ORDER_STATUS.DELIVERING).length,
-      completed: orders.filter(o => o.status === ORDER_STATUS.COMPLETED).length,
-      cancelled: orders.filter(o => o.status === ORDER_STATUS.CANCELLED).length,
-      totalRevenue: orders
-        .filter(o => o.status === ORDER_STATUS.COMPLETED)
-        .reduce((sum, order) => sum + order.totalAmount, 0)
+      total: stats.totalOrders || 0,
+      pending: stats.pendingOrders || 0,
+      confirmed: stats.confirmedOrders || 0,
+      preparing: stats.preparingOrders || 0,
+      delivering: stats.deliveringOrders || 0,
+      completed: stats.completedOrders || 0,
+      cancelled: stats.cancelledOrders || 0,
+      totalRevenue: stats.totalRevenue || 0
     };
   } catch (error) {
-    console.error('Error getting statistics locally:', error);
+    console.error('Error getting statistics:', error);
     return {
-      total: 0,
-      pending: 0,
-      confirmed: 0,
-      preparing: 0,
-      delivering: 0,
-      completed: 0,
-      cancelled: 0,
-      totalRevenue: 0
+      total: 0, pending: 0, confirmed: 0, preparing: 0,
+      delivering: 0, completed: 0, cancelled: 0, totalRevenue: 0
     };
   }
 };
@@ -320,24 +219,24 @@ export const getTodayOrders = async () => {
   try {
     const orders = await getAllOrders();
     const today = new Date().toISOString().split('T')[0];
-    
     return orders.filter(order => {
       const orderDate = new Date(order.createdAt).toISOString().split('T')[0];
       return orderDate === today;
     });
   } catch (error) {
-    console.error('Error getting today orders locally:', error);
     return [];
   }
 };
 
 export const getOrdersByStatus = async (status) => {
   try {
-    const orders = await getAllOrders();
-    return orders.filter(order => order.status === status)
-      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    const res = await fetch(`${API_URL}/admin/orders?status=${status}`, {
+      headers: getAuthHeader()
+    });
+    const data = await res.json();
+    if (!data.success) return [];
+    return (data.orders || []).map(normalizeOrder);
   } catch (error) {
-    console.error('Error getting orders by status locally:', error);
     return [];
   }
 };

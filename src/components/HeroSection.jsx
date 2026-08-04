@@ -76,35 +76,6 @@ const HeroSection = () => {
             </div>
           </div>
 
-          <div className="hero-sakego__showcase animate-fade-rise-delay-2">
-            <div className="hero-sakego__scene" aria-hidden="true">
-              <div className="hero-sakego__scene-ring hero-sakego__scene-ring--outer"></div>
-              <div className="hero-sakego__scene-ring hero-sakego__scene-ring--inner"></div>
-              <div className="hero-sakego__scene-orbit hero-sakego__scene-orbit--one"></div>
-              <div className="hero-sakego__scene-orbit hero-sakego__scene-orbit--two"></div>
-              <div className="hero-sakego__scene-orbit hero-sakego__scene-orbit--three"></div>
-
-              <div className="hero-sakego__scene-core">
-                <img src={linhvatImage} alt="Linh vật SaKeGo" className="hero-sakego__mascot" />
-                <span className="hero-sakego__scene-core-label"></span>
-                {/* <strong>Không gian xanh</strong>
-                <p>Tối giản, tự nhiên và có chiều sâu để làm nổi bật tinh thần thương hiệu.</p> */}
-              </div>
-
-              <div className="hero-sakego__scene-particle hero-sakego__scene-particle--leaf">✦</div>
-              <div className="hero-sakego__scene-particle hero-sakego__scene-particle--dot"></div>
-              <div className="hero-sakego__scene-particle hero-sakego__scene-particle--spark">✦</div>
-
-              <div className="hero-sakego__scene-card hero-sakego__scene-card--top">Nét xanh hiện đại</div>
-              <div className="hero-sakego__scene-card hero-sakego__scene-card--left">Tươi sạch mỗi ngày</div>
-              <div className="hero-sakego__scene-card hero-sakego__scene-card--right">Tinh gọn chuỗi giá trị</div>
-            </div>
-
-            {/* <div className="hero-sakego__scene-caption">
-              <span>SaKeGo • Chuyển động thương hiệu</span>
-              <p>Điểm nhấn 3D tông xanh đậm giúp khối này nổi bật mà vẫn giữ cảm giác sạch và sang.</p>
-            </div> */}
-          </div>
         </div>
       </div>
     </section>

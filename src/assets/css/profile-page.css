@@ -57,6 +57,88 @@
   min-height: calc(100vh - 300px);
 }
 
+/* Success Order Banner */
+.success-order-banner {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: #fff;
+  border-radius: 20px;
+  padding: 25px 30px;
+  margin-bottom: 35px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+  position: relative;
+  overflow: hidden;
+  animation: slideDown 0.5s ease-out forwards;
+}
+
+.success-order-banner::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.success-icon {
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.success-content {
+  flex: 1;
+}
+
+.success-content h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.success-content p {
+  font-size: 15px;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.success-order-details {
+  display: flex;
+  gap: 20px;
+  margin-top: 12px;
+  background: rgba(255,255,255,0.15);
+  padding: 10px 20px;
+  border-radius: 12px;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.success-order-details span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .profile-grid {
   display: grid;
   grid-template-columns: 350px 1fr;
@@ -225,7 +307,7 @@
   gap: 15px;
 }
 
-.btn-action {
+.profile-btn-action {
   padding: 16px 24px;
   border: none;
   border-radius: 12px;
@@ -242,7 +324,7 @@
   overflow: hidden;
 }
 
-.btn-action::before {
+.profile-btn-action::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -255,18 +337,18 @@
   transition: width 0.6s, height 0.6s;
 }
 
-.btn-action:hover::before {
+.profile-btn-action:hover::before {
   width: 300px;
   height: 300px;
 }
 
-.btn-action i {
+.profile-btn-action i {
   font-size: 18px;
   position: relative;
   z-index: 1;
 }
 
-.btn-action span {
+.profile-btn-action span {
   position: relative;
   z-index: 1;
 }
@@ -564,180 +646,228 @@
 }
 
 /* ===================================
-   ORDER HISTORY STYLES
+   SHOPEE-STYLE ORDER HISTORY
    =================================== */
-.order-count-badge {
-  background: linear-gradient(135deg, #7CB342, #558B2F);
-  color: white;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.orders-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.order-item {
-  background: #f8f9fa;
+.shopee-orders-card {
+  padding: 0;
+  background: white;
   border-radius: 12px;
-  padding: 20px;
-  border: 2px solid #e9ecef;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.order-item:hover {
-  border-color: #7CB342;
-  box-shadow: 0 4px 12px rgba(124, 179, 66, 0.15);
-  transform: translateY(-2px);
-}
-
-.order-header {
+.shopee-orders-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e9ecef;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.order-id {
+.shopee-orders-header:hover {
+  background: #fcfcfc;
+}
+
+.shopee-orders-header h2 {
+  font-size: 18px;
+  margin: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: #2d3748;
-  font-size: 15px;
 }
 
-.order-id i {
+.shopee-orders-header h2 i {
   color: #7CB342;
-  font-size: 18px;
 }
 
-.order-id strong {
-  font-family: 'Courier New', monospace;
-  color: #7CB342;
-  font-weight: 700;
-}
-
-.order-status {
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.order-status.status-pending {
-  background: rgba(243, 156, 18, 0.1);
-  color: #f39c12;
-}
-
-.order-status.status-confirmed {
-  background: rgba(52, 152, 219, 0.1);
-  color: #3498db;
-}
-
-.order-status.status-preparing {
-  background: rgba(155, 89, 182, 0.1);
-  color: #9b59b6;
-}
-
-.order-status.status-delivering {
-  background: rgba(26, 188, 156, 0.1);
-  color: #1abc9c;
-}
-
-.order-status.status-completed {
-  background: rgba(39, 174, 96, 0.1);
-  color: #27ae60;
-}
-
-.order-status.status-cancelled {
-  background: rgba(231, 76, 60, 0.1);
-  color: #e74c3c;
-}
-
-.order-info {
-  display: flex;
-  gap: 25px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.order-info > div {
+.view-all-text {
+  font-size: 14px;
+  color: #718096;
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 14px;
-  color: #4a5568;
 }
 
-.order-info i {
-  color: #7CB342;
-  font-size: 14px;
+.view-all-text i {
+  font-size: 12px;
 }
 
-.order-total strong {
-  color: #7CB342;
-  font-size: 16px;
-  font-weight: 700;
+.shopee-orders-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 20px 10px;
+  border-bottom: 8px solid #f5f5f5;
 }
 
-.order-address {
+.shopee-tab {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 15px;
-  padding: 12px;
-  background: white;
-  border-radius: 8px;
-  font-size: 13px;
-  color: #4a5568;
-}
-
-.order-address i {
-  color: #7CB342;
-  margin-top: 2px;
-  font-size: 14px;
-}
-
-.order-products {
-  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
+  cursor: pointer;
+  color: #4a5568;
+  transition: all 0.2s;
+}
+
+.shopee-tab:hover, .shopee-tab.active {
+  color: #7CB342;
+}
+
+.shopee-tab-icon {
+  position: relative;
+  font-size: 28px;
+}
+
+.shopee-badge {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background: #e53e3e;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+.shopee-tab span {
+  font-size: 13px;
+  text-align: center;
+}
+
+.shopee-orders-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.shopee-order-item {
+  border-bottom: 8px solid #f5f5f5;
+  background: white;
+}
+
+.shopee-order-shop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.shop-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2d3748;
+}
+
+.shopee-order-status {
+  color: #7CB342;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.shopee-order-product {
+  display: flex;
+  padding: 15px 20px;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 15px;
+}
+
+.shopee-order-product img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.product-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-details h4 {
+  margin: 0;
+  font-size: 15px;
+  color: #2d3748;
+  line-height: 1.4;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #718096;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.product-price {
+  font-weight: 600;
+  color: #2d3748;
+  display: flex;
   align-items: center;
 }
 
-.order-product-mini {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.shopee-order-footer {
+  padding: 20px;
 }
 
-.order-product-mini img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.order-total-price {
+  text-align: right;
+  font-size: 14px;
+  color: #4a5568;
+  margin-bottom: 15px;
 }
 
-.order-product-mini span {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+.order-total-price span {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e53e3e;
+  margin-left: 10px;
+}
+
+.order-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-shopee {
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-repurchase {
   background: #7CB342;
   color: white;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px 0 0 0;
+  border: 1px solid #7CB342;
+}
+
+.btn-repurchase:hover {
+  background: #689f38;
+}
+
+.btn-contact {
+  background: white;
+  color: #4a5568;
+  border: 1px solid #cbd5e0;
+}
+
+.btn-contact:hover {
+  background: #f7fafc;
 }
 
 .order-product-more {
@@ -832,6 +962,18 @@
     padding: 50px 0;
   }
   
+  .success-order-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 25px 20px;
+    gap: 15px;
+  }
+  
+  .success-order-details {
+    justify-content: center;
+    width: 100%;
+  }
+
   .avatar-circle {
     width: 120px;
     height: 120px;
@@ -850,13 +992,25 @@
   }
   
   .card-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
   
   .card-header h2 {
-    font-size: 24px;
+    font-size: 18px;
+    gap: 8px;
+  }
+  
+  .card-header h2 i {
+    font-size: 20px;
+  }
+  
+  .btn-edit {
+    padding: 8px 16px;
+    font-size: 13px;
+    white-space: nowrap;
   }
   
   .info-display,
@@ -876,6 +1030,46 @@
   .profile-sidebar {
     grid-template-columns: 1fr;
   }
+  
+  .profile-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 15px;
+  }
+  
+  .stat-item {
+    flex-direction: column;
+    text-align: center;
+    border-bottom: none;
+    border-right: 1px solid #f0f0f0;
+    gap: 8px;
+    padding: 10px;
+    flex: 1;
+  }
+  
+  .stat-item:last-child {
+    border-right: none;
+  }
+  
+  .stat-item i {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    margin: 0 auto;
+  }
+  
+  .stat-number {
+    font-size: 18px;
+  }
+  
+  .stat-label {
+    font-size: 11px;
+  }
+  
+  .profile-btn-action.logout {
+    margin-top: 15px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -892,21 +1086,67 @@
   }
   
   .stat-item {
-    padding: 15px 0;
+    padding: 10px 5px;
   }
   
   .stat-item i {
-    width: 50px;
-    height: 50px;
-    font-size: 28px;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
   }
   
   .stat-number {
+    font-size: 16px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+  
+  .profile-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .profile-btn-action {
+    flex: 1 1 calc(50% - 5px);
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .profile-btn-action.btn-danger {
+    flex: 1 1 100%;
+  }
+
+  /* Shopee Mobile Adjustments */
+  .shopee-orders-tabs {
+    padding: 15px 5px;
+  }
+  
+  .shopee-tab-icon {
     font-size: 24px;
   }
   
-  .btn-action {
-    padding: 14px 20px;
-    font-size: 15px;
+  .shopee-tab span {
+    font-size: 11px;
+  }
+  
+  .shopee-order-product {
+    padding: 12px 15px;
+  }
+  
+  .shopee-order-product img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .order-actions {
+    flex-direction: column;
+  }
+  
+  .btn-shopee {
+    width: 100%;
+    padding: 10px;
   }
 }

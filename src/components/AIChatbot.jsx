@@ -285,7 +285,7 @@ const AIChatbot = () => {
       // 25. GIÁ CẢ & MUA HÀNG
       // ══════════════════════════════════════════════════════════
       } else if (has('giá', 'bao nhiêu tiền', 'bao nhiêu đồng', 'giá bán', 'giá sản phẩm', 'giá trà', 'giá mochi', 'giá sữa')) {
-        botReply = '💰 Giá sản phẩm SAKEGO rất hợp lý:\n🍵 Trà Lá Sa Kê: từ 45.000đ – 85.000đ/túi\n🍡 Bánh Mochi Sa Kê: từ 25.000đ/hộp\n🥛 Sữa Gạo Sa Kê: từ 55.000đ – 95.000đ/túi\n🎁 Combo: từ 28.000đ – 97.000đ tùy bộ.\nBạn ghé trang Sản Phẩm để xem giá chi tiết và order ngay nhé! 😊';
+        botReply = '💰 Giá sản phẩm SAKEGO rất hợp lý:\n🍵 Trà Lá Sa Kê: từ 45.000đ - 55.000đ/hộp\n🍡 Bánh Mochi Sa Kê: từ 39.000đ/hộp\n🥛 Sữa Gạo Sa Kê: từ 15.000đ/chai\n🎁 Combo: từ 28.000đ – 97.000đ tùy bộ.\nBạn ghé trang Sản Phẩm để xem giá chi tiết và order ngay nhé! 😊';
 
       // ══════════════════════════════════════════════════════════
       // 26. GIAO HÀNG & THANH TOÁN

@@ -244,8 +244,8 @@ const AdminOrders = () => {
                             </div>
                           </div>
                         </td>
-                        <td data-label="SĐT" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>{order.customerInfo?.phone || '—'}</td>
-                        <td data-label="Địa chỉ">
+                        <td data-label="SĐT" className="hide-on-mobile" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>{order.customerInfo?.phone || '—'}</td>
+                        <td data-label="Địa chỉ" className="hide-on-mobile">
                           <div style={{
                             fontSize: 11, color: 'var(--admin-text-muted)',
                             maxWidth: 110, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
@@ -254,7 +254,7 @@ const AdminOrders = () => {
                               .filter(Boolean).join(', ') || '—'}
                           </div>
                         </td>
-                        <td data-label="Sản phẩm">
+                        <td data-label="Sản phẩm" className="hide-on-mobile">
                           <span style={{
                             background: 'rgba(59,130,246,0.1)', color: '#2563eb',
                             padding: '3px 8px', borderRadius: 6, fontSize: 12, fontWeight: 700
@@ -267,7 +267,7 @@ const AdminOrders = () => {
                             {(order.totalAmount || 0).toLocaleString('vi-VN')}đ
                           </strong>
                         </td>
-                        <td data-label="Thanh toán" style={{ whiteSpace: 'nowrap' }}>
+                        <td data-label="Thanh toán" className="hide-on-mobile" style={{ whiteSpace: 'nowrap' }}>
                           <span style={{
                             fontSize: 10, fontWeight: 700, textTransform: 'uppercase',
                             color: order.paymentMethod === 'cod' ? '#d97706' : '#2563eb',
@@ -288,7 +288,7 @@ const AdminOrders = () => {
                             </div>
                           )}
                         </td>
-                        <td data-label="Thời gian" style={{ fontSize: 11, color: 'var(--admin-text-muted)', whiteSpace: 'nowrap' }}>
+                        <td data-label="Thời gian" className="hide-on-mobile" style={{ fontSize: 11, color: 'var(--admin-text-muted)', whiteSpace: 'nowrap' }}>
                           <div>{new Date(order.createdAt).toLocaleDateString('vi-VN')}</div>
                           <div style={{ fontSize: 10 }}>{new Date(order.createdAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</div>
                         </td>

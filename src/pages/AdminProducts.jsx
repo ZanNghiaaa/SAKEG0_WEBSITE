@@ -348,7 +348,7 @@ const AdminProducts = () => {
               <tbody>
                 {filteredProducts.map(product => (
                   <tr key={product.id || product._id}>
-                    <td data-label="ID">
+                    <td data-label="ID" className="hide-on-mobile">
                       <span style={{
                         fontFamily: 'monospace', fontSize: 11, color: 'var(--green-500)',
                         background: 'rgba(124,179,66,0.1)', padding: '2px 7px', borderRadius: 5
@@ -395,7 +395,7 @@ const AdminProducts = () => {
                         </div>
                       </div>
                     </td>
-                    <td data-label="Danh mục">
+                    <td data-label="Danh mục" className="hide-on-mobile">
                       <span style={{
                         fontSize: 12, fontWeight: 600, color: 'var(--admin-text-dim)',
                         background: 'rgba(255,255,255,0.05)', padding: '3px 8px', borderRadius: 5
@@ -415,7 +415,7 @@ const AdminProducts = () => {
                         )}
                       </div>
                     </td>
-                    <td data-label="Tồn kho">
+                    <td data-label="Tồn kho" className="hide-on-mobile">
                       <span style={{
                         fontWeight: 700, fontSize: 14,
                         color: product.stock > 50 ? '#4ade80' : product.stock > 0 ? '#fbbf24' : '#f87171'

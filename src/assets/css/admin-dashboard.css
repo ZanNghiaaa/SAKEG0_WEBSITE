@@ -1622,6 +1622,8 @@
    ADMIN MOBILE REDESIGN (Card-ify & UI Fixes)
    ============================================================ */
 @media (max-width: 768px) {
+  .hide-on-mobile { display: none !important; }
+
   /* 1. Fix Hamburger & Top Nav */
   .mobile-menu-toggle {
     top: 15px !important;
@@ -1638,7 +1640,7 @@
     box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4) !important;
   }
   
-  .admin-dashboard-header {
+  .admin-header {
     margin-top: 50px; /* Leave space for hamburger */
     padding: 10px 15px !important;
   }
@@ -1783,3 +1785,5 @@
     gap: 15px !important;
   }
 }
+
+@media (max-width: 768px) { .user-info-email, .admin-table td { word-break: break-word; overflow-wrap: break-word; } }

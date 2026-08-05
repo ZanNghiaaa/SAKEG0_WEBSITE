@@ -214,8 +214,8 @@ const AdminUsers = () => {
                             @{user.username}
                           </span>
                         </td>
-                        <td data-label="Email" style={{ fontSize: 13, color: 'var(--admin-text-dim)' }}>{user.email}</td>
-                        <td data-label="SĐT" style={{ fontSize: 13 }}>{user.phone || '—'}</td>
+                        <td data-label="Email" className="hide-on-mobile" style={{ fontSize: 13, color: 'var(--admin-text-dim)' }}>{user.email}</td>
+                        <td data-label="SĐT" className="hide-on-mobile" style={{ fontSize: 13 }}>{user.phone || '—'}</td>
                         <td data-label="Vai trò">
                           {user.role === 'admin' ? (
                             <span className="role-badge role-admin">
@@ -227,10 +227,10 @@ const AdminUsers = () => {
                             </span>
                           )}
                         </td>
-                        <td data-label="Ngày tạo" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
+                        <td data-label="Ngày tạo" className="hide-on-mobile" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
                           {formatDate(user.createdAt)}
                         </td>
-                        <td data-label="Đơn hàng">
+                        <td data-label="Đơn hàng" className="hide-on-mobile">
                           <span style={{
                             background: 'rgba(59,130,246,0.12)', color: '#60a5fa',
                             padding: '3px 10px', borderRadius: 6, fontSize: 13, fontWeight: 700
@@ -238,7 +238,7 @@ const AdminUsers = () => {
                             {orderCount}
                           </span>
                         </td>
-                        <td data-label="Chi tiêu">
+                        <td data-label="Chi tiêu" className="hide-on-mobile">
                           <strong className="text-success" style={{ fontSize: 13 }}>
                             {totalSpend > 0 ? `${totalSpend.toLocaleString('vi-VN')}đ` : '—'}
                           </strong>

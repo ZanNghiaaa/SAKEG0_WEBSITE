@@ -157,17 +157,6 @@ const ProductDetail = () => {
                   </div>
                 )}
               </div>
-              <div className="thumbnail-list">
-                {productImages.map((img, index) => (
-                  <div
-                    key={index}
-                    className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
-                    onClick={() => setSelectedImage(index)}
-                  >
-                    <img src={img} alt={`${product.name} ${index + 1}`} />
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Product Info */}

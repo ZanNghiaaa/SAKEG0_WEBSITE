@@ -30,7 +30,15 @@ const Products = () => {
   useEffect(() => {
     withLoading(async () => {
       const products = await fetchProductsFromAPI();
-      setFilteredProducts(products);
+      const params = new URLSearchParams(location.search);
+      const category = params.get('category');
+      
+      if (category) {
+        setActiveFilter(category);
+        setFilteredProducts(getProductsByCategory(category));
+      } else {
+        setFilteredProducts(products);
+      }
     }, 300);
   }, []);
 

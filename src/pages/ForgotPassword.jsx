@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUsers } from '../controllers/UserController';
+import { CheckCircle2, ArrowRight, AlertCircle, Mail, Loader2, Send, ArrowLeft } from 'lucide-react';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -65,7 +66,7 @@ const ForgotPassword = () => {
               {success ? (
                 <div className="auth-success">
                   <div className="success-icon">
-                    <i className="fas fa-check-circle"></i>
+                    <CheckCircle2 size={18} />
                   </div>
                   <h2>Email đã được gửi!</h2>
                   <p>Vui lòng kiểm tra email của bạn và làm theo hướng dẫn để đặt lại mật khẩu.</p>
@@ -74,21 +75,21 @@ const ForgotPassword = () => {
                   </p>
                   <Link to="/login" className="btn-modern" style={{ marginTop: '20px', textDecoration: 'none' }}>
                     <span>Quay lại đăng nhập</span>
-                    <i className="fas fa-arrow-right"></i>
+                    <ArrowRight size={18} />
                   </Link>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="modern-form">
                   {error && (
                     <div className="error-message">
-                      <i className="fas fa-exclamation-circle"></i>
+                      <AlertCircle size={18} />
                       {error}
                     </div>
                   )}
 
                   <div className="input-group">
                     <div className="input-icon">
-                      <i className="fas fa-envelope"></i>
+                      <Mail size={18} />
                     </div>
                     <div className="input-wrapper">
                       <input
@@ -108,12 +109,12 @@ const ForgotPassword = () => {
                     {loading ? (
                       <>
                         <span>Đang gửi...</span>
-                        <i className="fas fa-spinner fa-spin"></i>
+                        <Loader2 size={18} className="lucide-spin" />
                       </>
                     ) : (
                       <>
                         <span>Gửi link đặt lại mật khẩu</span>
-                        <i className="fas fa-paper-plane"></i>
+                        <Send size={18} />
                       </>
                     )}
                   </button>
@@ -121,7 +122,7 @@ const ForgotPassword = () => {
                   <div className="form-footer">
                     <p>
                       <Link to="/login" className="link-primary">
-                        <i className="fas fa-arrow-left"></i> Quay lại đăng nhập
+                        <ArrowLeft size={18} /> Quay lại đăng nhập
                       </Link>
                     </p>
                   </div>

@@ -4,6 +4,7 @@ import { registerUser, googleLoginUser, getCurrentUser } from '../controllers/Us
 import { GoogleLogin } from '@react-oauth/google';
 import { useLoading } from '../hooks/useLoading';
 import Loading from '../components/Loading';
+import { AlertCircle, User, Mail, Phone, Lock, ArrowRight } from 'lucide-react';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -118,14 +119,14 @@ const Register = () => {
               <form onSubmit={handleSubmit} className="modern-form">
                 {error && (
                   <div className="error-message">
-                    <i className="fas fa-exclamation-circle"></i>
+                    <AlertCircle size={18} />
                     {error}
                   </div>
                 )}
                 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-user"></i>
+                    <User size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -142,7 +143,7 @@ const Register = () => {
 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-envelope"></i>
+                    <Mail size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -159,7 +160,7 @@ const Register = () => {
 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-phone"></i>
+                    <Phone size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -176,7 +177,7 @@ const Register = () => {
 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-lock"></i>
+                    <Lock size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -200,7 +201,7 @@ const Register = () => {
 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-lock"></i>
+                    <Lock size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -224,7 +225,7 @@ const Register = () => {
 
                 <button type="submit" className="btn-modern">
                   <span>Đăng ký</span>
-                  <i className="fas fa-arrow-right"></i>
+                  <ArrowRight size={18} />
                 </button>
 
                 <div className="oauth-divider" style={{ display: 'flex', alignItems: 'center', margin: '20px 0', color: '#666', fontSize: '14px' }}>

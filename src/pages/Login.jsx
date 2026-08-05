@@ -4,6 +4,7 @@ import { loginUser, googleLoginUser, getCurrentUser, isAdmin } from '../controll
 import { GoogleLogin } from '@react-oauth/google';
 import { useLoading } from '../hooks/useLoading';
 import Loading from '../components/Loading';
+import { AlertCircle, User, Lock, Key, ArrowRight } from 'lucide-react';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -110,14 +111,14 @@ const Login = () => {
               <form onSubmit={handleSubmit} className="modern-form">
                 {error && (
                   <div className="error-message">
-                    <i className="fas fa-exclamation-circle"></i>
+                    <AlertCircle size={18} />
                     {error}
                   </div>
                 )}
                 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-user"></i>
+                    <User size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -134,7 +135,7 @@ const Login = () => {
 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-lock"></i>
+                    <Lock size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -158,13 +159,13 @@ const Login = () => {
 
                 <div className="forgot-password-link" style={{ textAlign: 'right', marginTop: '-10px', marginBottom: '15px' }}>
                   <Link to="/forgot-password" style={{ color: '#7CB342', fontSize: '14px', textDecoration: 'none' }}>
-                    <i className="fas fa-key"></i> Quên mật khẩu?
+                    <Key size={18} /> Quên mật khẩu?
                   </Link>
                 </div>
 
                 <button type="submit" className="btn-modern">
                   <span>Đăng nhập</span>
-                  <i className="fas fa-arrow-right"></i>
+                  <ArrowRight size={18} />
                 </button>
 
                 <div className="oauth-divider" style={{ display: 'flex', alignItems: 'center', margin: '20px 0', color: '#666', fontSize: '14px' }}>

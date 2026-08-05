@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getUsers } from '../controllers/UserController';
 import { getAllOrders } from '../controllers/OrderController';
+import { Users, User, ShieldCheck, Search, List, Loader2, Eye, UserCircle, X } from 'lucide-react';
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -86,7 +87,7 @@ const AdminUsers = () => {
       {/* ── Header ── */}
       <div className="admin-header">
         <div>
-          <h1><i className="fas fa-users" /> Quản Lý Người Dùng</h1>
+          <h1><Users size={18}  /> Quản Lý Người Dùng</h1>
           <p className="admin-header-subtitle">Quản lý tài khoản khách hàng và quản trị viên</p>
         </div>
         <div className="admin-header-actions">
@@ -99,21 +100,21 @@ const AdminUsers = () => {
       {/* ── Stat mini-cards ── */}
       <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(3,1fr)', marginBottom: 24 }}>
         <div className="stat-card stat-card-blue">
-          <div className="stat-icon"><i className="fas fa-users" /></div>
+          <div className="stat-icon"><Users size={18}  /></div>
           <div className="stat-content">
             <h3>{users.length}</h3>
             <p>Tổng người dùng</p>
           </div>
         </div>
         <div className="stat-card stat-card-green">
-          <div className="stat-icon"><i className="fas fa-user" /></div>
+          <div className="stat-icon"><User size={18}  /></div>
           <div className="stat-content">
             <h3>{totalCustomers}</h3>
             <p>Khách hàng</p>
           </div>
         </div>
         <div className="stat-card stat-card-purple">
-          <div className="stat-icon"><i className="fas fa-user-shield" /></div>
+          <div className="stat-icon"><ShieldCheck size={18}  /></div>
           <div className="stat-content">
             <h3>{totalAdmins}</h3>
             <p>Quản trị viên</p>
@@ -141,7 +142,7 @@ const AdminUsers = () => {
           ))}
         </div>
         <div className="search-box-admin">
-          <i className="fas fa-search" />
+          <Search size={18}  />
           <input
             type="text"
             placeholder="Tìm tên, email, SĐT..."
@@ -154,7 +155,7 @@ const AdminUsers = () => {
       {/* ── Table ── */}
       <div className="dashboard-card">
         <div className="card-header">
-          <h3><i className="fas fa-list" /> Danh sách người dùng</h3>
+          <h3><List size={18}  /> Danh sách người dùng</h3>
           <span style={{ fontSize: 13, color: 'var(--admin-text-muted)', fontWeight: 600 }}>
             {filteredUsers.length} người dùng
           </span>
@@ -162,7 +163,7 @@ const AdminUsers = () => {
         <div style={{ padding: 0 }}>
           {loading ? (
             <div style={{ padding: 48, textAlign: 'center', color: 'var(--admin-text-muted)' }}>
-              <i className="fas fa-spinner fa-spin" style={{ fontSize: 32, marginBottom: 12, display: 'block' }} />
+              <Loader2 size={18} style={{ fontSize: 32, marginBottom: 12, display: 'block' }}  className="lucide-spin" />
               Đang tải dữ liệu...
             </div>
           ) : filteredUsers.length === 0 ? (
@@ -218,11 +219,11 @@ const AdminUsers = () => {
                         <td data-label="Vai trò">
                           {user.role === 'admin' ? (
                             <span className="role-badge role-admin">
-                              <i className="fas fa-user-shield" style={{ marginRight: 4 }} />Admin
+                              <ShieldCheck size={18} style={{ marginRight: 4 }}  />Admin
                             </span>
                           ) : (
                             <span className="role-badge role-customer">
-                              <i className="fas fa-user" style={{ marginRight: 4 }} />Khách hàng
+                              <User size={18} style={{ marginRight: 4 }}  />Khách hàng
                             </span>
                           )}
                         </td>
@@ -249,7 +250,7 @@ const AdminUsers = () => {
                               onClick={() => handleViewUser(user)}
                               title="Xem chi tiết"
                             >
-                              <i className="fas fa-eye" />
+                              <Eye size={18}  />
                             </button>
                           </div>
                         </td>
@@ -268,9 +269,9 @@ const AdminUsers = () => {
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <div className="modal-header">
-              <h2><i className="fas fa-user-circle" /> Hồ Sơ Người Dùng</h2>
+              <h2><UserCircle size={18}  /> Hồ Sơ Người Dùng</h2>
               <button className="modal-close" onClick={() => setShowModal(false)}>
-                <i className="fas fa-times" />
+                <X size={18}  />
               </button>
             </div>
             <div className="modal-body">
@@ -298,11 +299,11 @@ const AdminUsers = () => {
                   </div>
                   {selectedUser.role === 'admin' ? (
                     <span className="role-badge role-admin">
-                      <i className="fas fa-user-shield" style={{ marginRight: 4 }} />Quản trị viên
+                      <ShieldCheck size={18} style={{ marginRight: 4 }}  />Quản trị viên
                     </span>
                   ) : (
                     <span className="role-badge role-customer">
-                      <i className="fas fa-user" style={{ marginRight: 4 }} />Khách hàng
+                      <User size={18} style={{ marginRight: 4 }}  />Khách hàng
                     </span>
                   )}
                 </div>
@@ -383,7 +384,7 @@ const AdminUsers = () => {
             </div>
             <div className="modal-footer">
               <button className="btn-secondary" onClick={() => setShowModal(false)}>
-                <i className="fas fa-times" /> Đóng
+                <X size={18}  /> Đóng
               </button>
             </div>
           </div>

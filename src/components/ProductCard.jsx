@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTilt } from '../hooks/useTilt';
+import { CheckCircle2, ShoppingCart, Zap, Eye } from 'lucide-react';
 
 const ProductCard = ({ product, onAddToCart }) => {
   const navigate = useNavigate();
@@ -75,7 +76,7 @@ const ProductCard = ({ product, onAddToCart }) => {
     >
       {showNotification && (
         <div className="add-to-cart-notification">
-          <i className="fas fa-check-circle"></i> Đã thêm vào giỏ!
+          <CheckCircle2 size={18} /> Đã thêm vào giỏ!
         </div>
       )}
       <span className="product-badge" style={{ backgroundColor: categoryInfo.color }}>
@@ -132,7 +133,7 @@ const ProductCard = ({ product, onAddToCart }) => {
             onClick={handleAddToCart}
             type="button"
           >
-            <i className="fas fa-shopping-cart"></i>
+            <ShoppingCart size={18} />
             <span>Thêm vào giỏ</span>
           </button>
           
@@ -142,7 +143,7 @@ const ProductCard = ({ product, onAddToCart }) => {
               onClick={handleBuyNow}
               type="button"
             >
-              <i className="fas fa-bolt"></i>
+              <Zap size={18} />
               <span>Mua thử ngay</span>
             </button>
           )}
@@ -152,7 +153,7 @@ const ProductCard = ({ product, onAddToCart }) => {
             onClick={handleCardClick}
             type="button"
           >
-            <i className="fas fa-eye"></i>
+            <Eye size={18} />
             <span>Xem chi tiết</span>
           </button>
         </div>

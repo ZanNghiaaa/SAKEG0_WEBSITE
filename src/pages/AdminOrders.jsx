@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+import { ShoppingBag, Search, ListOrdered, Loader2, Inbox, AlertCircle, Eye, ArrowRight, X, Receipt } from 'lucide-react';
   getAllOrders,
   updateOrderStatus,
   ORDER_STATUS,
@@ -97,7 +98,7 @@ const AdminOrders = () => {
       {/* ── Header ── */}
       <div className="admin-header">
         <div>
-          <h1><i className="fas fa-shopping-bag" /> Quản Lý Đơn Hàng</h1>
+          <h1><ShoppingBag size={18}  /> Quản Lý Đơn Hàng</h1>
           <p className="admin-header-subtitle">
             Quản lý và theo dõi {orders.length} đơn hàng của khách hàng
           </p>
@@ -159,7 +160,7 @@ const AdminOrders = () => {
           ))}
         </div>
         <div className="search-box-admin">
-          <i className="fas fa-search" />
+          <Search size={18}  />
           <input
             type="text"
             placeholder="Tìm tên, SĐT, mã đơn..."
@@ -173,7 +174,7 @@ const AdminOrders = () => {
       <div className="dashboard-card">
         <div className="card-header">
           <h3>
-            <i className="fas fa-list-alt" />
+            <ListOrdered size={18}  />
             {filterStatus === 'all' ? 'Tất cả đơn hàng' : `Đơn ${STATUS_CONFIG[filterStatus]?.label || ''}`}
           </h3>
           <span style={{ fontSize: 13, color: 'var(--admin-text-muted)', fontWeight: 600 }}>
@@ -183,12 +184,12 @@ const AdminOrders = () => {
         <div style={{ padding: 0 }}>
           {loading ? (
             <div style={{ padding: 48, textAlign: 'center', color: 'var(--admin-text-muted)' }}>
-              <i className="fas fa-spinner fa-spin" style={{ fontSize: 32, marginBottom: 12, display: 'block' }} />
+              <Loader2 size={18} style={{ fontSize: 32, marginBottom: 12, display: 'block' }}  className="lucide-spin" />
               Đang tải dữ liệu...
             </div>
           ) : filteredOrders.length === 0 ? (
             <div className="empty-state">
-              <i className="fas fa-inbox" />
+              <Inbox size={18}  />
               <p>Không có đơn hàng nào</p>
             </div>
           ) : (
@@ -282,7 +283,7 @@ const AdminOrders = () => {
                           </span>
                           {order._updateError && (
                             <div className="inline-error" style={{ marginTop: 6 }}>
-                              <i className="fas fa-exclamation-circle" />
+                              <AlertCircle size={18}  />
                               {order._updateError}
                             </div>
                           )}
@@ -298,7 +299,7 @@ const AdminOrders = () => {
                               onClick={() => viewOrderDetail(order)}
                               title="Xem chi tiết"
                             >
-                              <i className="fas fa-eye" />
+                              <Eye size={18}  />
                             </button>
                             {getNextStatus(order.status) && (
                               <button
@@ -313,8 +314,8 @@ const AdminOrders = () => {
                                 disabled={isLoading}
                               >
                                 {isLoading
-                                  ? <i className="fas fa-spinner fa-spin" />
-                                  : <i className="fas fa-arrow-right" />}
+                                  ? <Loader2 size={18}  className="lucide-spin" />
+                                  : <ArrowRight size={18}  />}
                               </button>
                             )}
                             {order.status !== ORDER_STATUS.CANCELLED && order.status !== ORDER_STATUS.COMPLETED && (
@@ -324,7 +325,7 @@ const AdminOrders = () => {
                                 title="Hủy đơn"
                                 disabled={isLoading}
                               >
-                                <i className="fas fa-times" />
+                                <X size={18}  />
                               </button>
                             )}
                           </div>
@@ -345,7 +346,7 @@ const AdminOrders = () => {
           <div className="modal-content" style={{ maxWidth: 720 }} onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <h2>
-                <i className="fas fa-receipt" />
+                <Receipt size={18}  />
                 Chi Tiết Đơn Hàng
                 <span style={{
                   fontFamily: 'monospace', fontSize: 14,
@@ -355,7 +356,7 @@ const AdminOrders = () => {
                 </span>
               </h2>
               <button className="modal-close" onClick={closeModal}>
-                <i className="fas fa-times" />
+                <X size={18}  />
               </button>
             </div>
 
@@ -513,7 +514,7 @@ const AdminOrders = () => {
                     closeModal();
                   }}
                 >
-                  <i className="fas fa-arrow-right" />
+                  <ArrowRight size={18}  />
                   → {ORDER_STATUS_TEXT[getNextStatus(selectedOrder.status)]}
                 </button>
               )}
@@ -529,11 +530,11 @@ const AdminOrders = () => {
                     closeModal();
                   }}
                 >
-                  <i className="fas fa-times" /> Hủy đơn
+                  <X size={18}  /> Hủy đơn
                 </button>
               )}
               <button className="btn-secondary" onClick={closeModal}>
-                <i className="fas fa-times" /> Đóng
+                <X size={18}  /> Đóng
               </button>
             </div>
           </div>

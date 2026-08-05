@@ -1,5 +1,6 @@
 import React from 'react';
 import './ARViewer.css';
+import { X, Info } from 'lucide-react';
 
 const ARViewer = ({ isOpen, onClose, modelUrl, title }) => {
   if (!isOpen) return null;
@@ -10,7 +11,7 @@ const ARViewer = ({ isOpen, onClose, modelUrl, title }) => {
         <div className="ar-modal-header">
           <h3>{title || "Xem 3D & AR Thực Tế"}</h3>
           <button className="ar-close-btn" onClick={onClose}>
-            <i className="fas fa-times"></i>
+            <X size={18} />
           </button>
         </div>
         <div className="ar-model-container">
@@ -34,7 +35,7 @@ const ARViewer = ({ isOpen, onClose, modelUrl, title }) => {
         </div>
         <div className="ar-modal-footer">
           <p>
-            <i className="fas fa-info-circle"></i> 
+            <Info size={18} /> 
             Dùng chuột/tay kéo để xoay 360°. Truy cập bằng điện thoại và bấm nút AR để đặt thử lên bàn!
           </p>
         </div>

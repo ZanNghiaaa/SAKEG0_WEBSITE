@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { getCurrentUser, logoutUser, isAdmin } from '../controllers/UserController';
 import { getOrdersStatistics } from '../controllers/OrderController';
 import { getUnreadCount, getNotifications, markAsRead, markAllAsRead, requestNotificationPermission } from '../controllers/NotificationController';
+import { ShieldCheck, Bell, BellOff, ShoppingCart, TrendingUp, ShoppingBag, Package, Users, Home, LogOut, Leaf } from 'lucide-react';
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -111,7 +112,7 @@ const AdminLayout = () => {
         <div className="admin-sidebar-header">
           <div className="admin-logo">
             <div className="admin-logo-icon">
-              <i className="fas fa-leaf" />
+              <Leaf size={18}  />
             </div>
             <div className="admin-logo-text">
               <h2>Sakego</h2>
@@ -122,7 +123,7 @@ const AdminLayout = () => {
 
         <div className="admin-user-info">
           <div className="admin-user-avatar">
-            <i className="fas fa-user-shield"></i>
+            <ShieldCheck size={18} />
           </div>
           <div className="admin-user-details">
             <h4>{currentUser?.fullname}</h4>
@@ -136,7 +137,7 @@ const AdminLayout = () => {
             className="admin-notification-btn"
             onClick={() => setShowNotifications(!showNotifications)}
           >
-            <i className="fas fa-bell"></i>
+            <Bell size={18} />
             <span>Thông báo</span>
             {unreadCount > 0 && (
               <span className="notification-badge">{unreadCount}</span>
@@ -156,7 +157,7 @@ const AdminLayout = () => {
               <div className="notification-list">
                 {notifications.length === 0 ? (
                   <div className="no-notifications">
-                    <i className="fas fa-bell-slash"></i>
+                    <BellOff size={18} />
                     <p>Không có thông báo</p>
                   </div>
                 ) : (
@@ -171,7 +172,7 @@ const AdminLayout = () => {
                       }}
                     >
                       <div className="notification-icon">
-                        <i className="fas fa-shopping-cart"></i>
+                        <ShoppingCart size={18} />
                       </div>
                       <div className="notification-content">
                         <strong>{notif.title}</strong>
@@ -199,7 +200,7 @@ const AdminLayout = () => {
             to="/admin" 
             className={`admin-nav-item ${location.pathname === '/admin' ? 'active' : ''}`}
           >
-            <i className="fas fa-chart-line"></i>
+            <TrendingUp size={18} />
             <span>Tổng quan</span>
           </Link>
 
@@ -207,7 +208,7 @@ const AdminLayout = () => {
             to="/admin/orders" 
             className={`admin-nav-item ${location.pathname === '/admin/orders' ? 'active' : ''}`}
           >
-            <i className="fas fa-shopping-bag"></i>
+            <ShoppingBag size={18} />
             <span>Quản lý đơn hàng</span>
             {stats.pending > 0 && (
               <span className="nav-badge">{stats.pending}</span>
@@ -218,7 +219,7 @@ const AdminLayout = () => {
             to="/admin/products" 
             className={`admin-nav-item ${location.pathname === '/admin/products' ? 'active' : ''}`}
           >
-            <i className="fas fa-box"></i>
+            <Package size={18} />
             <span>Quản lý sản phẩm</span>
           </Link>
 
@@ -226,19 +227,19 @@ const AdminLayout = () => {
             to="/admin/users" 
             className={`admin-nav-item ${location.pathname === '/admin/users' ? 'active' : ''}`}
           >
-            <i className="fas fa-users"></i>
+            <Users size={18} />
             <span>Quản lý người dùng</span>
           </Link>
 
           <div className="admin-nav-divider"></div>
 
           <Link to="/" className="admin-nav-item">
-            <i className="fas fa-home"></i>
+            <Home size={18} />
             <span>Về trang chủ</span>
           </Link>
 
           <button onClick={handleLogout} className="admin-nav-item logout-btn">
-            <i className="fas fa-sign-out-alt"></i>
+            <LogOut size={18} />
             <span>Đăng xuất</span>
           </button>
         </nav>
@@ -255,14 +256,14 @@ const AdminLayout = () => {
           to="/admin" 
           className={`admin-bottom-nav-item ${location.pathname === '/admin' ? 'active' : ''}`}
         >
-          <i className="fas fa-chart-line"></i>
+          <TrendingUp size={18} />
           <span>Tổng quan</span>
         </Link>
         <Link 
           to="/admin/orders" 
           className={`admin-bottom-nav-item ${location.pathname === '/admin/orders' ? 'active' : ''}`}
         >
-          <i className="fas fa-shopping-bag"></i>
+          <ShoppingBag size={18} />
           <span>Đơn hàng</span>
           {stats.pending > 0 && (
             <span className="admin-bottom-nav-badge">{stats.pending}</span>
@@ -272,14 +273,14 @@ const AdminLayout = () => {
           to="/admin/products" 
           className={`admin-bottom-nav-item ${location.pathname === '/admin/products' ? 'active' : ''}`}
         >
-          <i className="fas fa-box"></i>
+          <Package size={18} />
           <span>Sản phẩm</span>
         </Link>
         <Link 
           to="/admin/users" 
           className={`admin-bottom-nav-item ${location.pathname === '/admin/users' ? 'active' : ''}`}
         >
-          <i className="fas fa-users"></i>
+          <Users size={18} />
           <span>Người dùng</span>
         </Link>
       </nav>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MarqueeTicker from '../components/MarqueeTicker';
+import { Leaf, TrendingUp, ShoppingBag, Mail, CloudSun, Sun, Droplets, Sprout, Recycle, CheckCircle2, Map, Quote, PackageOpen, Route, Megaphone } from 'lucide-react';
 
 const Sustainability = () => {
   useEffect(() => {
@@ -29,10 +30,10 @@ const Sustainability = () => {
 
         {/* Leaf particles */}
         <div className="thuc-trang-particles" aria-hidden="true">
-          <span className="tt-leaf tt-leaf-1"><i className="fas fa-leaf"></i></span>
-          <span className="tt-leaf tt-leaf-2"><i className="fas fa-leaf"></i></span>
-          <span className="tt-leaf tt-leaf-3"><i className="fas fa-leaf"></i></span>
-          <span className="tt-leaf tt-leaf-4"><i className="fas fa-leaf"></i></span>
+          <span className="tt-leaf tt-leaf-1"><Leaf size={18} /></span>
+          <span className="tt-leaf tt-leaf-2"><Leaf size={18} /></span>
+          <span className="tt-leaf tt-leaf-3"><Leaf size={18} /></span>
+          <span className="tt-leaf tt-leaf-4"><Leaf size={18} /></span>
         </div>
 
         {/* Orbiting rings */}
@@ -42,7 +43,7 @@ const Sustainability = () => {
         <div className="container">
           <div className="thuc-trang-hero-content">
             <span className="thuc-trang-label">
-              <i className="fas fa-chart-line"></i> Thực trạng và giải pháp
+              <TrendingUp size={18} /> Thực trạng và giải pháp
             </span>
             <h1 className="thuc-trang-title">
               <span className="green">Sa kê Việt</span> — Gieo giá trị xanh, dựng tương lai bền vững
@@ -52,10 +53,10 @@ const Sustainability = () => {
             </p>
             <div className="thuc-trang-actions tt-actions-anim">
               <Link to="/products" className="thuc-btn thuc-btn-primary">
-                <i className="fas fa-shopping-bag"></i> Khám phá ngay
+                <ShoppingBag size={18} /> Khám phá ngay
               </Link>
               <Link to="/contact" className="thuc-btn thuc-btn-secondary">
-                <i className="fas fa-envelope"></i> Liên hệ
+                <Mail size={18} /> Liên hệ
               </Link>
             </div>
           </div>
@@ -101,7 +102,7 @@ const Sustainability = () => {
 
             <div className="situation-visual">
               <div className="situation-badge">
-                <i className="fas fa-chart-line"></i>
+                <TrendingUp size={18} />
                 <span>Awareness Gap</span>
               </div>
               <div className="situation-card situation-card-main">
@@ -115,7 +116,7 @@ const Sustainability = () => {
                 </p>
               </div>
               <div className="situation-card situation-card-floating">
-                <i className="fas fa-leaf"></i>
+                <Leaf size={18} />
                 <div>
                   <strong>Giá trị bản địa</strong>
                   <span>Cần được kể bằng ngôn ngữ hiện đại</span>
@@ -147,7 +148,7 @@ const Sustainability = () => {
             <div className="environment-card environment-card-featured">
               <div className="environment-card-header">
                 <div className="environment-icon">
-                  <i className="fas fa-cloud-sun"></i>
+                  <CloudSun size={18} />
                 </div>
                 <div>
                   <span className="environment-eyebrow">Điều kiện sinh trưởng</span>
@@ -161,16 +162,16 @@ const Sustainability = () => {
                 triển khai canh tác sinh thái.
               </p>
               <div className="environment-tags">
-                <span><i className="fas fa-sun"></i> Nhiều ánh sáng</span>
-                <span><i className="fas fa-water"></i> Thoát nước tốt</span>
-                <span><i className="fas fa-seedling"></i> Đất giàu hữu cơ</span>
+                <span><Sun size={18} /> Nhiều ánh sáng</span>
+                <span><Droplets size={18} /> Thoát nước tốt</span>
+                <span><Sprout size={18} /> Đất giàu hữu cơ</span>
               </div>
             </div>
 
             <div className="environment-card">
               <div className="environment-card-header">
                 <div className="environment-icon accent-green">
-                  <i className="fas fa-recycle"></i>
+                  <Recycle size={18} />
                 </div>
                 <div>
                   <span className="environment-eyebrow">Phát triển bền vững</span>
@@ -179,15 +180,15 @@ const Sustainability = () => {
               </div>
               <ul className="sustainable-list">
                 <li>
-                  <i className="fas fa-check-circle"></i>
+                  <CheckCircle2 size={18} />
                   Ưu tiên phân hữu cơ, hạn chế thuốc hóa học và bảo vệ hệ sinh thái đất.
                 </li>
                 <li>
-                  <i className="fas fa-check-circle"></i>
+                  <CheckCircle2 size={18} />
                   Tối ưu tưới tiêu, thu gom phụ phẩm và giảm lãng phí sau thu hoạch.
                 </li>
                 <li>
-                  <i className="fas fa-check-circle"></i>
+                  <CheckCircle2 size={18} />
                   Gắn kết nông dân, chia sẻ kỹ thuật và tạo sinh kế ổn định lâu dài.
                 </li>
               </ul>
@@ -196,7 +197,7 @@ const Sustainability = () => {
             <div className="environment-card region-card">
               <div className="environment-card-header">
                 <div className="environment-icon accent-gold">
-                  <i className="fas fa-map-marked-alt"></i>
+                  <Map size={18} />
                 </div>
                 <div>
                   <span className="environment-eyebrow">Vùng trồng</span>
@@ -217,7 +218,7 @@ const Sustainability = () => {
           </div>
 
           <div className="environment-quote">
-            <i className="fas fa-quote-left"></i>
+            <Quote size={18} />
             <p>
               Chúng tôi không chỉ bán trái sa kê, mà còn xây dựng một hệ sinh thái
               canh tác có trách nhiệm với đất, với người trồng và với tương lai.
@@ -252,7 +253,7 @@ const Sustainability = () => {
             <div className="sol-card sol-anim" style={{ transitionDelay: '0.1s' }}>
               <div className="sol-card-inner">
                 <div className="sol-icon">
-                  <i className="fas fa-box-open"></i>
+                  <PackageOpen size={18} />
                 </div>
                 <h3>Sản phẩm tiện lợi</h3>
                 <p>
@@ -268,7 +269,7 @@ const Sustainability = () => {
             <div className="sol-card sol-anim" style={{ transitionDelay: '0.3s' }}>
               <div className="sol-card-inner">
                 <div className="sol-icon">
-                  <i className="fas fa-route"></i>
+                  <Route size={18} />
                 </div>
                 <h3>Chuẩn hóa quy trình</h3>
                 <p>
@@ -284,7 +285,7 @@ const Sustainability = () => {
             <div className="sol-card sol-anim" style={{ transitionDelay: '0.5s' }}>
               <div className="sol-card-inner">
                 <div className="sol-icon">
-                  <i className="fas fa-bullhorn"></i>
+                  <Megaphone size={18} />
                 </div>
                 <h3>Nâng tầm thương hiệu</h3>
                 <p>

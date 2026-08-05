@@ -5,6 +5,7 @@ import { fetchProductsFromAPI, getProductsByCategory, searchProducts } from '../
 import { useCart } from '../context/CartContext';
 import { useLoading } from '../hooks/useLoading';
 import Loading from '../components/Loading';
+import { Leaf, Search, PackageOpen, RefreshCcw } from 'lucide-react';
 
 const FILTERS = [
   { key: 'all',       label: 'Tất cả',          icon: 'fas fa-th' },
@@ -68,7 +69,7 @@ const Products = () => {
     addToCart(product);
     const n = document.createElement('div');
     n.className = 'notification';
-    n.innerHTML = `<i class="fas fa-check-circle"></i> Đã thêm ${product.name} vào giỏ hàng!`;
+    n.innerHTML = `✅ Đã thêm ${product.name} vào giỏ hàng!`;
     document.body.appendChild(n);
     setTimeout(() => n.remove(), 3000);
   };
@@ -90,9 +91,9 @@ const Products = () => {
             <span className="ph-orb ph-orb-1"></span>
             <span className="ph-orb ph-orb-2"></span>
             <span className="ph-orb ph-orb-3"></span>
-            <span className="ph-leaf ph-leaf-1"><i className="fas fa-leaf"></i></span>
-            <span className="ph-leaf ph-leaf-2"><i className="fas fa-leaf"></i></span>
-            <span className="ph-leaf ph-leaf-3"><i className="fas fa-leaf"></i></span>
+            <span className="ph-leaf ph-leaf-1"><Leaf size={18} /></span>
+            <span className="ph-leaf ph-leaf-2"><Leaf size={18} /></span>
+            <span className="ph-leaf ph-leaf-3"><Leaf size={18} /></span>
             <span className="ph-ring ph-ring-1"></span>
             <span className="ph-ring ph-ring-2"></span>
           </div>
@@ -113,7 +114,7 @@ const Products = () => {
               {/* Search */}
               <form onSubmit={handleSearch} className="products-search-form">
                 <div className="products-search-inner">
-                  <i className="fas fa-search products-search-icon"></i>
+                  <Search size={18} className="products-search-icon" />
                   <input
                     type="text"
                     placeholder="Tìm kiếm sản phẩm sa kê..."
@@ -160,7 +161,7 @@ const Products = () => {
           <div className="container">
             <div className="products-result-meta">
               <span className="result-count">
-                <i className="fas fa-box-open"></i>
+                <PackageOpen size={18} />
                 <strong>{filteredProducts.length}</strong> sản phẩm
                 {searchTerm && ` cho "${searchTerm}"`}
                 {resultLabel}
@@ -182,7 +183,7 @@ const Products = () => {
             ) : (
               <div className="products-empty">
                 <div className="products-empty-icon">
-                  <i className="fas fa-box-open"></i>
+                  <PackageOpen size={18} />
                 </div>
                 <h3>Không tìm thấy sản phẩm</h3>
                 <p>Thử tìm kiếm với từ khóa khác hoặc xem tất cả sản phẩm</p>
@@ -190,7 +191,7 @@ const Products = () => {
                   className="products-reset-btn"
                   onClick={() => { setSearchTerm(''); handleFilter('all'); }}
                 >
-                  <i className="fas fa-redo"></i> Xem tất cả sản phẩm
+                  <RefreshCcw size={18} /> Xem tất cả sản phẩm
                 </button>
               </div>
             )}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { ShoppingCart, ShoppingBag, Minus, Plus, Trash2, Receipt, CheckCircle2, Lock, ArrowLeft, Truck, RefreshCw } from 'lucide-react';
+import { Gift, Shield } from 'lucide-react';
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity, getTotal, clearCart } = useCart();
@@ -38,13 +40,13 @@ const Cart = () => {
         <div className="container">
           <div className="empty-cart">
             <div className="empty-cart-icon">
-              <i className="fas fa-shopping-cart"></i>
+              <ShoppingCart size={18} />
             </div>
             <h2>Giỏ Hàng Trống</h2>
             <p>Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
             <p className="text-muted">Khám phá các sản phẩm Sa Ô Kê tuyệt vời của chúng tôi ngay!</p>
             <Link to="/products" className="btn btn-primary">
-              <i className="fas fa-shopping-bag"></i> Khám Phá Sản Phẩm
+              <ShoppingBag size={18} /> Khám Phá Sản Phẩm
             </Link>
           </div>
         </div>
@@ -57,7 +59,7 @@ const Cart = () => {
       <div className="container">
         <div className="cart-header">
           <h1>
-            <i className="fas fa-shopping-cart"></i> Giỏ Hàng Của Bạn
+            <ShoppingCart size={18} /> Giỏ Hàng Của Bạn
           </h1>
           <p className="cart-count">{cartItems.length} sản phẩm</p>
         </div>
@@ -73,7 +75,7 @@ const Cart = () => {
                       <img src={getDisplayImage(item)} alt={item.name} />
                       {item.isTrial && (
                         <span className="item-trial-badge">
-                          <i className="fas fa-gift"></i> Trial
+                          <Gift size={18} /> Trial
                         </span>
                       )}
                     </div>
@@ -100,7 +102,7 @@ const Cart = () => {
                           onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
                         >
-                          <i className="fas fa-minus"></i>
+                          <Minus size={18} />
                         </button>
                         <input
                           type="number"
@@ -113,7 +115,7 @@ const Cart = () => {
                           className="qty-btn qty-plus"
                           onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                         >
-                          <i className="fas fa-plus"></i>
+                          <Plus size={18} />
                         </button>
                       </div>
                     </div>
@@ -131,7 +133,7 @@ const Cart = () => {
                         onClick={() => handleRemoveItem(item)}
                         title="Xóa sản phẩm"
                       >
-                        <i className="fas fa-trash-alt"></i>
+                        <Trash2 size={18} />
                       </button>
                     </div>
                   </div>
@@ -140,7 +142,7 @@ const Cart = () => {
                 {/* Clear All Button */}
                 <div className="cart-actions">
                   <button className="btn-clear-all" onClick={handleClearCart}>
-                    <i className="fas fa-trash"></i> Xóa Tất Cả
+                    <Trash2 size={18} /> Xóa Tất Cả
                   </button>
                 </div>
               </div>
@@ -148,7 +150,7 @@ const Cart = () => {
 
             {/* Promotion Banner - Bottom Left */}
             <div className="promotion-banner-top">
-              <i className="fas fa-gift"></i>
+              <Gift size={18} />
               <div className="promotion-content">
                 <strong>Ưu đãi đặc biệt!</strong>
                 <p>Miễn phí ship cho đơn từ 200.000đ</p>
@@ -161,7 +163,7 @@ const Cart = () => {
             <div className="card summary-card">
               <div className="card-header">
                 <h5>
-                  <i className="fas fa-receipt"></i> Tóm Tắt Đơn Hàng
+                  <Receipt size={18} /> Tóm Tắt Đơn Hàng
                 </h5>
               </div>
               <div className="card-body">
@@ -173,7 +175,7 @@ const Cart = () => {
                   <div className="summary-row">
                     <span>Phí vận chuyển:</span>
                     <strong className="text-success">
-                      <i className="fas fa-check-circle"></i> Miễn phí
+                      <CheckCircle2 size={18} /> Miễn phí
                     </strong>
                   </div>
                   <div className="summary-row">
@@ -191,25 +193,25 @@ const Cart = () => {
 
                 <div className="summary-actions">
                   <Link to="/checkout" className="btn btn-checkout">
-                    <i className="fas fa-lock"></i> Thanh Toán Ngay
+                    <Lock size={18} /> Thanh Toán Ngay
                   </Link>
                   <Link to="/products" className="btn btn-continue">
-                    <i className="fas fa-arrow-left"></i> Tiếp Tục Mua Sắm
+                    <ArrowLeft size={18} /> Tiếp Tục Mua Sắm
                   </Link>
                 </div>
 
                 {/* Trust Badges */}
                 <div className="trust-badges">
                   <div className="trust-item">
-                    <i className="fas fa-shield-alt"></i>
+                    <Shield size={18} />
                     <span>Thanh toán an toàn</span>
                   </div>
                   <div className="trust-item">
-                    <i className="fas fa-truck"></i>
+                    <Truck size={18} />
                     <span>Giao hàng nhanh</span>
                   </div>
                   <div className="trust-item">
-                    <i className="fas fa-sync-alt"></i>
+                    <RefreshCw size={18} />
                     <span>Đổi trả 7 ngày</span>
                   </div>
                 </div>

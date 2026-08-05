@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import MarqueeTicker from '../components/MarqueeTicker';
+import { Leaf, Sprout, Heart, Users, Package, Truck } from 'lucide-react';
 
 const teamStories = [
 
@@ -62,7 +63,7 @@ const About = () => {
         <div className="container">
           <div className="about-hero-content about-hero-content-left">
             <span className="hero-label about-hero-label-anim">
-              <i className="fas fa-leaf"></i> Về chúng tôi
+              <Leaf size={18} /> Về chúng tôi
             </span>
             <h1 className="hero-title about-hero-title-anim">
               Hành trình <span className="highlight">SAKEGO</span>
@@ -72,13 +73,13 @@ const About = () => {
             </p>
             <div className="about-hero-badges about-hero-badges-anim">
               <span className="about-hero-badge">
-                <i className="fas fa-leaf"></i> 100% Tự nhiên
+                <Leaf size={18} /> 100% Tự nhiên
               </span>
               <span className="about-hero-badge">
-                <i className="fas fa-seedling"></i> Nông sản Việt
+                <Sprout size={18} /> Nông sản Việt
               </span>
               <span className="about-hero-badge">
-                <i className="fas fa-heart"></i> Tận tâm
+                <Heart size={18} /> Tận tâm
               </span>
             </div>
           </div>
@@ -117,17 +118,17 @@ const About = () => {
               </p>
               <div className="story-stats">
                 <div className="stat-item">
-                  <i className="fas fa-users"></i>
+                  <Users size={18} />
                   <strong>1000+</strong>
                   <span>Khách hàng</span>
                 </div>
                 <div className="stat-item">
-                  <i className="fas fa-box"></i>
+                  <Package size={18} />
                   <strong>3</strong>
                   <span>Sản phẩm</span>
                 </div>
                 <div className="stat-item">
-                  <i className="fas fa-seedling"></i>
+                  <Sprout size={18} />
                   <strong>100%</strong>
                   <span>Tự nhiên</span>
                 </div>
@@ -200,7 +201,7 @@ const About = () => {
             </div>
             <div className="value-card">
               <div className="value-icon">
-                <i className="fas fa-leaf"></i>
+                <Leaf size={18} />
               </div>
               <h3>Canh tác bền vững</h3>
               <p>
@@ -210,7 +211,7 @@ const About = () => {
             </div>
             <div className="value-card">
               <div className="value-icon">
-                <i className="fas fa-heart"></i>
+                <Heart size={18} />
               </div>
               <h3>Tận tâm phục vụ</h3>
               <p>
@@ -248,7 +249,7 @@ const About = () => {
             <div className="process-step">
               <div className="step-number">01</div>
               <div className="step-icon">
-                <i className="fas fa-seedling"></i>
+                <Sprout size={18} />
               </div>
               <h3>Trồng trọt</h3>
               <p>Chọn giống tốt, chăm sóc cẩn thận theo tiêu chuẩn hữu cơ</p>
@@ -272,7 +273,7 @@ const About = () => {
             <div className="process-step">
               <div className="step-number">04</div>
               <div className="step-icon">
-                <i className="fas fa-truck"></i>
+                <Truck size={18} />
               </div>
               <h3>Giao hàng</h3>
               <p>Vận chuyển nhanh chóng, đảm bảo độ tươi ngon</p>

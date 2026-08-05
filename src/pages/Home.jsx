@@ -6,6 +6,8 @@ import MarqueeTicker from '../components/MarqueeTicker';
 import ProductCard from '../components/ProductCard';
 import { fetchProductsFromAPI } from '../controllers/ProductController';
 import { useCart } from '../context/CartContext';
+import { Leaf, Sprout, TrendingUp, ShoppingBag, Star, Grid } from 'lucide-react';
+import { Globe } from 'lucide-react';
 
 /* ── Scroll-reveal hook ── */
 function useScrollReveal(threshold = 0.15) {
@@ -61,7 +63,7 @@ const Home = () => {
     addToCart(product);
     const n = document.createElement('div');
     n.className = 'notification';
-    n.innerHTML = `<i class="fas fa-check-circle"></i> Đã thêm ${product.name} vào giỏ hàng!`;
+    n.innerHTML = `✅ Đã thêm ${product.name} vào giỏ hàng!`;
     document.body.appendChild(n);
     setTimeout(() => n.remove(), 3000);
   };
@@ -127,16 +129,16 @@ const Home = () => {
         <div className="sustain-bg-deco" aria-hidden="true">
           <div className="sdeco-circle sdeco-c1"></div>
           <div className="sdeco-circle sdeco-c2"></div>
-          <div className="sdeco-leaf sdeco-l1"><i className="fas fa-leaf"></i></div>
-          <div className="sdeco-leaf sdeco-l2"><i className="fas fa-leaf"></i></div>
-          <div className="sdeco-leaf sdeco-l3"><i className="fas fa-seedling"></i></div>
+          <div className="sdeco-leaf sdeco-l1"><Leaf size={18} /></div>
+          <div className="sdeco-leaf sdeco-l2"><Leaf size={18} /></div>
+          <div className="sdeco-leaf sdeco-l3"><Sprout size={18} /></div>
         </div>
 
         <div className="container">
           {/* Header */}
           <div className="sustain-header" ref={sustainRef}>
             <div className={`sustain-eyebrow${sustainVisible ? ' sv-in' : ''}`}>
-              <i className="fas fa-globe-asia"></i>
+              <Globe size={18} />
               Phát Triển Bền Vững
             </div>
             <h2 className={`sustain-title${sustainVisible ? ' sv-in' : ''}`} style={{ transitionDelay: '.15s' }}>
@@ -170,7 +172,7 @@ const Home = () => {
           {/* Earth Impact numbers - Modern Full Globe */}
           <div className={`sustain-impact-earth-wrapper${statsVisible ? ' sv-in' : ''}`} ref={statsRef}>
             <div className={`si-label${statsVisible ? ' sv-in' : ''}`}>
-              <i className="fas fa-chart-line"></i> Tác động thực tế của SAKEGO
+              <TrendingUp size={18} /> Tác động thực tế của SAKEGO
             </div>
             
             <div className="impact-modern-layout">
@@ -224,11 +226,11 @@ const Home = () => {
           {/* CTA */}
           <div className={`sustain-cta${sustainVisible ? ' sv-in' : ''}`} style={{ animationDelay: '.7s' }}>
             <Link to="/sustainability" className="sustain-btn-primary">
-              <i className="fas fa-seedling"></i> Tìm hiểu hành trình xanh
+              <Sprout size={18} /> Tìm hiểu hành trình xanh
               <span className="btn-shine"></span>
             </Link>
             <Link to="/products" className="sustain-btn-ghost">
-              <i className="fas fa-shopping-bag"></i> Mua sản phẩm bền vững
+              <ShoppingBag size={18} /> Mua sản phẩm bền vững
             </Link>
           </div>
         </div>
@@ -240,7 +242,7 @@ const Home = () => {
       <section className="featured-section">
         <div className="container">
           <div className="featured-header">
-            <span className="featured-tag"><i className="fas fa-star"></i> Nổi bật</span>
+            <span className="featured-tag"><Star size={18} /> Nổi bật</span>
             <h2>Sản Phẩm <span className="featured-accent">Bán Chạy</span></h2>
             <p>Những sản phẩm sa kê được yêu thích nhất từ khách hàng SAKEGO</p>
           </div>
@@ -253,7 +255,7 @@ const Home = () => {
           </div>
           <div className="featured-footer">
             <Link to="/products" className="btn-view-all">
-              <i className="fas fa-th"></i> Xem tất cả sản phẩm
+              <Grid size={18} /> Xem tất cả sản phẩm
             </Link>
           </div>
         </div>

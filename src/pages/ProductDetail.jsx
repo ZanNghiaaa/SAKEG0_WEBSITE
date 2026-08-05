@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById } from '../controllers/ProductController';
 import { useCart } from '../context/CartContext';
 import '../assets/css/product-detail.css';
+import { Home, CheckCircle2, Info, FileText, Leaf, Truck, Package, Minus, Plus, Zap, RefreshCw, HeadphonesIcon } from 'lucide-react';
+import { Gift, Shield, ShoppingCart } from 'lucide-react';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -122,7 +124,7 @@ const ProductDetail = () => {
         <div className="container">
           <nav className="breadcrumb">
             <a href="/" onClick={(e) => { e.preventDefault(); navigate('/'); }}>
-              <i className="fas fa-home"></i> Trang chủ
+              <Home size={18} /> Trang chủ
             </a>
             <span className="separator">/</span>
             <a href="/products" onClick={(e) => { e.preventDefault(); navigate('/products'); }}>
@@ -137,7 +139,7 @@ const ProductDetail = () => {
       {/* Notification */}
       {notification && (
         <div className="notification-popup">
-          <i className="fas fa-check-circle"></i>
+          <CheckCircle2 size={18} />
           {notification}
         </div>
       )}
@@ -152,7 +154,7 @@ const ProductDetail = () => {
                 <img src={productImages[selectedImage]} alt={product.name} />
                 {product.isTrial && (
                   <div className="trial-badge-large">
-                    <i className="fas fa-gift"></i>
+                    <Gift size={18} />
                     <span>Dùng Thử</span>
                   </div>
                 )}
@@ -185,7 +187,7 @@ const ProductDetail = () => {
                 </div>
                 {product.isTrial && (
                   <div className="price-note">
-                    <i className="fas fa-info-circle"></i>
+                    <Info size={18} />
                     Giá ưu đãi cho gói dùng thử
                   </div>
                 )}
@@ -193,7 +195,7 @@ const ProductDetail = () => {
 
               <div className="product-description">
                 <h3>
-                  <i className="fas fa-file-alt"></i>
+                  <FileText size={18} />
                   Mô tả sản phẩm
                 </h3>
                 <p>{product.description}</p>
@@ -201,16 +203,16 @@ const ProductDetail = () => {
 
               <div className="product-features">
                 <h3>
-                  <i className="fas fa-check-circle"></i>
+                  <CheckCircle2 size={18} />
                   Đặc điểm nổi bật
                 </h3>
                 <ul>
                   <li>
-                    <i className="fas fa-leaf"></i>
+                    <Leaf size={18} />
                     100% nguyên liệu tự nhiên từ trái sa kê Việt Nam
                   </li>
                   <li>
-                    <i className="fas fa-shield-alt"></i>
+                    <Shield size={18} />
                     Đảm bảo an toàn vệ sinh thực phẩm
                   </li>
                   <li>
@@ -218,14 +220,14 @@ const ProductDetail = () => {
                     Chất lượng cao, đã được kiểm nghiệm
                   </li>
                   <li>
-                    <i className="fas fa-truck"></i>
+                    <Truck size={18} />
                     Giao hàng nhanh chóng toàn quốc
                   </li>
                 </ul>
               </div>
 
               <div className="stock-info">
-                <i className="fas fa-box"></i>
+                <Package size={18} />
                 <span>Còn lại: <strong>{product.stock}</strong> sản phẩm</span>
               </div>
 
@@ -237,7 +239,7 @@ const ProductDetail = () => {
                     onClick={() => handleQuantityChange(-1)}
                     disabled={quantity <= 1}
                   >
-                    <i className="fas fa-minus"></i>
+                    <Minus size={18} />
                   </button>
                   <input
                     type="number"
@@ -256,39 +258,39 @@ const ProductDetail = () => {
                     onClick={() => handleQuantityChange(1)}
                     disabled={quantity >= product.stock}
                   >
-                    <i className="fas fa-plus"></i>
+                    <Plus size={18} />
                   </button>
                 </div>
               </div>
 
               <div className="action-buttons">
                 <button className="btn-add-to-cart" onClick={handleAddToCart}>
-                  <i className="fas fa-cart-plus"></i>
+                  <ShoppingCart size={18} />
                   Thêm vào giỏ hàng
                 </button>
                 <button className="btn-buy-now" onClick={handleBuyNow}>
-                  <i className="fas fa-bolt"></i>
+                  <Zap size={18} />
                   Mua ngay
                 </button>
               </div>
 
               <div className="product-guarantee">
                 <div className="guarantee-item">
-                  <i className="fas fa-sync-alt"></i>
+                  <RefreshCw size={18} />
                   <div>
                     <strong>Đổi trả miễn phí</strong>
                     <span>Trong 7 ngày</span>
                   </div>
                 </div>
                 <div className="guarantee-item">
-                  <i className="fas fa-shipping-fast"></i>
+                  <Truck size={18} />
                   <div>
                     <strong>Miễn phí vận chuyển</strong>
                     <span>Đơn từ 200.000đ</span>
                   </div>
                 </div>
                 <div className="guarantee-item">
-                  <i className="fas fa-headset"></i>
+                  <HeadphonesIcon size={18} />
                   <div>
                     <strong>Hỗ trợ 24/7</strong>
                     <span>Tư vấn nhiệt tình</span>
@@ -307,7 +309,7 @@ const ProductDetail = () => {
             <div className="tab-content">
               <div className="tab-panel active">
                 <h2>
-                  <i className="fas fa-info-circle"></i>
+                  <Info size={18} />
                   Thông tin chi tiết
                 </h2>
                 <div className="detail-table">

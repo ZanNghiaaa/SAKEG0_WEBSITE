@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Eye, EyeOff, Link, useParams, useNavigate } from 'react-router-dom';
 import { getUsers, loginUserLocal } from '../controllers/UserController';
+import { AlertCircle, Key, CheckCircle2, Info, Loader2, Check, ArrowLeft } from 'lucide-react';
 
 const ResetPassword = () => {
   const { token } = useParams();
@@ -103,14 +104,14 @@ const ResetPassword = () => {
               <form onSubmit={handleSubmit} className="modern-form">
                 {error && (
                   <div className="error-message">
-                    <i className="fas fa-exclamation-circle"></i>
+                    <AlertCircle size={18} />
                     {error}
                   </div>
                 )}
 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-key"></i>
+                    <Key size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -130,14 +131,14 @@ const ResetPassword = () => {
                       onClick={() => setShowPassword(!showPassword)}
                       disabled={loading}
                     >
-                      <i className={showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'}></i>
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
                 </div>
 
                 <div className="input-group">
                   <div className="input-icon">
-                    <i className="fas fa-check-circle"></i>
+                    <CheckCircle2 size={18} />
                   </div>
                   <div className="input-wrapper">
                     <input
@@ -155,7 +156,7 @@ const ResetPassword = () => {
                 </div>
 
                 <div className="password-requirements">
-                  <p><i className="fas fa-info-circle"></i> Yêu cầu mật khẩu:</p>
+                  <p><Info size={18} /> Yêu cầu mật khẩu:</p>
                   <ul>
                     <li className={formData.password.length >= 6 ? 'valid' : ''}>
                       <i className={formData.password.length >= 6 ? 'fas fa-check' : 'fas fa-circle'}></i>
@@ -172,12 +173,12 @@ const ResetPassword = () => {
                   {loading ? (
                     <>
                       <span>Đang xử lý...</span>
-                      <i className="fas fa-spinner fa-spin"></i>
+                      <Loader2 size={18} className="lucide-spin" />
                     </>
                   ) : (
                     <>
                       <span>Đặt lại mật khẩu</span>
-                      <i className="fas fa-check"></i>
+                      <Check size={18} />
                     </>
                   )}
                 </button>
@@ -185,7 +186,7 @@ const ResetPassword = () => {
                 <div className="form-footer">
                   <p>
                     <Link to="/login" className="link-primary">
-                      <i className="fas fa-arrow-left"></i> Quay lại đăng nhập
+                      <ArrowLeft size={18} /> Quay lại đăng nhập
                     </Link>
                   </p>
                 </div>

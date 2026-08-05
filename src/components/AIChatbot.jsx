@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './AIChatbot.css';
+import { Phone, X, Send } from 'lucide-react';
 
 const AIChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -405,10 +406,10 @@ const AIChatbot = () => {
           </div>
           <div className="ai-chat-header-actions" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             <a href="tel:0392020136" style={{ color: 'white', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px', fontSize: '14px', fontWeight: '600' }}>
-              <i className="fas fa-phone-alt"></i> 039.2020.136
+              <Phone size={18} /> 039.2020.136
             </a>
             <button className="ai-close-btn" onClick={() => setIsOpen(false)}>
-              <i className="fas fa-times"></i>
+              <X size={18} />
             </button>
           </div>
         </div>
@@ -458,7 +459,7 @@ const AIChatbot = () => {
               onKeyDown={handleKeyPress}
             />
             <button className="ai-send-btn" onClick={handleSend} disabled={!inputValue.trim()}>
-              <i className="fas fa-paper-plane"></i>
+              <Send size={18} />
             </button>
           </div>
         </div>

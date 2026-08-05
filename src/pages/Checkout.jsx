@@ -5,6 +5,8 @@ import { useLoading } from '../hooks/useLoading';
 import Loading from '../components/Loading';
 import { getCurrentUser } from '../controllers/UserController';
 import { createOrder, CAN_THO_DISTRICTS } from '../controllers/OrderController';
+import { ShoppingCart, ShoppingBag, Lock, MapPin, Truck, User, Phone, Mail, Home, Banknote, CheckCircle2, Camera, Info, Edit, Receipt, Map, Loader2, ArrowLeft } from 'lucide-react';
+import { Building2, Map, Navigation, StickyNote, CreditCard, Landmark, QrCode, Smartphone, Lightbulb, Shield } from 'lucide-react';
 
 const Checkout = () => {
   const { cartItems, getTotal, clearCart } = useCart();
@@ -116,12 +118,12 @@ const Checkout = () => {
         <div className="container">
           <div className="empty-checkout">
             <div className="empty-checkout-icon">
-              <i className="fas fa-shopping-cart"></i>
+              <ShoppingCart size={18} />
             </div>
             <h2>Giỏ Hàng Trống</h2>
             <p>Vui lòng thêm sản phẩm vào giỏ hàng trước khi thanh toán</p>
             <button className="btn btn-primary" onClick={() => navigate('/products')}>
-              <i className="fas fa-shopping-bag"></i> Tiếp Tục Mua Sắm
+              <ShoppingBag size={18} /> Tiếp Tục Mua Sắm
             </button>
           </div>
         </div>
@@ -149,7 +151,7 @@ const Checkout = () => {
         <div className="container">
         <div className="checkout-header">
           <h1>
-            <i className="fas fa-lock"></i> Thanh Toán Đơn Hàng
+            <Lock size={18} /> Thanh Toán Đơn Hàng
           </h1>
           <p className="checkout-subtitle">Vui lòng điền đầy đủ thông tin để hoàn tất đơn hàng</p>
         </div>
@@ -162,11 +164,11 @@ const Checkout = () => {
               <div className="checkout-card">
                 <div className="checkout-card-header">
                   <h3>
-                    <i className="fas fa-map-marker-alt"></i>
+                    <MapPin size={18} />
                     Thông Tin Giao Hàng
                   </h3>
                   <div className="shipping-area-badge">
-                    <i className="fas fa-shipping-fast"></i>
+                    <Truck size={18} />
                     <span>Chỉ giao hàng tại TP. Cần Thơ</span>
                   </div>
                 </div>
@@ -174,7 +176,7 @@ const Checkout = () => {
                   <div className="form-grid">
                     <div className="form-group">
                       <label className="form-label">
-                        <i className="fas fa-user"></i> Họ và tên *
+                        <User size={18} /> Họ và tên *
                       </label>
                       <input
                         type="text"
@@ -189,7 +191,7 @@ const Checkout = () => {
 
                     <div className="form-group">
                       <label className="form-label">
-                        <i className="fas fa-phone"></i> Số điện thoại *
+                        <Phone size={18} /> Số điện thoại *
                       </label>
                       <input
                         type="tel"
@@ -205,7 +207,7 @@ const Checkout = () => {
 
                   <div className="form-group">
                     <label className="form-label">
-                      <i className="fas fa-envelope"></i> Email *
+                      <Mail size={18} /> Email *
                     </label>
                     <input
                       type="email"
@@ -220,7 +222,7 @@ const Checkout = () => {
 
                   <div className="form-group">
                     <label className="form-label">
-                      <i className="fas fa-home"></i> Địa chỉ *
+                      <Home size={18} /> Địa chỉ *
                     </label>
                     <input
                       type="text"
@@ -236,7 +238,7 @@ const Checkout = () => {
                   <div className="form-grid form-grid-3">
                     <div className="form-group">
                       <label className="form-label">
-                        <i className="fas fa-city"></i> Thành phố *
+                        <Building2 size={18} /> Thành phố *
                       </label>
                       <input
                         type="text"
@@ -250,7 +252,7 @@ const Checkout = () => {
 
                     <div className="form-group">
                       <label className="form-label">
-                        <i className="fas fa-map"></i> Quận/Huyện *
+                        <Map size={18} /> Quận/Huyện *
                       </label>
                       <select
                         className="form-control"
@@ -268,7 +270,7 @@ const Checkout = () => {
 
                     <div className="form-group">
                       <label className="form-label">
-                        <i className="fas fa-location-arrow"></i> Phường/Xã *
+                        <Navigation size={18} /> Phường/Xã *
                       </label>
                       <input
                         type="text"
@@ -284,7 +286,7 @@ const Checkout = () => {
 
                   <div className="form-group">
                     <label className="form-label">
-                      <i className="fas fa-sticky-note"></i> Ghi chú (tuỳ chọn)
+                      <StickyNote size={18} /> Ghi chú (tuỳ chọn)
                     </label>
                     <textarea
                       className="form-control"
@@ -302,7 +304,7 @@ const Checkout = () => {
               <div className="checkout-card">
                 <div className="checkout-card-header">
                   <h3>
-                    <i className="fas fa-credit-card"></i>
+                    <CreditCard size={18} />
                     Phương Thức Thanh Toán
                   </h3>
                 </div>
@@ -318,7 +320,7 @@ const Checkout = () => {
                       />
                       <div className="payment-option-content">
                         <div className="payment-icon">
-                          <i className="fas fa-money-bill-wave"></i>
+                          <Banknote size={18} />
                         </div>
                         <div className="payment-info">
                           <strong>Thanh toán khi nhận hàng (COD)</strong>
@@ -326,7 +328,7 @@ const Checkout = () => {
                         </div>
                       </div>
                       <div className="payment-check">
-                        <i className="fas fa-check-circle"></i>
+                        <CheckCircle2 size={18} />
                       </div>
                     </label>
 
@@ -340,7 +342,7 @@ const Checkout = () => {
                       />
                       <div className="payment-option-content">
                         <div className="payment-icon">
-                          <i className="fas fa-university"></i>
+                          <Landmark size={18} />
                         </div>
                         <div className="payment-info">
                           <strong>Chuyển khoản ngân hàng</strong>
@@ -348,7 +350,7 @@ const Checkout = () => {
                         </div>
                       </div>
                       <div className="payment-check">
-                        <i className="fas fa-check-circle"></i>
+                        <CheckCircle2 size={18} />
                       </div>
                     </label>
                   </div>
@@ -359,7 +361,7 @@ const Checkout = () => {
                       {/* Hiển thị trực tiếp ngân hàng BIDV */}
                       <div className="selected-bank-info">
                         <div className="bank-badge">
-                          <i className="fas fa-university"></i>
+                          <Landmark size={18} />
                           <div className="bank-badge-text">
                             <strong>{bankAccountInfo.bankName}</strong>
                             <span>{bankAccountInfo.bankFullName}</span>
@@ -374,7 +376,7 @@ const Checkout = () => {
                             <div className="bank-qr-section">
                               <div className="qr-code-wrapper">
                                 <div className="qr-code-header">
-                                  <i className="fas fa-qrcode"></i>
+                                  <QrCode size={18} />
                                   <span>Quét mã QR để thanh toán</span>
                                 </div>
                                 <div className="qr-code-image">
@@ -400,15 +402,15 @@ const Checkout = () => {
                                 </div>
                                 <div className="qr-scan-instruction">
                                   <div className="scan-step">
-                                    <i className="fas fa-mobile-alt"></i>
+                                    <Smartphone size={18} />
                                     <span>Mở app ngân hàng</span>
                                   </div>
                                   <div className="scan-step">
-                                    <i className="fas fa-camera"></i>
+                                    <Camera size={18} />
                                     <span>Quét mã QR</span>
                                   </div>
                                   <div className="scan-step">
-                                    <i className="fas fa-check-circle"></i>
+                                    <CheckCircle2 size={18} />
                                     <span>Xác nhận thanh toán</span>
                                   </div>
                                 </div>
@@ -418,44 +420,44 @@ const Checkout = () => {
                             {/* Right Side - Bank Details */}
                             <div className="bank-info-section">
                               <div className="bank-info-header">
-                                <i className="fas fa-info-circle"></i>
+                                <Info size={18} />
                                 <strong>Thông tin chuyển khoản</strong>
                               </div>
                               <div className="bank-details">
                                 <div className="bank-detail-item">
                                   <span className="label">
-                                    <i className="fas fa-university"></i> Ngân hàng:
+                                    <Landmark size={18} /> Ngân hàng:
                                   </span>
                                   <span className="value">{bankAccountInfo.bankName}</span>
                                 </div>
                                 <div className="bank-detail-item">
                                   <span className="label">
-                                    <i className="fas fa-credit-card"></i> Số tài khoản:
+                                    <CreditCard size={18} /> Số tài khoản:
                                   </span>
                                   <span className="value">{bankAccountInfo.accountNumber}</span>
                                 </div>
                                 <div className="bank-detail-item">
                                   <span className="label">
-                                    <i className="fas fa-user"></i> Chủ tài khoản:
+                                    <User size={18} /> Chủ tài khoản:
                                   </span>
                                   <span className="value">{bankAccountInfo.accountName}</span>
                                 </div>
                                 <div className="bank-detail-item">
                                   <span className="label">
-                                    <i className="fas fa-money-bill-wave"></i> Số tiền:
+                                    <Banknote size={18} /> Số tiền:
                                   </span>
                                   <span className="value amount-highlight">{getTotal().toLocaleString('vi-VN')}đ</span>
                                 </div>
                                 <div className="bank-detail-item">
                                   <span className="label">
-                                    <i className="fas fa-edit"></i> Nội dung:
+                                    <Edit size={18} /> Nội dung:
                                   </span>
                                   <span className="value highlight">{bankAccountInfo.prefix} {formData.phone || 'XXXXXXXXXX'}</span>
                                 </div>
                               </div>
                               
                               <div className="bank-note">
-                                <i className="fas fa-lightbulb"></i>
+                                <Lightbulb size={18} />
                                 <div className="note-content">
                                   <strong>Lưu ý quan trọng:</strong>
                                   <ul>
@@ -479,7 +481,7 @@ const Checkout = () => {
               <div className="checkout-card summary-sticky">
                 <div className="checkout-card-header">
                   <h3>
-                    <i className="fas fa-receipt"></i>
+                    <Receipt size={18} />
                     Đơn Hàng Của Bạn
                   </h3>
                 </div>
@@ -514,7 +516,7 @@ const Checkout = () => {
                     <div className="summary-row">
                       <span>Phí vận chuyển:</span>
                       <strong className="text-success">
-                        <i className="fas fa-check-circle"></i> Miễn phí
+                        <CheckCircle2 size={18} /> Miễn phí
                       </strong>
                     </div>
                     <div className="summary-row">
@@ -533,15 +535,15 @@ const Checkout = () => {
                   {/* Trust Info */}
                   <div className="trust-info">
                     <div className="trust-item">
-                      <i className="fas fa-shield-alt"></i>
+                      <Shield size={18} />
                       <span>Thanh toán an toàn</span>
                     </div>
                     <div className="trust-item">
-                      <i className="fas fa-truck"></i>
+                      <Truck size={18} />
                       <span>Giao hàng 2-3 giờ</span>
                     </div>
                     <div className="trust-item">
-                      <i className="fas fa-map-marked-alt"></i>
+                      <Map size={18} />
                       <span>Chỉ giao tại Cần Thơ</span>
                     </div>
                   </div>
@@ -554,8 +556,8 @@ const Checkout = () => {
                     style={(isLoading || isSubmitted) ? { opacity: 0.6, cursor: 'not-allowed' } : {}}
                   >
                     {isLoading || isSubmitted
-                      ? <><i className="fas fa-spinner fa-spin"></i> Đang xử lý...</>
-                      : <><i className="fas fa-check-circle"></i> Hoàn Tất Đặt Hàng</>}
+                      ? <><Loader2 size={18} className="lucide-spin" /> Đang xử lý...</>
+                      : <><CheckCircle2 size={18} /> Hoàn Tất Đặt Hàng</>}
                   </button>
 
                   <button 
@@ -563,7 +565,7 @@ const Checkout = () => {
                     className="btn-back-to-cart"
                     onClick={() => navigate('/cart')}
                   >
-                    <i className="fas fa-arrow-left"></i>
+                    <ArrowLeft size={18} />
                     Quay Lại Giỏ Hàng
                   </button>
                 </div>

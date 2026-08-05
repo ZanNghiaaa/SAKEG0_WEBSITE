@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { getCurrentUser, logoutUser, isAdmin } from '../controllers/UserController';
+import { UserCircle, ChevronDown, User, ShoppingCart, LogOut, Menu, CupSoda, Grid, Search, X, Home, Info, TrendingUp, Package, Mail, List } from 'lucide-react';
+import { Cookie, Coffee } from 'lucide-react';
 
 const Navbar = () => {
   const [showCategoryMenu, setShowCategoryMenu] = useState(false);
@@ -107,9 +109,9 @@ const Navbar = () => {
                         e.target.nextSibling.style.display = 'inline-block';
                       }}
                     />
-                    <i className="fas fa-user-circle user-avatar-fallback"></i>
+                    <UserCircle size={18} className="user-avatar-fallback" />
                     <span className="user-name">{currentUser.fullname}</span>
-                    <i className="fas fa-chevron-down"></i>
+                    <ChevronDown size={18} />
                   </button>
                   {showUserMenu && (
                     <div className="user-dropdown">
@@ -119,13 +121,13 @@ const Navbar = () => {
                         </Link>
                       )}
                       <Link to="/profile" onClick={() => setShowUserMenu(false)}>
-                        <i className="fas fa-user"></i> Trang cá nhân
+                        <User size={18} /> Trang cá nhân
                       </Link>
                       <Link to="/cart" onClick={() => setShowUserMenu(false)}>
-                        <i className="fas fa-shopping-cart"></i> Giỏ hàng
+                        <ShoppingCart size={18} /> Giỏ hàng
                       </Link>
                       <button onClick={handleLogout}>
-                        <i className="fas fa-sign-out-alt"></i> Đăng xuất
+                        <LogOut size={18} /> Đăng xuất
                       </button>
                     </div>
                   )}
@@ -133,7 +135,7 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link to="/login">
-                    <i className="fas fa-user"></i> Đăng nhập
+                    <User size={18} /> Đăng nhập
                   </Link>
                   <Link to="/register">
                     <i className="fas fa-user-plus"></i> Đăng ký
@@ -142,7 +144,7 @@ const Navbar = () => {
               )}
             </div>
             <Link to="/cart" className="cart-link">
-              <i className="fas fa-shopping-cart"></i>
+              <ShoppingCart size={18} />
               <span className="cart-count">{getItemCount()}</span>
             </Link>
           </div>
@@ -154,7 +156,7 @@ const Navbar = () => {
         <div className="container">
           <div className="navbar-left">
             <button className="category-menu-btn" onClick={toggleCategoryMenu}>
-              <i className="fas fa-bars"></i> DANH MỤC SẢN PHẨM
+              <Menu size={18} /> DANH MỤC SẢN PHẨM
             </button>
             {showCategoryMenu && (
               <div 
@@ -166,22 +168,22 @@ const Navbar = () => {
               <ul>
                 <li>
                   <a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('mochi'); }}>
-                    <i className="fas fa-cookie"></i> Bánh Mochi Sa Kê
+                    <Cookie size={18} /> Bánh Mochi Sa Kê
                   </a>
                 </li>
                 <li>
                   <a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('tea'); }}>
-                    <i className="fas fa-mug-hot"></i> Trà Sa Kê
+                    <Coffee size={18} /> Trà Sa Kê
                   </a>
                 </li>
                 <li>
                   <a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('rice-milk'); }}>
-                    <i className="fas fa-glass-whiskey"></i> Sữa Gạo Sa Kê
+                    <CupSoda size={18} /> Sữa Gạo Sa Kê
                   </a>
                 </li>
                 <li>
                   <Link to="/products">
-                    <i className="fas fa-th"></i> Xem tất cả
+                    <Grid size={18} /> Xem tất cả
                   </Link>
                 </li>
               </ul>
@@ -206,7 +208,7 @@ const Navbar = () => {
                   navigate(`/products?search=${encodeURIComponent(input.value.trim())}`);
                 }
               }}>
-                <i className="fas fa-search"></i>
+                <Search size={18} />
               </button>
             </div>
             
@@ -215,7 +217,7 @@ const Navbar = () => {
                 className="combined-menu-btn"
                 onClick={() => setShowCombinedMenu(!showCombinedMenu)}
               >
-                <i className="fas fa-bars"></i>
+                <Menu size={18} />
               </button>
             {showCombinedMenu && (
               <>
@@ -228,28 +230,28 @@ const Navbar = () => {
                     <img src="/assets/images/logo.png" alt="Logo" />
                     <span>Sakego</span>
                     <button onClick={() => setShowCombinedMenu(false)}>
-                      <i className="fas fa-times"></i>
+                      <X size={18} />
                     </button>
                   </div>
                   
                   <div className="menu-section">
                     <h3><i className="fas fa-compass"></i> Điều hướng</h3>
                     <ul>
-                      <li><Link to="/" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-home"></i> Trang chủ</Link></li>
-                      <li><Link to="/about" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-info-circle"></i> Giới thiệu</Link></li>
-                      <li><Link to="/thuc-trang" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-chart-line"></i> Thực trạng</Link></li>
-                      <li><Link to="/products" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-box"></i> Sản phẩm</Link></li>
-                      <li><Link to="/contact" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-envelope"></i> Liên hệ</Link></li>
+                      <li><Link to="/" onClick={() => setShowCombinedMenu(false)}><Home size={18} /> Trang chủ</Link></li>
+                      <li><Link to="/about" onClick={() => setShowCombinedMenu(false)}><Info size={18} /> Giới thiệu</Link></li>
+                      <li><Link to="/thuc-trang" onClick={() => setShowCombinedMenu(false)}><TrendingUp size={18} /> Thực trạng</Link></li>
+                      <li><Link to="/products" onClick={() => setShowCombinedMenu(false)}><Package size={18} /> Sản phẩm</Link></li>
+                      <li><Link to="/contact" onClick={() => setShowCombinedMenu(false)}><Mail size={18} /> Liên hệ</Link></li>
                       <li><Link to="/ar" onClick={() => setShowCombinedMenu(false)}><i className="fas fa-cube"></i> Công nghệ AR</Link></li>
                     </ul>
                   </div>
 
                   <div className="menu-section">
-                    <h3><i className="fas fa-list"></i> Danh mục sản phẩm</h3>
+                    <h3><List size={18} /> Danh mục sản phẩm</h3>
                     <ul>
-                      <li><a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('tea'); setShowCombinedMenu(false); }}><i className="fas fa-mug-hot"></i> Trà Sa Kê</a></li>
-                      <li><a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('rice-milk'); setShowCombinedMenu(false); }}><i className="fas fa-glass-whiskey"></i> Sữa Gạo Sa Kê</a></li>
-                      <li><a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('mochi'); setShowCombinedMenu(false); }}><i className="fas fa-cookie"></i> Bánh Mochi Sa Kê</a></li>
+                      <li><a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('tea'); setShowCombinedMenu(false); }}><Coffee size={18} /> Trà Sa Kê</a></li>
+                      <li><a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('rice-milk'); setShowCombinedMenu(false); }}><CupSoda size={18} /> Sữa Gạo Sa Kê</a></li>
+                      <li><a href="#" onClick={(e) => { e.preventDefault(); handleFilterCategory('mochi'); setShowCombinedMenu(false); }}><Cookie size={18} /> Bánh Mochi Sa Kê</a></li>
                     </ul>
                   </div>
                 </div>
@@ -284,7 +286,7 @@ const Navbar = () => {
                 navigate(`/products?search=${encodeURIComponent(input.value.trim())}`);
               }
             }}>
-              <i className="fas fa-search"></i>
+              <Search size={18} />
             </button>
           </div>
         </div>

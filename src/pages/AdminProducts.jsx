@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
+import { Package, Plus, Grid, Leaf, CupSoda, Search, PackageOpen, Edit, Trash2, X, Info, Loader2, Save } from 'lucide-react';
+import { Cookie } from 'lucide-react';
   getAllProducts, 
   addProduct, 
   updateProduct, 
@@ -252,7 +254,7 @@ const AdminProducts = () => {
       {loading ? (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px' }}>
           <div style={{ textAlign: 'center', color: 'var(--admin-text-muted)' }}>
-            <i className="fas fa-spinner fa-spin" style={{ fontSize: '40px', color: '#7CB342', marginBottom: '16px', display: 'block' }} />
+            <Loader2 size={18} style={{ fontSize: '40px', color: '#7CB342', marginBottom: '16px', display: 'block' }}  className="lucide-spin" />
             <p style={{ margin: 0 }}>Đang tải sản phẩm...</p>
           </div>
         </div>
@@ -262,14 +264,14 @@ const AdminProducts = () => {
           <div className="admin-header">
         <div>
           <h1>
-            <i className="fas fa-box"></i> Quản Lý Sản Phẩm
+            <Package size={18} /> Quản Lý Sản Phẩm
           </h1>
           <p className="admin-header-subtitle">
             Quản lý danh sách sản phẩm Sa Kê - Tổng cộng {products.length} sản phẩm
           </p>
         </div>
         <button className="btn-primary" onClick={handleAddProduct}>
-          <i className="fas fa-plus"></i> Thêm sản phẩm
+          <Plus size={18} /> Thêm sản phẩm
         </button>
       </div>
 
@@ -280,7 +282,7 @@ const AdminProducts = () => {
             className={`filter-tab ${filterCategory === 'all' ? 'active' : ''}`}
             onClick={() => setFilterCategory('all')}
           >
-            <i className="fas fa-th"></i>
+            <Grid size={18} />
             <span>Tất cả</span>
             <span className="count-badge">{categories.all.count}</span>
           </button>
@@ -288,7 +290,7 @@ const AdminProducts = () => {
             className={`filter-tab ${filterCategory === 'tea' ? 'active' : ''}`}
             onClick={() => setFilterCategory('tea')}
           >
-            <i className="fas fa-leaf"></i>
+            <Leaf size={18} />
             <span>Trà Sa Kê</span>
             <span className="count-badge">{categories.tea.count}</span>
           </button>
@@ -296,7 +298,7 @@ const AdminProducts = () => {
             className={`filter-tab ${filterCategory === 'rice-milk' ? 'active' : ''}`}
             onClick={() => setFilterCategory('rice-milk')}
           >
-            <i className="fas fa-glass-whiskey"></i>
+            <CupSoda size={18} />
             <span>Sữa Gạo Sa Kê</span>
             <span className="count-badge">{categories['rice-milk'].count}</span>
           </button>
@@ -304,14 +306,14 @@ const AdminProducts = () => {
             className={`filter-tab ${filterCategory === 'mochi' ? 'active' : ''}`}
             onClick={() => setFilterCategory('mochi')}
           >
-            <i className="fas fa-cookie-bite"></i>
+            <Cookie size={18} />
             <span>Bánh Mochi Sa Kê</span>
             <span className="count-badge">{categories.mochi.count}</span>
           </button>
         </div>
 
         <div className="search-box-admin">
-          <i className="fas fa-search"></i>
+          <Search size={18} />
           <input 
             type="text" 
             placeholder="Tìm kiếm sản phẩm..."
@@ -326,7 +328,7 @@ const AdminProducts = () => {
         <div className="table-responsive">
           {filteredProducts.length === 0 ? (
             <div className="empty-state">
-              <i className="fas fa-box-open"></i>
+              <PackageOpen size={18} />
               <p>Không tìm thấy sản phẩm nào</p>
             </div>
           ) : (
@@ -435,14 +437,14 @@ const AdminProducts = () => {
                           onClick={() => handleEditProduct(product)}
                           title="Chỉnh sửa"
                         >
-                          <i className="fas fa-edit"></i>
+                          <Edit size={18} />
                         </button>
                         <button 
                           className="btn-action btn-action-delete"
                           onClick={() => handleDeleteProduct(product)}
                           title="Xóa"
                         >
-                          <i className="fas fa-trash"></i>
+                          <Trash2 size={18} />
                         </button>
                       </div>
                     </td>
@@ -460,11 +462,11 @@ const AdminProducts = () => {
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>
-                <i className="fas fa-box"></i> 
+                <Package size={18} /> 
                 {editingProduct ? 'Chỉnh Sửa Sản Phẩm' : 'Thêm Sản Phẩm Mới'}
               </h2>
               <button className="modal-close" onClick={() => setShowModal(false)}>
-                <i className="fas fa-times"></i>
+                <X size={18} />
               </button>
             </div>
 
@@ -561,7 +563,7 @@ const AdminProducts = () => {
                             justifyContent: 'center'
                           }}
                         >
-                          <i className="fas fa-times"></i>
+                          <X size={18} />
                         </button>
                       </div>
                     )}
@@ -583,7 +585,7 @@ const AdminProducts = () => {
                         }}
                       />
                       <small style={{ color: '#666', fontSize: '12px', marginTop: '5px', display: 'block' }}>
-                        <i className="fas fa-info-circle"></i> Chọn file ảnh từ máy tính (tối đa 5MB, định dạng: JPG, PNG, GIF, WEBP)
+                        <Info size={18} /> Chọn file ảnh từ máy tính (tối đa 5MB, định dạng: JPG, PNG, GIF, WEBP)
                       </small>
                     </div>
 
@@ -711,11 +713,11 @@ const AdminProducts = () => {
                 <button type="submit" className="btn-primary" disabled={uploading}>
                   {uploading ? (
                     <>
-                      <i className="fas fa-spinner fa-spin"></i> Đang upload...
+                      <Loader2 size={18} className="lucide-spin" /> Đang upload...
                     </>
                   ) : (
                     <>
-                      <i className="fas fa-save"></i> 
+                      <Save size={18} /> 
                       {editingProduct ? 'Cập nhật' : 'Thêm sản phẩm'}
                     </>
                   )}

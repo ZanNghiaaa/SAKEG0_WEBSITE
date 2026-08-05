@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
+import { Leaf, Clock, HeadphonesIcon, Send, CheckCircle2, User, Mail, Phone, Loader2, ChevronRight, MessageCircle, MonitorPlay, Map } from 'lucide-react';
+import { Shield, Tag, MessageSquareDot, HelpCircle, Share2, Facebook } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name:'', email:'', phone:'', subject:'', message:'' });
@@ -43,8 +45,8 @@ const Contact = () => {
           <span className="ch-orb ch-orb-1"></span>
           <span className="ch-orb ch-orb-2"></span>
           <span className="ch-orb ch-orb-3"></span>
-          <span className="ch-leaf ch-leaf-1"><i className="fas fa-leaf"></i></span>
-          <span className="ch-leaf ch-leaf-2"><i className="fas fa-leaf"></i></span>
+          <span className="ch-leaf ch-leaf-1"><Leaf size={18} /></span>
+          <span className="ch-leaf ch-leaf-2"><Leaf size={18} /></span>
           <span className="ch-ring ch-ring-1"></span>
           <span className="ch-ring ch-ring-2"></span>
         </div>
@@ -62,9 +64,9 @@ const Contact = () => {
               Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn trong thời gian sớm nhất
             </p>
             <div className="contact-hero-pills">
-              <span className="ch-pill"><i className="fas fa-clock"></i> Phản hồi trong 24h</span>
-              <span className="ch-pill"><i className="fas fa-headset"></i> Hỗ trợ 24/7</span>
-              <span className="ch-pill"><i className="fas fa-shield-alt"></i> Tư vấn miễn phí</span>
+              <span className="ch-pill"><Clock size={18} /> Phản hồi trong 24h</span>
+              <span className="ch-pill"><HeadphonesIcon size={18} /> Hỗ trợ 24/7</span>
+              <span className="ch-pill"><Shield size={18} /> Tư vấn miễn phí</span>
             </div>
           </div>
         </div>
@@ -113,7 +115,7 @@ const Contact = () => {
             {/* Form */}
             <div className="contact-form-panel">
               <div className="cfp-header">
-                <div className="cfp-icon"><i className="fas fa-paper-plane"></i></div>
+                <div className="cfp-icon"><Send size={18} /></div>
                 <div>
                   <h2>Gửi tin nhắn cho chúng tôi</h2>
                   <p>Điền thông tin bên dưới, chúng tôi sẽ liên hệ lại sớm nhất</p>
@@ -122,7 +124,7 @@ const Contact = () => {
 
               {submitted && (
                 <div className="form-success-banner">
-                  <i className="fas fa-check-circle"></i>
+                  <CheckCircle2 size={18} />
                   <div>
                     <strong>Gửi thành công!</strong>
                     <span>Cảm ơn bạn, chúng tôi sẽ phản hồi trong vòng 24 giờ.</span>
@@ -133,21 +135,21 @@ const Contact = () => {
               <form className="contact-form-new" onSubmit={handleSubmit}>
                 <div className="cfn-row">
                   <div className="cfn-group">
-                    <label><i className="fas fa-user"></i> Họ và tên <span>*</span></label>
+                    <label><User size={18} /> Họ và tên <span>*</span></label>
                     <input type="text" name="name" placeholder="Nhập họ và tên" value={formData.name} onChange={handleChange} required />
                   </div>
                   <div className="cfn-group">
-                    <label><i className="fas fa-envelope"></i> Email <span>*</span></label>
+                    <label><Mail size={18} /> Email <span>*</span></label>
                     <input type="email" name="email" placeholder="example@email.com" value={formData.email} onChange={handleChange} required />
                   </div>
                 </div>
                 <div className="cfn-row">
                   <div className="cfn-group">
-                    <label><i className="fas fa-phone"></i> Số điện thoại</label>
+                    <label><Phone size={18} /> Số điện thoại</label>
                     <input type="tel" name="phone" placeholder="0123 456 789" value={formData.phone} onChange={handleChange} />
                   </div>
                   <div className="cfn-group">
-                    <label><i className="fas fa-tag"></i> Chủ đề</label>
+                    <label><Tag size={18} /> Chủ đề</label>
                     <select name="subject" value={formData.subject} onChange={handleChange}>
                       <option value="">Chọn chủ đề</option>
                       <option value="product">Hỏi về sản phẩm</option>
@@ -159,14 +161,14 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="cfn-group">
-                  <label><i className="fas fa-comment-dots"></i> Nội dung <span>*</span></label>
+                  <label><MessageSquareDot size={18} /> Nội dung <span>*</span></label>
                   <textarea name="message" rows="5" placeholder="Nhập nội dung tin nhắn..." value={formData.message} onChange={handleChange} required></textarea>
                 </div>
                 <button type="submit" className="cfn-submit" disabled={isSubmitting}>
                   {isSubmitting ? (
-                    <><i className="fas fa-spinner fa-spin"></i> Đang gửi...</>
+                    <><Loader2 size={18} className="lucide-spin" /> Đang gửi...</>
                   ) : (
-                    <><i className="fas fa-paper-plane"></i> Gửi tin nhắn<span className="btn-shine"></span></>
+                    <><Send size={18} /> Gửi tin nhắn<span className="btn-shine"></span></>
                   )}
                 </button>
               </form>
@@ -176,7 +178,7 @@ const Contact = () => {
             <div className="contact-sidebar">
               <div className="cs-box">
                 <div className="cs-box-header">
-                  <i className="fas fa-question-circle"></i>
+                  <HelpCircle size={18} />
                   <h3>Câu hỏi thường gặp</h3>
                 </div>
                 {[
@@ -185,7 +187,7 @@ const Contact = () => {
                   { q:'Phương thức thanh toán?', a:'Thanh toán khi nhận hàng (COD) hoặc chuyển khoản ngân hàng.' },
                 ].map((faq, i) => (
                   <div key={i} className="cs-faq-item">
-                    <div className="cs-faq-q"><i className="fas fa-chevron-right"></i>{faq.q}</div>
+                    <div className="cs-faq-q"><ChevronRight size={18} />{faq.q}</div>
                     <div className="cs-faq-a">{faq.a}</div>
                   </div>
                 ))}
@@ -193,18 +195,18 @@ const Contact = () => {
 
               <div className="cs-box">
                 <div className="cs-box-header">
-                  <i className="fas fa-share-alt"></i>
+                  <Share2 size={18} />
                   <h3>Kết nối với chúng tôi</h3>
                 </div>
                 <div className="cs-socials">
                   <a href="https://www.facebook.com/share/1HzpsrKSFq/?mibextid=wwXIfr" className="cs-social cs-social--fb" target="_blank" rel="noopener noreferrer">
-                    <i className="fab fa-facebook-f"></i><span>Facebook</span>
+                    <Facebook size={18} /><span>Facebook</span>
                   </a>
                   <a href="#" className="cs-social cs-social--zalo" target="_blank" rel="noopener noreferrer">
-                    <i className="fas fa-comments"></i><span>Zalo</span>
+                    <MessageCircle size={18} /><span>Zalo</span>
                   </a>
                   <a href="#" className="cs-social cs-social--tiktok" target="_blank" rel="noopener noreferrer">
-                    <i className="fab fa-tiktok"></i><span>TikTok</span>
+                    <MonitorPlay size={18} /><span>TikTok</span>
                   </a>
                 </div>
               </div>
@@ -218,7 +220,7 @@ const Contact = () => {
       <section className="contact-map-section">
         <div className="container">
           <div className="contact-map-header">
-            <span className="section-label"><i className="fas fa-map-marked-alt"></i> Vị trí</span>
+            <span className="section-label"><Map size={18} /> Vị trí</span>
             <h2>Địa chỉ trên bản đồ</h2>
             <p>600, đường Nguyễn Văn Cừ, Phường An Bình, Quận Ninh Kiều, Cần Thơ</p>
           </div>

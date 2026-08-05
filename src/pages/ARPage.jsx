@@ -1,5 +1,7 @@
 import React from 'react';
 import './ARPage.css';
+import { CheckCircle2 } from 'lucide-react';
+import { Smartphone } from 'lucide-react';
 
 const ARPage = () => {
   return (
@@ -17,9 +19,9 @@ const ARPage = () => {
             <h3>Công nghệ Tương lai cho Trải nghiệm Mua sắm</h3>
             <p>Chúng tôi mang đến công nghệ WebAR xịn xò nhất, giúp bạn có cái nhìn trực quan và chân thực nhất về các sản phẩm của SAKEGO trước khi quyết định mua.</p>
             <ul className="ar-features-list">
-              <li><i className="fas fa-check-circle"></i> <strong>Xoay 360°:</strong> Xem chi tiết từng góc cạnh của bao bì.</li>
+              <li><CheckCircle2 size={18} /> <strong>Xoay 360°:</strong> Xem chi tiết từng góc cạnh của bao bì.</li>
               <li><i className="fas fa-search-plus"></i> <strong>Phóng to / Thu nhỏ:</strong> Khám phá từng thông tin in trên hộp.</li>
-              <li><i className="fas fa-mobile-alt"></i> <strong>Đặt vào không gian thực (Chỉ hỗ trợ Điện thoại):</strong> Kích hoạt camera để "đặt" thử hộp sản phẩm lên bàn làm việc, kệ bếp của nhà bạn với tỷ lệ thật!</li>
+              <li><Smartphone size={18} /> <strong>Đặt vào không gian thực (Chỉ hỗ trợ Điện thoại):</strong> Kích hoạt camera để "đặt" thử hộp sản phẩm lên bàn làm việc, kệ bếp của nhà bạn với tỷ lệ thật!</li>
             </ul>
             <div className="ar-cta-box">
               <p><em>Bạn đang xem bằng điện thoại?</em> Hãy bấm vào nút <strong>"Xem trong không gian của bạn"</strong> ở góc dưới của mô hình bên cạnh nhé!</p>

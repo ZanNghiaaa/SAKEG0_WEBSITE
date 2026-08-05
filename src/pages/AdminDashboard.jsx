@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getOrdersStatistics, getTodayOrders, getAllOrders, ORDER_STATUS_TEXT } from '../controllers/OrderController';
 import { getUsers } from '../controllers/UserController';
 import { getAllProducts } from '../controllers/ProductController';
+import { ShoppingCart, Users, Clock, ArrowRight, Inbox, Eye } from 'lucide-react';
 
 /* ── Animated number counter ── */
 function useCountUp(target, duration = 800) {
@@ -365,7 +366,7 @@ const AdminDashboard = () => {
         <div className="overview-metric-card">
           <div className="metric-header">
             <div className="metric-icon-small" style={{ background: '#eef2ff', color: '#6366f1' }}>
-              <i className="fas fa-shopping-cart" />
+              <ShoppingCart size={18}  />
             </div>
             <span className={`metric-pct ${filteredStats.orders >= filteredStats.oldOrders ? 'positive' : 'negative'}`}>
               <i className={`fas fa-arrow-${filteredStats.orders >= filteredStats.oldOrders ? 'up' : 'down'}`} style={{marginRight: '4px'}} />
@@ -385,7 +386,7 @@ const AdminDashboard = () => {
         <div className="overview-metric-card">
           <div className="metric-header">
             <div className="metric-icon-small" style={{ background: '#ecfdf5', color: '#10b981' }}>
-              <i className="fas fa-users" />
+              <Users size={18}  />
             </div>
             <span className={`metric-pct ${filteredStats.newCustomers >= filteredStats.oldCustomers ? 'positive' : 'negative'}`}>
               <i className={`fas fa-arrow-${filteredStats.newCustomers >= filteredStats.oldCustomers ? 'up' : 'down'}`} style={{marginRight: '4px'}} />
@@ -474,15 +475,15 @@ const AdminDashboard = () => {
       {/* ── Recent Orders Table ── */}
       <div className="dashboard-card">
         <div className="card-header">
-          <h3><i className="fas fa-clock" /> Đơn Hàng Gần Đây</h3>
+          <h3><Clock size={18}  /> Đơn Hàng Gần Đây</h3>
           <Link to="/admin/orders" className="view-all-link">
-            Xem tất cả <i className="fas fa-arrow-right" />
+            Xem tất cả <ArrowRight size={18}  />
           </Link>
         </div>
         <div className="card-body" style={{ padding: 0 }}>
           {recentOrders.length === 0 ? (
             <div className="empty-state" style={{ padding: 48 }}>
-              <i className="fas fa-inbox" />
+              <Inbox size={18}  />
               <p>Chưa có đơn hàng nào</p>
             </div>
           ) : (
@@ -544,7 +545,7 @@ const AdminDashboard = () => {
                       </td>
                       <td>
                         <Link to="/admin/orders" className="btn-action btn-action-view" title="Xem đơn hàng">
-                          <i className="fas fa-eye" />
+                          <Eye size={18}  />
                         </Link>
                       </td>
                     </tr>

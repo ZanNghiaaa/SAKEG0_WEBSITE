@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Mail, Send } from 'lucide-react';
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ const Footer = () => {
         <div className="container">
           <div className="newsletter-content">
             <div className="newsletter-text">
-              <h2><i className="fas fa-envelope"></i> Đăng Ký Nhận Tin</h2>
+              <h2><Mail size={18} /> Đăng Ký Nhận Tin</h2>
               <p>Nhận thông tin ưu đãi và sản phẩm mới nhất từ SAKEGO</p>
             </div>
             <form className="newsletter-form" onSubmit={handleNewsletter}>
@@ -29,7 +30,7 @@ const Footer = () => {
                 required
               />
               <button type="submit" className="btn btn-subscribe">
-                <i className="fas fa-paper-plane"></i> Đăng ký
+                <Send size={18} /> Đăng ký
               </button>
             </form>
           </div>

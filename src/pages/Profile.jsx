@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getCurrentUser, updateUserProfile, logoutUser } from '../controllers/UserController';
 import { getOrdersByUserId, ORDER_STATUS_TEXT } from '../controllers/OrderController';
 import '../assets/css/profile-page.css';
+import { UserCircle, CheckCircle2, Receipt, Banknote, User, ShoppingCart, Store, LogOut, Info, Edit, Mail, Phone, MapPin, Save, X, ChevronRight, Wallet, Package, Truck, HeadphonesIcon, Facebook, Send } from 'lucide-react';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ const Profile = () => {
       <section className="profile-hero">
         <div className="container">
           <h1>
-            <i className="fas fa-user-circle"></i>
+            <UserCircle size={18} />
             Trang cá nhân
           </h1>
           <p>Quản lý thông tin tài khoản của bạn</p>
@@ -110,15 +111,15 @@ const Profile = () => {
           {showSuccessBanner && (
             <div className="success-order-banner">
               <div className="success-icon">
-                <i className="fas fa-check-circle"></i>
+                <CheckCircle2 size={18} />
               </div>
               <div className="success-content">
                 <h3>Đặt hàng thành công! 🎉</h3>
                 <p>Chúng tôi sẽ sớm liên hệ và giao hàng tận nơi tại Cần Thơ. Cảm ơn bạn đã tin tưởng Sakego! 🌿</p>
                 {(orderNumber || orderTotal) && (
                   <div className="success-order-details">
-                    {orderNumber && <span><i className="fas fa-receipt"></i> Mã đơn: <strong>#{String(orderNumber).slice(-6).toUpperCase()}</strong></span>}
-                    {orderTotal && <span><i className="fas fa-money-bill-wave"></i> Tổng tiền: <strong>{orderTotal.toLocaleString('vi-VN')}đ</strong></span>}
+                    {orderNumber && <span><Receipt size={18} /> Mã đơn: <strong>#{String(orderNumber).slice(-6).toUpperCase()}</strong></span>}
+                    {orderTotal && <span><Banknote size={18} /> Tổng tiền: <strong>{orderTotal.toLocaleString('vi-VN')}đ</strong></span>}
                   </div>
                 )}
               </div>
@@ -139,7 +140,7 @@ const Profile = () => {
                       e.target.nextSibling.style.display = 'flex';
                     }}
                   />
-                  <i className="fas fa-user profile-avatar-fallback"></i>
+                  <User size={18} className="profile-avatar-fallback" />
                 </div>
                 <h3>{user.fullname}</h3>
                 <span className="user-role">
@@ -154,21 +155,21 @@ const Profile = () => {
                   className="profile-btn-action btn-primary"
                   onClick={() => navigate('/cart')}
                 >
-                  <i className="fas fa-shopping-cart"></i>
+                  <ShoppingCart size={18} />
                   Giỏ hàng
                 </button>
                 <button
                   className="profile-btn-action btn-secondary"
                   onClick={() => navigate('/products')}
                 >
-                  <i className="fas fa-store"></i>
+                  <Store size={18} />
                   Tiếp tục mua sắm
                 </button>
                 <button
                   className="profile-btn-action btn-danger"
                   onClick={handleLogout}
                 >
-                  <i className="fas fa-sign-out-alt"></i>
+                  <LogOut size={18} />
                   Đăng xuất
                 </button>
               </div>
@@ -179,7 +180,7 @@ const Profile = () => {
               <div className="profile-card">
                 <div className="card-header">
                   <h2>
-                    <i className="fas fa-info-circle"></i>
+                    <Info size={18} />
                     Thông tin cá nhân
                   </h2>
                   {!isEditing && (
@@ -187,7 +188,7 @@ const Profile = () => {
                       className="btn-edit"
                       onClick={() => setIsEditing(true)}
                     >
-                      <i className="fas fa-edit"></i>
+                      <Edit size={18} />
                       Chỉnh sửa
                     </button>
                   )}
@@ -197,28 +198,28 @@ const Profile = () => {
                   <div className="info-display">
                     <div className="info-item">
                       <label>
-                        <i className="fas fa-user"></i>
+                        <User size={18} />
                         Họ và tên
                       </label>
                       <span>{user.fullname}</span>
                     </div>
                     <div className="info-item">
                       <label>
-                        <i className="fas fa-envelope"></i>
+                        <Mail size={18} />
                         Email
                       </label>
                       <span>{user.email}</span>
                     </div>
                     <div className="info-item">
                       <label>
-                        <i className="fas fa-phone"></i>
+                        <Phone size={18} />
                         Số điện thoại
                       </label>
                       <span>{user.phone}</span>
                     </div>
                     <div className="info-item">
                       <label>
-                        <i className="fas fa-map-marker-alt"></i>
+                        <MapPin size={18} />
                         Địa chỉ
                       </label>
                       <span>{user.address || 'Chưa cập nhật'}</span>
@@ -228,7 +229,7 @@ const Profile = () => {
                   <form onSubmit={handleSubmit} className="profile-form">
                     <div className="form-group">
                       <label>
-                        <i className="fas fa-user"></i>
+                        <User size={18} />
                         Họ và tên
                       </label>
                       <input
@@ -242,7 +243,7 @@ const Profile = () => {
 
                     <div className="form-group">
                       <label>
-                        <i className="fas fa-envelope"></i>
+                        <Mail size={18} />
                         Email
                       </label>
                       <input
@@ -256,7 +257,7 @@ const Profile = () => {
 
                     <div className="form-group">
                       <label>
-                        <i className="fas fa-phone"></i>
+                        <Phone size={18} />
                         Số điện thoại
                       </label>
                       <input
@@ -270,7 +271,7 @@ const Profile = () => {
 
                     <div className="form-group">
                       <label>
-                        <i className="fas fa-map-marker-alt"></i>
+                        <MapPin size={18} />
                         Địa chỉ
                       </label>
                       <textarea
@@ -284,7 +285,7 @@ const Profile = () => {
 
                     <div className="form-actions">
                       <button type="submit" className="btn-save">
-                        <i className="fas fa-save"></i>
+                        <Save size={18} />
                         Lưu thay đổi
                       </button>
                       <button
@@ -300,7 +301,7 @@ const Profile = () => {
                           });
                         }}
                       >
-                        <i className="fas fa-times"></i>
+                        <X size={18} />
                         Hủy
                       </button>
                     </div>
@@ -312,34 +313,34 @@ const Profile = () => {
               <div className="profile-card shopee-orders-card">
                 <div className="shopee-orders-header" onClick={() => setActiveTab('all')}>
                   <h2>Đơn mua</h2>
-                  <span className="view-all-text">Xem lịch sử mua hàng <i className="fas fa-chevron-right"></i></span>
+                  <span className="view-all-text">Xem lịch sử mua hàng <ChevronRight size={18} /></span>
                 </div>
 
                 <div className="shopee-orders-tabs">
                   <div className={`shopee-tab ${activeTab === 'pending' ? 'active' : ''}`} onClick={() => setActiveTab('pending')}>
                     <div className="shopee-tab-icon">
-                      <i className="fas fa-wallet"></i>
+                      <Wallet size={18} />
                       {orders.filter(o => o.status === 'pending').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'pending').length}</span>}
                     </div>
                     <span>Chờ xác nhận</span>
                   </div>
                   <div className={`shopee-tab ${activeTab === 'preparing' ? 'active' : ''}`} onClick={() => setActiveTab('preparing')}>
                     <div className="shopee-tab-icon">
-                      <i className="fas fa-box"></i>
+                      <Package size={18} />
                       {orders.filter(o => o.status === 'preparing').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'preparing').length}</span>}
                     </div>
                     <span>Chờ lấy hàng</span>
                   </div>
                   <div className={`shopee-tab ${activeTab === 'delivering' ? 'active' : ''}`} onClick={() => setActiveTab('delivering')}>
                     <div className="shopee-tab-icon">
-                      <i className="fas fa-truck"></i>
+                      <Truck size={18} />
                       {orders.filter(o => o.status === 'delivering').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'delivering').length}</span>}
                     </div>
                     <span>Chờ giao hàng</span>
                   </div>
                   <div className={`shopee-tab ${activeTab === 'completed' ? 'active' : ''}`} onClick={() => setActiveTab('completed')}>
                     <div className="shopee-tab-icon">
-                      <i className="fas fa-check-circle"></i>
+                      <CheckCircle2 size={18} />
                       {orders.filter(o => o.status === 'completed').length > 0 && <span className="shopee-badge">{orders.filter(o => o.status === 'completed').length}</span>}
                     </div>
                     <span>Hoàn thành</span>
@@ -348,7 +349,7 @@ const Profile = () => {
 
                 {orders.filter(o => activeTab === 'all' || o.status === activeTab).length === 0 ? (
                   <div className="empty-state">
-                    <i className="fas fa-receipt"></i>
+                    <Receipt size={18} />
                     <p>Chưa có đơn hàng</p>
                     <button className="btn-shop-now" onClick={() => navigate('/products')}>Mua sắm ngay</button>
                   </div>
@@ -361,7 +362,7 @@ const Profile = () => {
                         <div key={order.id} className="shopee-order-item">
                           <div className="shopee-order-shop">
                             <div className="shop-name">
-                              <i className="fas fa-store"></i>
+                              <Store size={18} />
                               <span>Sakego</span>
                             </div>
                             <div className="shopee-order-status">
@@ -421,16 +422,16 @@ const Profile = () => {
         <div className="contact-modal-overlay" onClick={() => setShowContactModal(false)}>
           <div className="contact-modal" onClick={e => e.stopPropagation()}>
             <div className="contact-modal-header">
-              <h3><i className="fas fa-headset"></i> Liên hệ Người bán</h3>
+              <h3><HeadphonesIcon size={18} /> Liên hệ Người bán</h3>
               <button className="contact-modal-close" onClick={() => setShowContactModal(false)}>
-                <i className="fas fa-times"></i>
+                <X size={18} />
               </button>
             </div>
             <div className="contact-modal-body">
               <p className="contact-modal-desc">Bạn cần hỗ trợ? Hãy liên hệ với chúng tôi qua các kênh bên dưới:</p>
               <div className="contact-item">
                 <div className="contact-icon-wrap">
-                  <i className="fas fa-envelope"></i>
+                  <Mail size={18} />
                 </div>
                 <div className="contact-info">
                   <span className="contact-label">Email</span>
@@ -439,7 +440,7 @@ const Profile = () => {
               </div>
               <div className="contact-item">
                 <div className="contact-icon-wrap">
-                  <i className="fas fa-phone-alt"></i>
+                  <Phone size={18} />
                 </div>
                 <div className="contact-info">
                   <span className="contact-label">Hotline</span>
@@ -448,7 +449,7 @@ const Profile = () => {
               </div>
               <div className="contact-item">
                 <div className="contact-icon-wrap">
-                  <i className="fab fa-facebook"></i>
+                  <Facebook size={18} />
                 </div>
                 <div className="contact-info">
                   <span className="contact-label">Facebook</span>
@@ -458,7 +459,7 @@ const Profile = () => {
             </div>
             <div className="contact-modal-footer">
               <a href="mailto:Sakego25@gmail.com" className="btn-send-email">
-                <i className="fas fa-paper-plane"></i>
+                <Send size={18} />
                 Gửi email ngay
               </a>
             </div>

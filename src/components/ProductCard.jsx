@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTilt } from '../hooks/useTilt';
 
 const ProductCard = ({ product, onAddToCart }) => {
   const navigate = useNavigate();
   const [showNotification, setShowNotification] = useState(false);
+  
+  // Áp dụng hiệu ứng Tilt 3D
+  const tiltRef = useTilt({ max: 12, speed: 400, scale: 1.02, maxGlare: 0.2 });
 
   const handleAddToCart = (e) => {
     e.stopPropagation(); // Prevent navigation when clicking add to cart
@@ -65,6 +69,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <div 
+      ref={tiltRef}
       className={`product-card ${product.isTrial ? 'trial-product-card' : ''}`}
       style={{ position: 'relative' }}
     >

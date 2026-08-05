@@ -1,6 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchProductsFromAPI } from '../controllers/ProductController';
+import { useTilt } from '../hooks/useTilt';
+
+const CategoryCard = ({ category, icon, title, desc, count, onClick }) => {
+  const tiltRef = useTilt({ max: 15, speed: 400, scale: 1.05, maxGlare: 0.3 });
+  
+  return (
+    <div className="category-card" onClick={() => onClick(category)} ref={tiltRef}>
+      <div className="category-icon">
+        <i className={icon}></i>
+      </div>
+      <h3>{title}</h3>
+      <p>{desc}</p>
+      <div className="category-count">{count} sản phẩm</div>
+    </div>
+  );
+};
 
 const CategoriesSection = () => {
   const navigate = useNavigate();
@@ -38,38 +54,38 @@ const CategoriesSection = () => {
           <p>Đa dạng sản phẩm từ sa kê cho mọi nhu cầu</p>
         </div>
         <div className="categories-grid">
-          <div className="category-card" onClick={() => handleCategoryClick('tea')}>
-            <div className="category-icon">
-              <i className="fas fa-mug-hot"></i>
-            </div>
-            <h3>Trà Sa Kê</h3>
-            <p>Thơm ngon, giàu dưỡng chất</p>
-            <div className="category-count">{categoryCounts.tea} sản phẩm</div>
-          </div>
-          <div className="category-card" onClick={() => handleCategoryClick('rice-milk')}>
-            <div className="category-icon">
-              <i className="fas fa-glass-whiskey"></i>
-            </div>
-            <h3>Sữa Gạo Sa Kê</h3>
-            <p>Dinh dưỡng, dễ tiêu hóa</p>
-            <div className="category-count">{categoryCounts['rice-milk']} sản phẩm</div>
-          </div>
-          <div className="category-card" onClick={() => handleCategoryClick('mochi')}>
-            <div className="category-icon">
-              <i className="fas fa-cookie"></i>
-            </div>
-            <h3>Bánh Mochi Sa Kê</h3>
-            <p>Mềm mại, nhiều vị</p>
-            <div className="category-count">{categoryCounts.mochi} sản phẩm</div>
-          </div>
-          <div className="category-card" onClick={() => handleCategoryClick('combo')}>
-            <div className="category-icon">
-              <i className="fas fa-gift"></i>
-            </div>
-            <h3>Combo Sa Kê</h3>
-            <p>Tiết kiệm, đa dạng</p>
-            <div className="category-count">{categoryCounts.combo} sản phẩm</div>
-          </div>
+          <CategoryCard 
+            category="tea" 
+            icon="fas fa-mug-hot" 
+            title="Trà Sa Kê" 
+            desc="Thơm ngon, giàu dưỡng chất" 
+            count={categoryCounts.tea} 
+            onClick={handleCategoryClick} 
+          />
+          <CategoryCard 
+            category="rice-milk" 
+            icon="fas fa-glass-whiskey" 
+            title="Sữa Gạo Sa Kê" 
+            desc="Dinh dưỡng, dễ tiêu hóa" 
+            count={categoryCounts['rice-milk']} 
+            onClick={handleCategoryClick} 
+          />
+          <CategoryCard 
+            category="mochi" 
+            icon="fas fa-cookie" 
+            title="Bánh Mochi Sa Kê" 
+            desc="Mềm mại, nhiều vị" 
+            count={categoryCounts.mochi} 
+            onClick={handleCategoryClick} 
+          />
+          <CategoryCard 
+            category="combo" 
+            icon="fas fa-gift" 
+            title="Combo Sa Kê" 
+            desc="Tiết kiệm, đa dạng" 
+            count={categoryCounts.combo} 
+            onClick={handleCategoryClick} 
+          />
         </div>
       </div>
     </section>

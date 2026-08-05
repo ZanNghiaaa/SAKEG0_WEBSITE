@@ -41,7 +41,7 @@ function App() {
   return (
     <CartProvider>
       <Router>
-        {/* <CustomCursor />  */}
+        <CustomCursor />
 
         <Routes>
           {/* User Routes */}

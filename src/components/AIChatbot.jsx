@@ -339,8 +339,26 @@ const AIChatbot = () => {
         botReply = '👋 Tạm biệt bạn! Hẹn gặp lại lần sau nhé! Đừng quên ghé thăm SAKEGO thường xuyên để cập nhật sản phẩm mới và ưu đãi hấp dẫn. 🌿 Chúc bạn ngày vui và nhiều sức khỏe!';
 
       // ══════════════════════════════════════════════════════════
-      // 30. MẶC ĐỊNH
+      // 30. THÔNG TIN ĐỘI NGŨ SÁNG LẬP / TEAM SAKEGO
       // ══════════════════════════════════════════════════════════
+      } else if (has('văn nghĩa', 'bạn nghĩa', 'anh nghĩa', 'nghĩa là ai') || (has('nghĩa') && !has('là gì', 'ý nghĩa', 'có nghĩa'))) {
+        botReply = '😎 Anh Nghĩa đẹp trai là Founder của SAKEGO, và cũng chính là người đã tạo ra mình – Trợ lý AI này đây! Anh ấy phụ trách Nghiên cứu thị trường, luôn lắng nghe khách hàng để mang đến những sản phẩm Sa Kê tuyệt vời nhất. ✨';
+      } else if (has('hoài ngọc', 'bạn ngọc', 'chị ngọc', 'ngọc là ai') || (has('ngọc') && has('nhóm trưởng', 'team', 'ai'))) {
+        botReply = '👧 Bạn Trương Tử Hoài Ngọc là Nhóm trưởng & phụ trách Chiến lược sản phẩm của SAKEGO! Ngọc là người kết nối truyền thống với tư duy sản phẩm hiện đại, biến sa kê thành sản phẩm gần gũi với người trẻ. 🌟';
+      } else if (has('loan anh', 'bạn loan', 'chị loan', 'loan là ai', 'loan anh là ai')) {
+        botReply = '👧 Bạn Trần Thị Loan Anh phụ trách Phát triển vùng trồng! Loan Anh làm việc trực tiếp với nông hộ để chuẩn hóa quy trình canh tác, tạo vùng nguyên liệu ổn định và bền vững từ gốc cho SAKEGO. 🌱';
+      } else if (has('anh thư', 'bạn thư', 'chị thư', 'thư là ai') || (has('thư') && has('thiết kế', 'ai', 'team'))) {
+        botReply = '👧 Bạn Phạm Thị Anh Thư phụ trách Thiết kế thương hiệu! Thư luôn mong muốn mỗi điểm chạm thương hiệu của SAKEGO đều truyền cảm hứng xanh, đẹp, dễ nhớ và đáng tin. 🎨';
+      } else if (has('duy phương', 'bạn phương', 'anh phương', 'phương là ai') || (has('phương') && has('vận hành', 'ai', 'team'))) {
+        botReply = '👦 Bạn Phạm Duy Phương phụ trách Vận hành và chất lượng! Phương tập trung vào tiêu chuẩn từ thu hoạch đến đóng gói, giữ lời hứa về sự an toàn và nhất quán cho khách hàng của SAKEGO. 🛡️';
+      } else if (has('đội ngũ', 'nhóm', 'team', 'thành viên', 'sáng lập', 'founder', 'người tạo ra', 'ai tạo ra')) {
+        botReply = '👨‍👩‍👧‍👦 Đội ngũ SAKEGO gồm 5 thành viên trẻ đầy nhiệt huyết:\n• Hoài Ngọc (Nhóm trưởng)\n• Văn Nghĩa (Nghiên cứu thị trường)\n• Loan Anh (Phát triển vùng trồng)\n• Anh Thư (Thiết kế thương hiệu)\n• Duy Phương (Vận hành & chất lượng)\n✨ Cả đội cùng chung ước mơ nâng tầm nông sản Việt! Bạn ghé trang "Câu Chuyện SAKEGO" để xem chi tiết nhé!';
+
+      // ══════════════════════════════════════════════════════════
+      // 31. SAKEGO LÀ GÌ? & MẶC ĐỊNH
+      // ══════════════════════════════════════════════════════════
+      } else if (has('sakego là gì', 'sakego', 'thương hiệu', 'công ty', 'sakego bán gì')) {
+        botReply = '🌿 SAKEGO là thương hiệu tiên phong tại Việt Nam chuyên sản xuất và phân phối các sản phẩm từ trái và lá Sa Kê (như Trà Lá Sa Kê, Bánh Mochi Sa Kê, Sữa Gạo Sa Kê). Tụi mình mong muốn nâng tầm nông sản Việt và mang lại sức khỏe cho mọi người! 😊';
       } else {
         botReply = '🤔 Câu hỏi thú vị! Mình chưa có sẵn thông tin về nội dung này, nhưng bạn có thể:\n• Gọi Hotline 039 2020 136 để được tư vấn trực tiếp\n• Ghé trang "Câu Chuyện SAKEGO" để tìm hiểu thêm\n• Hỏi mình về: Trà Lá Sa Kê 🍵, Bánh Mochi 🍡, Sữa Gạo Sa Kê 🥛, Combo, Giá cả hoặc Đặt hàng!\n😊 Mình có thể giúp gì khác không ạ?';
       }

@@ -178,7 +178,8 @@ const AdminDashboard = () => {
     }
 
     // Filter logic
-    let rev = 0, ords = 0, newCust = 0, pend = 0;
+    let rev = 0, ords = 0, newCust = 0;
+    let pend = 0, conf = 0, prep = 0, deli = 0, comp = 0, canc = 0;
     let oldRev = 0, oldOrds = 0, oldCust = 0;
     const dailyRev = {};
 
@@ -186,8 +187,12 @@ const AdminDashboard = () => {
       const d = new Date(o.createdAt);
       if (d >= startDate && d <= now) {
         ords++;
-        if (o.status === 'completed') rev += (o.totalAmount || 0);
         if (o.status === 'pending') pend++;
+        if (o.status === 'confirmed') conf++;
+        if (o.status === 'preparing') prep++;
+        if (o.status === 'delivering') deli++;
+        if (o.status === 'completed') { comp++; rev += (o.totalAmount || 0); }
+        if (o.status === 'cancelled') canc++;
         
         // grouping for chart
         const dateStr = d.toLocaleDateString('vi-VN', {day:'2-digit', month:'2-digit'});
@@ -204,7 +209,11 @@ const AdminDashboard = () => {
       else if (d >= oldStartDate && d < oldEndDate) oldCust++;
     });
 
-    setFilteredStats({ revenue: rev, orders: ords, newCustomers: newCust, pending: pend, oldRevenue: oldRev, oldOrders: oldOrds, oldCustomers: oldCust });
+    setFilteredStats({ 
+      revenue: rev, orders: ords, newCustomers: newCust, 
+      pending: pend, confirmed: conf, preparing: prep, delivering: deli, completed: comp, cancelled: canc, total: ords,
+      oldRevenue: oldRev, oldOrders: oldOrds, oldCustomers: oldCust 
+    });
     
     // Prepare chart data
     let cData = Object.keys(dailyRev).map(k => ({ label: k, value: dailyRev[k] })).sort((a,b) => {
@@ -263,22 +272,22 @@ const AdminDashboard = () => {
 
   /* Donut chart data */
   const donutData = [
-    { label: 'Chờ xác nhận',  value: stats.pending,    color: '#f97316' },
-    { label: 'Đã xác nhận',   value: stats.confirmed,  color: '#3b82f6' },
-    { label: 'Chuẩn bị',      value: stats.preparing,  color: '#a855f7' },
-    { label: 'Đang giao',     value: stats.delivering, color: '#14b8a6' },
-    { label: 'Hoàn thành',    value: stats.completed,  color: '#22c55e' },
-    { label: 'Đã hủy',        value: stats.cancelled,  color: '#ef4444' },
+    { label: 'Chờ xác nhận',  value: filteredStats.pending || 0,    color: '#f97316' },
+    { label: 'Đã xác nhận',   value: filteredStats.confirmed || 0,  color: '#3b82f6' },
+    { label: 'Chuẩn bị',      value: filteredStats.preparing || 0,  color: '#a855f7' },
+    { label: 'Đang giao',     value: filteredStats.delivering || 0, color: '#14b8a6' },
+    { label: 'Hoàn thành',    value: filteredStats.completed || 0,  color: '#22c55e' },
+    { label: 'Đã hủy',        value: filteredStats.cancelled || 0,  color: '#ef4444' },
   ];
 
   /* Bar chart data (revenue by status) */
   const barData = [
-    { label: 'Chờ', value: stats.pending,    color: '#f97316' },
-    { label: 'Xác nhận', value: stats.confirmed, color: '#3b82f6' },
-    { label: 'CB', value: stats.preparing, color: '#a855f7' },
-    { label: 'Giao', value: stats.delivering, color: '#14b8a6' },
-    { label: 'Xong', value: stats.completed,  color: '#22c55e' },
-    { label: 'Hủy', value: stats.cancelled,  color: '#ef4444' },
+    { label: 'Chờ', value: filteredStats.pending || 0,    color: '#f97316' },
+    { label: 'Xác nhận', value: filteredStats.confirmed || 0, color: '#3b82f6' },
+    { label: 'CB', value: filteredStats.preparing || 0, color: '#a855f7' },
+    { label: 'Giao', value: filteredStats.delivering || 0, color: '#14b8a6' },
+    { label: 'Xong', value: filteredStats.completed || 0,  color: '#22c55e' },
+    { label: 'Hủy', value: filteredStats.cancelled || 0,  color: '#ef4444' },
   ];
 
   const getStatusClass = (status) => ({
@@ -287,8 +296,8 @@ const AdminDashboard = () => {
     completed: 'status-completed', cancelled: 'status-cancelled'
   }[status] || '');
 
-  const completionRate = stats.total > 0
-    ? Math.round((stats.completed / stats.total) * 100) : 0;
+  const completionRate = filteredStats.total > 0
+    ? Math.round((filteredStats.completed / filteredStats.total) * 100) : 0;
 
   return (
     <div className="admin-dashboard">
@@ -400,15 +409,15 @@ const AdminDashboard = () => {
           <div className="card-header">
             <h3><i className="fas fa-chart-pie" /> Tình Trạng Đơn Hàng</h3>
             <span style={{ fontSize: 12, color: 'var(--admin-text-muted)', fontWeight: 600 }}>
-              Tổng: {stats.total} đơn
+              Tổng: {filteredStats.total || 0} đơn
             </span>
           </div>
           <div className="card-body">
             <div className="chart-container">
               <div className="donut-wrapper">
-                <DonutChart data={donutData} total={stats.total} size={160} />
+                <DonutChart data={donutData} total={filteredStats.total || 0} size={160} />
                 <div className="donut-center">
-                  <div className="donut-center-number">{stats.total}</div>
+                  <div className="donut-center-number">{filteredStats.total || 0}</div>
                   <div className="donut-center-label">Đơn hàng</div>
                 </div>
               </div>
@@ -419,7 +428,7 @@ const AdminDashboard = () => {
                     <span className="legend-label">{d.label}</span>
                     <span className="legend-count">{d.value}</span>
                     <span className="legend-pct">
-                      {stats.total > 0 ? `${Math.round(d.value / stats.total * 100)}%` : '0%'}
+                      {filteredStats.total > 0 ? `${Math.round(d.value / filteredStats.total * 100)}%` : '0%'}
                     </span>
                   </div>
                 ))}
@@ -445,7 +454,7 @@ const AdminDashboard = () => {
               {[
                 { label: 'Tỉ lệ HT', value: `${completionRate}%`, color: '#22c55e' },
                 { label: 'TB/ngày', value: todayOrders.length, color: '#3b82f6' },
-                { label: 'Đang giao', value: stats.delivering, color: '#14b8a6' },
+                { label: 'Đang giao', value: filteredStats.delivering || 0, color: '#14b8a6' },
               ].map((m, i) => (
                 <div key={i} style={{
                   background: 'rgba(255,255,255,0.03)', border: '1px solid var(--admin-border)',
@@ -460,68 +469,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* ── Quick Stats + Products + Users ── */}
-      <div className="dashboard-row">
-        {/* Quick Stats */}
-        <div className="dashboard-card quick-stats-card">
-          <div className="card-header">
-            <h3><i className="fas fa-tachometer-alt" /> Thống Kê Nhanh</h3>
-          </div>
-          <div className="card-body">
-            {[
-              { icon: 'fa-box', bg: 'linear-gradient(135deg,#7CB342,#558B2F)', label: 'Sản phẩm', value: products.length, glow: 'rgba(124,179,66,0.3)' },
-              { icon: 'fa-users', bg: 'linear-gradient(135deg,#3b82f6,#1d4ed8)', label: 'Khách hàng', value: users.filter(u => u.role === 'customer').length, glow: 'rgba(59,130,246,0.3)' },
-              { icon: 'fa-truck', bg: 'linear-gradient(135deg,#14b8a6,#0d9488)', label: 'Đang giao', value: stats.delivering, glow: 'rgba(20,184,166,0.3)' },
-              { icon: 'fa-ban', bg: 'linear-gradient(135deg,#ef4444,#dc2626)', label: 'Đã hủy', value: stats.cancelled, glow: 'rgba(239,68,68,0.3)' },
-            ].map((item, i) => (
-              <div className="quick-stat-item" key={i}>
-                <div className="quick-stat-icon-box" style={{ background: item.bg, boxShadow: `0 4px 14px ${item.glow}` }}>
-                  <i className={`fas ${item.icon}`} />
-                </div>
-                <div className="quick-stat-info">
-                  <h4>{item.value}</h4>
-                  <p>{item.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Revenue breakdown */}
-        <div className="dashboard-card">
-          <div className="card-header">
-            <h3><i className="fas fa-coins" /> Doanh Thu</h3>
-          </div>
-          <div className="card-body">
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontSize: 13, color: 'var(--admin-text-muted)', marginBottom: 6 }}>Tổng doanh thu</div>
-              <div style={{ fontSize: 32, fontWeight: 800, color: '#7CB342', letterSpacing: -1 }}>
-                {stats.totalRevenue.toLocaleString('vi-VN')}đ
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {[
-                { label: 'Từ đơn hoàn thành', value: stats.totalRevenue, pct: 100, color: '#22c55e' },
-                { label: 'Đơn đang xử lý', value: stats.pending * 50000, pct: Math.round(stats.pending / Math.max(stats.total, 1) * 100), color: '#f97316' },
-              ].map((r, i) => (
-                <div key={i}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <span style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>{r.label}</span>
-                    <span style={{ fontSize: 12, fontWeight: 700, color: r.color }}>{r.pct}%</span>
-                  </div>
-                  <div style={{ height: 6, background: 'rgba(255,255,255,0.06)', borderRadius: 3, overflow: 'hidden' }}>
-                    <div style={{
-                      height: '100%', width: `${r.pct}%`, background: r.color,
-                      borderRadius: 3, transition: 'width 1s ease',
-                      boxShadow: `0 0 8px ${r.color}60`
-                    }} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* ── Recent Orders Table ── */}
       <div className="dashboard-card">

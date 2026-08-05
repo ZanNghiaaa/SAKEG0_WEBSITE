@@ -1616,3 +1616,170 @@
   color: var(--admin-text-muted);
 }
 
+
+
+/* ============================================================
+   ADMIN MOBILE REDESIGN (Card-ify & UI Fixes)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* 1. Fix Hamburger & Top Nav */
+  .mobile-menu-toggle {
+    top: 15px !important;
+    left: 15px !important;
+    z-index: 1100 !important;
+    background: var(--green-500) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4) !important;
+  }
+  
+  .admin-dashboard-header {
+    margin-top: 50px; /* Leave space for hamburger */
+    padding: 10px 15px !important;
+  }
+
+  /* 2. Fix Stat Cards Grid */
+  .admin-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+  .admin-stat-card {
+    padding: 20px !important;
+    min-height: auto !important;
+  }
+  .admin-stat-card h3 {
+    font-size: 12px !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
+  }
+  .admin-stat-value {
+    font-size: 28px !important;
+    word-break: break-all;
+  }
+  
+  /* Layout adjustments */
+  .admin-main {
+    padding: 15px !important;
+    padding-bottom: 90px !important; /* Space for bottom nav */
+  }
+
+  /* 3. Bottom Navigation - Glassmorphism */
+  .admin-bottom-nav {
+    display: flex !important;
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    padding: 10px 5px !important;
+    z-index: 1000;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .admin-bottom-nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--admin-text-muted) !important;
+    text-decoration: none;
+    font-size: 10px !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  .admin-bottom-nav-item i {
+    font-size: 20px !important;
+    margin-bottom: 2px;
+  }
+  .admin-bottom-nav-item.active {
+    color: var(--green-500) !important;
+    transform: translateY(-3px);
+  }
+
+  /* 4. CARD-IFY TABLES */
+  .admin-table-container, .table-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  .admin-table, table {
+    display: block;
+  }
+  .admin-table thead, table thead {
+    display: none; /* Hide headers */
+  }
+  .admin-table tbody, table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .admin-table tr, table tr {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--admin-border);
+    position: relative;
+  }
+  .admin-table td, table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0 !important;
+    border: none !important;
+    border-bottom: 1px dashed var(--admin-border) !important;
+    text-align: right !important;
+  }
+  .admin-table td:last-child, table td:last-child {
+    border-bottom: none !important;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  /* Create faux headers for td */
+  .admin-table td::before, table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--admin-text-muted);
+    text-align: left;
+    margin-right: 15px;
+  }
+  
+  /* Fix product images in cards */
+  .product-image-cell {
+    justify-content: flex-end !important;
+  }
+  .product-image-cell img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+  }
+
+  /* 5. Modals optimization */
+  .admin-modal-content {
+    width: 95% !important;
+    margin: 20px auto !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    border-radius: 16px !important;
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 15px !important;
+  }
+}

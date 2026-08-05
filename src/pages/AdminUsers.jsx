@@ -192,7 +192,7 @@ const AdminUsers = () => {
                     const totalSpend = getUserTotalSpend(user._id || user.id);
                     return (
                       <tr key={user._id || user.id}>
-                        <td>
+                        <td data-label="Người dùng">
                           <div className="user-info-cell">
                             <div className="user-avatar-sm" style={{ background: getAvatarColor(user.fullname) }}>
                               {(user.fullname || 'U')[0].toUpperCase()}
@@ -205,7 +205,7 @@ const AdminUsers = () => {
                             </div>
                           </div>
                         </td>
-                        <td style={{ fontSize: 13 }}>
+                        <td data-label="Username" style={{ fontSize: 13 }}>
                           <span style={{
                             background: 'rgba(255,255,255,0.05)', padding: '3px 8px',
                             borderRadius: 6, fontFamily: 'monospace', fontSize: 12
@@ -213,9 +213,9 @@ const AdminUsers = () => {
                             @{user.username}
                           </span>
                         </td>
-                        <td style={{ fontSize: 13, color: 'var(--admin-text-dim)' }}>{user.email}</td>
-                        <td style={{ fontSize: 13 }}>{user.phone || '—'}</td>
-                        <td>
+                        <td data-label="Email" style={{ fontSize: 13, color: 'var(--admin-text-dim)' }}>{user.email}</td>
+                        <td data-label="SĐT" style={{ fontSize: 13 }}>{user.phone || '—'}</td>
+                        <td data-label="Vai trò">
                           {user.role === 'admin' ? (
                             <span className="role-badge role-admin">
                               <i className="fas fa-user-shield" style={{ marginRight: 4 }} />Admin
@@ -226,10 +226,10 @@ const AdminUsers = () => {
                             </span>
                           )}
                         </td>
-                        <td style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
+                        <td data-label="Ngày tạo" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
                           {formatDate(user.createdAt)}
                         </td>
-                        <td>
+                        <td data-label="Đơn hàng">
                           <span style={{
                             background: 'rgba(59,130,246,0.12)', color: '#60a5fa',
                             padding: '3px 10px', borderRadius: 6, fontSize: 13, fontWeight: 700
@@ -237,12 +237,12 @@ const AdminUsers = () => {
                             {orderCount}
                           </span>
                         </td>
-                        <td>
+                        <td data-label="Chi tiêu">
                           <strong className="text-success" style={{ fontSize: 13 }}>
                             {totalSpend > 0 ? `${totalSpend.toLocaleString('vi-VN')}đ` : '—'}
                           </strong>
                         </td>
-                        <td>
+                        <td data-label="Hành động">
                           <div className="action-buttons">
                             <button
                               className="btn-action btn-action-view"

@@ -345,8 +345,8 @@ const AdminProducts = () => {
               </thead>
               <tbody>
                 {filteredProducts.map(product => (
-                  <tr key={product.id}>
-                    <td>
+                  <tr key={product.id || product._id}>
+                    <td data-label="ID">
                       <span style={{
                         fontFamily: 'monospace', fontSize: 11, color: 'var(--green-500)',
                         background: 'rgba(124,179,66,0.1)', padding: '2px 7px', borderRadius: 5
@@ -354,7 +354,7 @@ const AdminProducts = () => {
                         #{String(product._id || product.id).slice(-6)}
                       </span>
                     </td>
-                    <td>
+                    <td data-label="Ảnh" className="product-image-cell">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -363,7 +363,7 @@ const AdminProducts = () => {
                         onError={e => { e.target.style.display = 'none'; }}
                       />
                     </td>
-                    <td>
+                    <td data-label="Sản phẩm">
                       <div>
                         <div style={{ fontWeight: 700, color: 'var(--admin-text)', fontSize: 13, marginBottom: 4 }}>
                           {product.name}
@@ -393,7 +393,7 @@ const AdminProducts = () => {
                         </div>
                       </div>
                     </td>
-                    <td>
+                    <td data-label="Danh mục">
                       <span style={{
                         fontSize: 12, fontWeight: 600, color: 'var(--admin-text-dim)',
                         background: 'rgba(255,255,255,0.05)', padding: '3px 8px', borderRadius: 5
@@ -401,7 +401,7 @@ const AdminProducts = () => {
                         {getCategoryName(product.category)}
                       </span>
                     </td>
-                    <td>
+                    <td data-label="Giá">
                       <div>
                         <strong className="text-success" style={{ fontSize: 14 }}>
                           {product.price.toLocaleString('vi-VN')}đ
@@ -413,7 +413,7 @@ const AdminProducts = () => {
                         )}
                       </div>
                     </td>
-                    <td>
+                    <td data-label="Tồn kho">
                       <span style={{
                         fontWeight: 700, fontSize: 14,
                         color: product.stock > 50 ? '#4ade80' : product.stock > 0 ? '#fbbf24' : '#f87171'
@@ -421,14 +421,14 @@ const AdminProducts = () => {
                         {product.stock}
                       </span>
                     </td>
-                    <td>
+                    <td data-label="Trạng thái">
                       {product.stock > 0 ? (
                         <span className="status-badge status-completed">Còn hàng</span>
                       ) : (
                         <span className="status-badge status-cancelled">Hết hàng</span>
                       )}
                     </td>
-                    <td>
+                    <td data-label="Thao tác">
                       <div className="action-buttons">
                         <button 
                           className="btn-action btn-action-edit"

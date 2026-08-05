@@ -214,7 +214,7 @@ const AdminOrders = () => {
                     const isLoading = loadingId === ordId;
                     return (
                       <tr key={ordId}>
-                        <td>
+                        <td data-label="Mã đơn">
                           <span style={{
                             fontFamily: 'monospace', fontSize: 12, fontWeight: 700,
                             color: 'var(--green-500)',
@@ -223,7 +223,7 @@ const AdminOrders = () => {
                             #{String(order.orderNumber || ordId).slice(-6).toUpperCase()}
                           </span>
                         </td>
-                        <td>
+                        <td data-label="Khách hàng">
                           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                             <div style={{
                               width: 30, height: 30, borderRadius: '50%',
@@ -243,8 +243,8 @@ const AdminOrders = () => {
                             </div>
                           </div>
                         </td>
-                        <td style={{ fontSize: 12, whiteSpace: 'nowrap' }}>{order.customerInfo?.phone || '—'}</td>
-                        <td>
+                        <td data-label="SĐT" style={{ fontSize: 12, whiteSpace: 'nowrap' }}>{order.customerInfo?.phone || '—'}</td>
+                        <td data-label="Địa chỉ">
                           <div style={{
                             fontSize: 11, color: 'var(--admin-text-muted)',
                             maxWidth: 110, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'
@@ -253,7 +253,7 @@ const AdminOrders = () => {
                               .filter(Boolean).join(', ') || '—'}
                           </div>
                         </td>
-                        <td>
+                        <td data-label="Sản phẩm">
                           <span style={{
                             background: 'rgba(59,130,246,0.1)', color: '#2563eb',
                             padding: '3px 8px', borderRadius: 6, fontSize: 12, fontWeight: 700
@@ -261,12 +261,12 @@ const AdminOrders = () => {
                             {order.items?.length || 0} món
                           </span>
                         </td>
-                        <td style={{ whiteSpace: 'nowrap' }}>
+                        <td data-label="Tổng tiền" style={{ whiteSpace: 'nowrap' }}>
                           <strong className="text-success" style={{ fontSize: 13 }}>
                             {(order.totalAmount || 0).toLocaleString('vi-VN')}đ
                           </strong>
                         </td>
-                        <td style={{ whiteSpace: 'nowrap' }}>
+                        <td data-label="Thanh toán" style={{ whiteSpace: 'nowrap' }}>
                           <span style={{
                             fontSize: 10, fontWeight: 700, textTransform: 'uppercase',
                             color: order.paymentMethod === 'cod' ? '#d97706' : '#2563eb',
@@ -276,7 +276,7 @@ const AdminOrders = () => {
                             {order.paymentMethod === 'cod' ? 'COD' : 'Chuyển khoản'}
                           </span>
                         </td>
-                        <td style={{ whiteSpace: 'nowrap' }}>
+                        <td data-label="Trạng thái" style={{ whiteSpace: 'nowrap' }}>
                           <span className={`status-badge ${getStatusClass(order.status)}`}>
                             {ORDER_STATUS_TEXT[order.status]}
                           </span>
@@ -287,11 +287,11 @@ const AdminOrders = () => {
                             </div>
                           )}
                         </td>
-                        <td style={{ fontSize: 11, color: 'var(--admin-text-muted)', whiteSpace: 'nowrap' }}>
+                        <td data-label="Thời gian" style={{ fontSize: 11, color: 'var(--admin-text-muted)', whiteSpace: 'nowrap' }}>
                           <div>{new Date(order.createdAt).toLocaleDateString('vi-VN')}</div>
                           <div style={{ fontSize: 10 }}>{new Date(order.createdAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</div>
                         </td>
-                        <td style={{ whiteSpace: 'nowrap' }}>
+                        <td data-label="Hành động" style={{ whiteSpace: 'nowrap' }}>
                           <div className="action-buttons">
                             <button
                               className="btn-action btn-action-view"

@@ -4,7 +4,7 @@ import { loginUser, googleLoginUser, getCurrentUser, isAdmin } from '../controll
 import { GoogleLogin } from '@react-oauth/google';
 import { useLoading } from '../hooks/useLoading';
 import Loading from '../components/Loading';
-import { AlertCircle, User, Lock, Key, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff,  AlertCircle, User, Lock, Key, ArrowRight  } from 'lucide-react';
 
 const Login = () => {
   const [formData, setFormData] = useState({

@@ -4,7 +4,7 @@ import { registerUser, googleLoginUser, getCurrentUser } from '../controllers/Us
 import { GoogleLogin } from '@react-oauth/google';
 import { useLoading } from '../hooks/useLoading';
 import Loading from '../components/Loading';
-import { AlertCircle, User, Mail, Phone, Lock, ArrowRight } from 'lucide-react';
+import { Eye, EyeOff,  AlertCircle, User, Mail, Phone, Lock, ArrowRight  } from 'lucide-react';
 
 const Register = () => {
   const [formData, setFormData] = useState({

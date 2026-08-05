@@ -6,7 +6,7 @@ import Loading from '../components/Loading';
 import { getCurrentUser } from '../controllers/UserController';
 import { createOrder, CAN_THO_DISTRICTS } from '../controllers/OrderController';
 import { ShoppingCart, ShoppingBag, Lock, MapPin, Truck, User, Phone, Mail, Home, Banknote, CheckCircle2, Camera, Info, Edit, Receipt, Map, Loader2, ArrowLeft } from 'lucide-react';
-import { Building2, Map, Navigation, StickyNote, CreditCard, Landmark, QrCode, Smartphone, Lightbulb, Shield } from 'lucide-react';
+import { Building2, Navigation, StickyNote, CreditCard, Landmark, QrCode, Smartphone, Lightbulb, Shield } from 'lucide-react';
 
 const Checkout = () => {
   const { cartItems, getTotal, clearCart } = useCart();

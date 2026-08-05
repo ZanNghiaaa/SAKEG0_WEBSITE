@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getCurrentUser, updateUserProfile, logoutUser } from '../controllers/UserController';
 import { getOrdersByUserId, ORDER_STATUS_TEXT } from '../controllers/OrderController';
 import '../assets/css/profile-page.css';
-import { UserCircle, CheckCircle2, Receipt, Banknote, User, ShoppingCart, Store, LogOut, Info, Edit, Mail, Phone, MapPin, Save, X, ChevronRight, Wallet, Package, Truck, HeadphonesIcon, Facebook, Send } from 'lucide-react';
+import { UserCircle, CheckCircle2, Receipt, Banknote, User, ShoppingCart, Store, LogOut, Info, Edit, Mail, Phone, MapPin, Save, X, ChevronRight, Wallet, Package, Truck, HeadphonesIcon, Send } from 'lucide-react';
 
 const Profile = () => {
   const navigate = useNavigate();

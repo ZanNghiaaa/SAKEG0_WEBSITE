@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { Leaf, Clock, HeadphonesIcon, Send, CheckCircle2, User, Mail, Phone, Loader2, ChevronRight, MessageCircle, MonitorPlay, Map } from 'lucide-react';
-import { Shield, Tag, MessageSquareDot, HelpCircle, Share2, Facebook } from 'lucide-react';
+import { Shield, Tag, MessageSquareDot, HelpCircle, Share2 } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name:'', email:'', phone:'', subject:'', message:'' });
@@ -200,7 +200,7 @@ const Contact = () => {
                 </div>
                 <div className="cs-socials">
                   <a href="https://www.facebook.com/share/1HzpsrKSFq/?mibextid=wwXIfr" className="cs-social cs-social--fb" target="_blank" rel="noopener noreferrer">
-                    <Facebook size={18} /><span>Facebook</span>
+                    <i className="fab fa-facebook-f" style={{fontSize: 18}}></i><span>Facebook</span>
                   </a>
                   <a href="#" className="cs-social cs-social--zalo" target="_blank" rel="noopener noreferrer">
                     <MessageCircle size={18} /><span>Zalo</span>

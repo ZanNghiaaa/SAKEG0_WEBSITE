@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getUsers, loginUserLocal } from '../controllers/UserController';
-import { AlertCircle, Key, CheckCircle2, Info, Loader2, Check, ArrowLeft } from 'lucide-react';
+import { Eye, EyeOff,  AlertCircle, Key, CheckCircle2, Info, Loader2, Check, ArrowLeft  } from 'lucide-react';
 
 const ResetPassword = () => {
   const { token } = useParams();

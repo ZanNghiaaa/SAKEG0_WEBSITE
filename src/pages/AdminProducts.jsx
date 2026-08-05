@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Package, Plus, Grid, Leaf, CupSoda, Search, PackageOpen, Edit, Trash2, X, Info, Loader2, Save, Cookie } from 'lucide-react';
 import { 
-import { Package, Plus, Grid, Leaf, CupSoda, Search, PackageOpen, Edit, Trash2, X, Info, Loader2, Save } from 'lucide-react';
-import { Cookie } from 'lucide-react';
   getAllProducts, 
   addProduct, 
   updateProduct, 

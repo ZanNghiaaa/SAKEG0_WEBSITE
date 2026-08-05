@@ -191,8 +191,23 @@ const Navbar = () => {
           {/* Mobile Nav Tools (Search + Menu) */}
           <div className="mobile-nav-tools">
             <div className="mobile-search-bar">
-              <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-              <button><i className="fas fa-search"></i></button>
+              <input 
+                type="text" 
+                placeholder="Tìm kiếm sản phẩm..." 
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter' && e.target.value.trim()) {
+                    navigate(`/products?search=${encodeURIComponent(e.target.value.trim())}`);
+                  }
+                }}
+              />
+              <button onClick={(e) => {
+                const input = e.currentTarget.previousElementSibling;
+                if (input && input.value.trim()) {
+                  navigate(`/products?search=${encodeURIComponent(input.value.trim())}`);
+                }
+              }}>
+                <i className="fas fa-search"></i>
+              </button>
             </div>
             
             <div className="combined-menu-wrapper">
@@ -254,8 +269,21 @@ const Navbar = () => {
           </ul>
 
           <div className="search-box">
-            <input type="text" placeholder="Nhập từ khóa tìm kiếm" />
-            <button type="button">
+            <input 
+              type="text" 
+              placeholder="Nhập từ khóa tìm kiếm" 
+              onKeyPress={(e) => {
+                if (e.key === 'Enter' && e.target.value.trim()) {
+                  navigate(`/products?search=${encodeURIComponent(e.target.value.trim())}`);
+                }
+              }}
+            />
+            <button type="button" onClick={(e) => {
+              const input = e.currentTarget.previousElementSibling;
+              if (input && input.value.trim()) {
+                navigate(`/products?search=${encodeURIComponent(input.value.trim())}`);
+              }
+            }}>
               <i className="fas fa-search"></i>
             </button>
           </div>

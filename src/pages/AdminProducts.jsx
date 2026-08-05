@@ -647,17 +647,15 @@ const AdminProducts = () => {
                         <span>🎁 Sản phẩm Combo</span>
                       </label>
 
-                      {formData.isCombo && (
-                        <label className="checkbox-label">
-                          <input
-                            type="checkbox"
-                            name="isBestSeller"
-                            checked={formData.isBestSeller}
-                            onChange={handleInputChange}
-                          />
-                          <span>⭐ Best Seller</span>
-                        </label>
-                      )}
+                      <label className="checkbox-label">
+                        <input
+                          type="checkbox"
+                          name="isBestSeller"
+                          checked={formData.isBestSeller}
+                          onChange={handleInputChange}
+                        />
+                        <span>⭐ Best Seller</span>
+                      </label>
                     </div>
                   </div>
 

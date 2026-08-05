@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="footer-content">
             <div className="contact-info">
               <h3>Liên hệ</h3>
-              <p>Email: info@sakefruit.com</p>
+              <p>Email: sakego25@gmail.com</p>
               <p>Điện thoại: 039 2020 136</p>
               <p>Địa chỉ: 600, đường Nguyễn Văn Cừ, Phường An Bình, Quận Ninh Kiều, Cần Thơ</p>
             </div>
@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="copyright">
-            <p>&copy; 2025 SaKeFruit. Tất cả quyền được bảo lưu.</p>
+            <p>&copy; 2025 Sakego. Tất cả quyền được bảo lưu.</p>
           </div>
         </div>
       </footer>

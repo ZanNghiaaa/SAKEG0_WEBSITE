@@ -101,7 +101,7 @@ const Register = () => {
           <div className="auth-card">
             <div className="mascot-section">
               <div className="mascot-container">
-                <img src="/assets/images/linhvat01.png" alt="SaKeFruit Mascot" className="mascot-image" />
+                <img src="/assets/images/linhvat01.png" alt="Sakego Mascot" className="mascot-image" />
                 <div className="welcome-text">
                   <h2>Tham gia cùng chúng tôi!</h2>
                   <p>Tạo tài khoản để bắt đầu</p>

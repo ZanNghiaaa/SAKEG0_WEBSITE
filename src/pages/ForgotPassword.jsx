@@ -48,7 +48,7 @@ const ForgotPassword = () => {
           <div className="auth-card">
             <div className="mascot-section">
               <div className="mascot-container">
-                <img src="/assets/images/linhvat01.png" alt="SaKeFruit Mascot" className="mascot-image" />
+                <img src="/assets/images/linhvat01.png" alt="Sakego Mascot" className="mascot-image" />
                 <div className="welcome-text">
                   <h2>Quên mật khẩu?</h2>
                   <p>Đừng lo! Chúng tôi sẽ giúp bạn</p>

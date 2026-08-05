@@ -93,7 +93,7 @@ const Login = () => {
           <div className="auth-card">
             <div className="mascot-section">
               <div className="mascot-container">
-                <img src="/assets/images/linhvat01.png" alt="SaKeFruit Mascot" className="mascot-image" />
+                <img src="/assets/images/linhvat01.png" alt="Sakego Mascot" className="mascot-image" />
                 <div className="welcome-text">
                   <h2>Chào mừng trở lại!</h2>
                   <p>Đăng nhập để tiếp tục mua sắm</p>

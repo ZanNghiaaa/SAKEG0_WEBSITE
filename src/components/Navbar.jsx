@@ -41,7 +41,7 @@ const Navbar = () => {
 
     // Listen for storage changes (when user logs in/out)
     const handleStorageChange = (e) => {
-      if (e.key === 'sakefruit_current_user' || e.key === null) {
+      if (e.key === 'Sakego_current_user' || e.key === null) {
         const updatedUser = getCurrentUser();
         setCurrentUser(updatedUser);
       }
@@ -87,7 +87,7 @@ const Navbar = () => {
         <div className="container">
           <div className="logo">
             <Link to="/">
-              <img src="/assets/images/logo_end.png" alt="SaKeFruit Logo" />
+              <img src="/assets/images/logo_end.png" alt="Sakego Logo" />
             </Link>
           </div>
           <div className="header-actions">
@@ -211,7 +211,7 @@ const Navbar = () => {
                 <div className="combined-menu-dropdown">
                   <div className="combined-menu-header">
                     <img src="/assets/images/logo.png" alt="Logo" />
-                    <span>SAKEFRUIT</span>
+                    <span>Sakego</span>
                     <button onClick={() => setShowCombinedMenu(false)}>
                       <i className="fas fa-times"></i>
                     </button>

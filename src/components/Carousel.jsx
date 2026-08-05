@@ -22,7 +22,7 @@ const Carousel = () => {
           <div className="carousel-item">
             <div className="carousel-content">
               <h2>Về chúng tôi</h2>
-              <p>SaKeFruit tự hào cung cấp những trái sa kê tươi ngon nhất, được chọn lọc kỹ càng từ những vườn sa kê uy tín.</p>
+              <p>Sakego tự hào cung cấp những trái sa kê tươi ngon nhất, được chọn lọc kỹ càng từ những vườn sa kê uy tín.</p>
             </div>
           </div>
           <div className="carousel-item">

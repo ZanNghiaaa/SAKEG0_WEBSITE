@@ -47,7 +47,7 @@ const ResetPassword = () => {
       if (user) {
         // Cập nhật mật khẩu mới trong localStorage
         user.password = formData.password;
-        localStorage.setItem('sakefruit_users', JSON.stringify(users));
+        localStorage.setItem('Sakego_users', JSON.stringify(users));
 
         // Tự động đăng nhập bằng mật khẩu mới
         const loggedInUser = loginUserLocal(user.username, formData.password);
@@ -86,7 +86,7 @@ const ResetPassword = () => {
           <div className="auth-card">
             <div className="mascot-section">
               <div className="mascot-container">
-                <img src="/assets/images/linhvat01.png" alt="SaKeFruit Mascot" className="mascot-image" />
+                <img src="/assets/images/linhvat01.png" alt="Sakego Mascot" className="mascot-image" />
                 <div className="welcome-text">
                   <h2>Mật khẩu mới</h2>
                   <p>Tạo mật khẩu mạnh và an toàn</p>

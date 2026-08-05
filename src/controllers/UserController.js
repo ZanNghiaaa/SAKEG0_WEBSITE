@@ -4,7 +4,7 @@
 // ============================================================
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-const CURRENT_USER_KEY = 'sakefruit_current_user';
+const CURRENT_USER_KEY = 'Sakego_current_user';
 const TOKEN_KEY = 'token';
 
 // -------------------------------------------------------

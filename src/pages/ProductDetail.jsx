@@ -321,7 +321,7 @@ const ProductDetail = () => {
                   </div>
                   <div className="detail-row">
                     <span className="label">Thương hiệu:</span>
-                    <span className="value">SaKeFruit</span>
+                    <span className="value">Sakego</span>
                   </div>
                   <div className="detail-row">
                     <span className="label">Hạn sử dụng:</span>

@@ -306,7 +306,7 @@ const AIChatbot = () => {
         botReply = '🌾 Nguyên liệu SAKEGO được thu hoạch 100% từ nông trại sinh thái đạt chuẩn tại vùng ĐBSCL — Bến Tre và Tiền Giang. Không dư lượng thuốc trừ sâu, canh tác bền vững, hỗ trợ nông dân địa phương. 🌿 SAKEGO tự hào mang giá trị nông sản Việt Nam đến tận tay người tiêu dùng theo cách sáng tạo và hiện đại nhất!';
 
       } else if (has('liên hệ', 'hotline', 'số điện thoại', 'sđt', 'gọi cho', 'nhắn tin', 'contact', 'fanpage', 'facebook', 'instagram', 'zalo')) {
-        botReply = '📞 Liên hệ SAKEGO:\n• Hotline: 039 2020 136 (8h–22h mỗi ngày)\n• Facebook: SAKEGO Official\n• Zalo OA: SAKEGO\n• Email: contact@sakego.vn\n😊 Đội ngũ CSKH của tụi mình phản hồi rất nhanh, bạn cứ liên hệ thoải mái nhé!';
+        botReply = '📞 Liên hệ SAKEGO:\n• Hotline: 039 2020 136 (8h–22h mỗi ngày)\n• Facebook: SAKEGO Official\n• Zalo OA: SAKEGO\n• Email: sakego25@gmail.com\n😊 Đội ngũ CSKH của tụi mình phản hồi rất nhanh, bạn cứ liên hệ thoải mái nhé!';
 
       } else if (has('địa chỉ', 'cửa hàng', 'chi nhánh', 'showroom', 'ở đâu', 'trụ sở')) {
         botReply = '📍 SAKEGO hiện phân phối chính qua kênh Online (website này). Trụ sở tại TP. Cần Thơ. Bạn cũng có thể tìm sản phẩm tại một số điểm bán lẻ đối tác — liên hệ Hotline 039 2020 136 để hỏi điểm bán gần nhất bạn nhé! 🌿';

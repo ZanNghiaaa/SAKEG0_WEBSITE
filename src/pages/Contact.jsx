@@ -83,7 +83,7 @@ const Contact = () => {
             {[
               { icon:'fas fa-map-marker-alt', color:'green',  title:'Địa chỉ',      lines:['600, đường Nguyễn Văn Cừ','Phường An Bình, Quận Ninh Kiều','Cần Thơ, Việt Nam'] },
               { icon:'fas fa-phone-alt',      color:'blue',   title:'Điện thoại',   lines:['039 2020 136'], sub:'Hỗ trợ 24/7', href:'tel:0392020136' },
-              { icon:'fas fa-envelope',       color:'orange', title:'Email',        lines:['info@sakefruit.com'], sub:'Phản hồi trong 24h', href:'mailto:info@sakefruit.com' },
+              { icon:'fas fa-envelope',       color:'orange', title:'Email',        lines:['sakego25@gmail.com'], sub:'Phản hồi trong 24h', href:'mailto:sakego25@gmail.com' },
               { icon:'fas fa-clock',          color:'purple', title:'Giờ làm việc', lines:['Thứ 2 – Chủ nhật','8:00 – 20:00'] },
             ].map((card, i) => (
               <div key={i} className={`contact-info-card contact-info-card--${card.color}`} style={{ animationDelay: `${i * 0.12}s` }}>

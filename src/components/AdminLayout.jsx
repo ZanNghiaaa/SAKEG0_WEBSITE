@@ -114,7 +114,7 @@ const AdminLayout = () => {
               <i className="fas fa-leaf" />
             </div>
             <div className="admin-logo-text">
-              <h2>SakeFruit</h2>
+              <h2>Sakego</h2>
               <span>Admin Panel</span>
             </div>
           </div>

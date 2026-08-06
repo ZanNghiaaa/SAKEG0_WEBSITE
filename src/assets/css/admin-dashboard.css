@@ -1646,20 +1646,20 @@
   }
 
   /* 2. Fix Stat Cards Grid */
-  .admin-stats-grid {
+  .admin-stats-grid, .overview-metrics-row {
     grid-template-columns: 1fr !important;
     gap: 15px !important;
   }
-  .admin-stat-card {
+  .admin-stat-card, .overview-metric-card {
     padding: 20px !important;
     min-height: auto !important;
   }
-  .admin-stat-card h3 {
+  .admin-stat-card h3, .metric-title {
     font-size: 12px !important;
     white-space: normal !important;
     line-height: 1.4 !important;
   }
-  .admin-stat-value {
+  .admin-stat-value, .metric-value-large, .metric-value {
     font-size: 28px !important;
     word-break: break-all;
   }

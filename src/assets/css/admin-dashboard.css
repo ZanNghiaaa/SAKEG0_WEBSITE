@@ -1812,13 +1812,7 @@
     width: 35%;
     text-align: left;
   }
-  .admin-table td > *, table td > * {
-    min-width: 0;
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
+
 
 }
 

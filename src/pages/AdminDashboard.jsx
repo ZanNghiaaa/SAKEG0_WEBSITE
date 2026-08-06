@@ -504,12 +504,12 @@ const AdminDashboard = () => {
                 <tbody>
                   {recentOrders.map(order => (
                     <tr key={order.id}>
-                      <td>
+                      <td data-label="Mã đơn">
                         <strong style={{ color: 'var(--green-500)', fontFamily: 'monospace', fontSize: 12 }}>
                           #{String(order.orderNumber || order.id).slice(-6).toUpperCase()}
                         </strong>
                       </td>
-                      <td>
+                      <td data-label="Khách hàng">
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                           <div style={{
                             width: 28, height: 28, borderRadius: '50%',
@@ -524,26 +524,26 @@ const AdminDashboard = () => {
                           </span>
                         </div>
                       </td>
-                      <td className="hide-on-mobile" style={{ fontSize: 12 }}>{order.customerInfo?.phone || '—'}</td>
-                      <td className="hide-on-mobile" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
+                      <td className="hide-on-mobile" data-label="SĐT" style={{ fontSize: 12 }}>{order.customerInfo?.phone || '—'}</td>
+                      <td className="hide-on-mobile" data-label="Sản phẩm" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
                         {(order.items?.length || 0)} sản phẩm
                       </td>
-                      <td>
+                      <td data-label="Tổng tiền">
                         <strong className="text-success">
                           {(order.totalAmount || 0).toLocaleString('vi-VN')}đ
                         </strong>
                       </td>
-                      <td>
+                      <td data-label="Trạng thái">
                         <span className={`status-badge ${getStatusClass(order.status)}`}>
                           {ORDER_STATUS_TEXT[order.status]}
                         </span>
                       </td>
-                      <td className="hide-on-mobile" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
+                      <td className="hide-on-mobile" data-label="Thời gian" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
                         {new Date(order.createdAt).toLocaleString('vi-VN', {
                           day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
                         })}
                       </td>
-                      <td>
+                      <td data-label="Chi tiết">
                         <Link to="/admin/orders" className="btn-action btn-action-view" title="Xem đơn hàng">
                           <Eye size={18}  />
                         </Link>

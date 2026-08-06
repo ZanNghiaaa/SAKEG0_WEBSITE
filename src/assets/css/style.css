@@ -1,4 +1,4 @@
-/* Global styles */
+﻿/* Global styles */
 :root {
     --primary-color: #7CB342;
     --primary-dark: #558B2F;
@@ -826,7 +826,7 @@ section h2::after {
 }
 
 .trial-section::before {
-    content: '🎁';
+    content: 'ðŸŽ';
     position: absolute;
     font-size: 15rem;
     opacity: 0.05;
@@ -2484,7 +2484,7 @@ textarea {
 }
 
 /* ============================================================
-   SAKEGO – CONTACT PAGE REDESIGN  |  Synced Design System
+   SAKEGO â€“ CONTACT PAGE REDESIGN  |  Synced Design System
    ============================================================ */
 @keyframes ch-fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 @keyframes ch-orbPulse { 0%,100%{transform:scale(1);opacity:.45} 50%{transform:scale(1.2);opacity:.2} }
@@ -2493,7 +2493,7 @@ textarea {
 @keyframes ch-cardIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 @keyframes ch-shimmer { 0%{left:-100%} 100%{left:200%} }
 
-/* ── Contact Hero – Light Premium Split Design ── */
+/* â”€â”€ Contact Hero â€“ Light Premium Split Design â”€â”€ */
 .contact-hero-new {
   position: relative;
   padding: 80px 0 100px;

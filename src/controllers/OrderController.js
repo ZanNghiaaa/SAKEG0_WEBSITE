@@ -59,9 +59,13 @@ const normalizeOrder = (order) => ({
 // -------------------------------------------------------
 export const createOrder = async (orderData) => {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s timeout to prevent infinite spinning
+
     const res = await fetch(`${API_URL}/orders`, {
       method: 'POST',
       headers: getAuthHeader(),
+      signal: controller.signal,
       body: JSON.stringify({
         customerInfo: {
           fullname: orderData.fullname,
@@ -80,12 +84,17 @@ export const createOrder = async (orderData) => {
       })
     });
 
+    clearTimeout(timeoutId);
+
     const data = await res.json();
     if (!data.success) throw new Error(data.message || 'Đặt hàng thất bại!');
 
     window.dispatchEvent(new Event('newNotification'));
     return normalizeOrder(data.order);
   } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error('Kết nối chậm! Đơn hàng CÓ THỂ đã được tạo thành công. Vui lòng vào "Tài khoản -> Đơn hàng" để kiểm tra trước khi đặt lại để tránh bị trùng đơn!');
+    }
     console.error('Error creating order:', error);
     throw error;
   }

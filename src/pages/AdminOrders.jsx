@@ -111,7 +111,7 @@ const AdminOrders = () => {
       </div>
 
       {/* ── Summary mini-cards ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 14, marginBottom: 24 }}>
+      <div className="admin-orders-summary-grid">
         {[
           { label: 'Tổng đơn',     value: orders.length,              color: '#3b82f6', icon: 'fa-list' },
           { label: 'Chờ xác nhận', value: countByStatus('pending'),   color: '#f97316', icon: 'fa-clock' },
@@ -140,7 +140,7 @@ const AdminOrders = () => {
 
       {/* ── Filters & Search ── */}
       <div className="admin-filters">
-        <div className="filter-tabs" style={{ flexWrap: 'wrap' }}>
+        <div className="filter-tabs admin-orders-filter-tabs">
           {filterTabs.map(tab => (
             <button
               key={tab.key}

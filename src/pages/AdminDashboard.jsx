@@ -493,11 +493,11 @@ const AdminDashboard = () => {
                   <tr>
                     <th>Mã đơn</th>
                     <th>Khách hàng</th>
-                    <th>SĐT</th>
-                    <th>Sản phẩm</th>
+                    <th className="hide-on-mobile">SĐT</th>
+                    <th className="hide-on-mobile">Sản phẩm</th>
                     <th>Tổng tiền</th>
                     <th>Trạng thái</th>
-                    <th>Thời gian</th>
+                    <th className="hide-on-mobile">Thời gian</th>
                     <th>Chi tiết</th>
                   </tr>
                 </thead>
@@ -524,8 +524,8 @@ const AdminDashboard = () => {
                           </span>
                         </div>
                       </td>
-                      <td style={{ fontSize: 12 }}>{order.customerInfo?.phone || '—'}</td>
-                      <td style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
+                      <td className="hide-on-mobile" style={{ fontSize: 12 }}>{order.customerInfo?.phone || '—'}</td>
+                      <td className="hide-on-mobile" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
                         {(order.items?.length || 0)} sản phẩm
                       </td>
                       <td>
@@ -538,7 +538,7 @@ const AdminDashboard = () => {
                           {ORDER_STATUS_TEXT[order.status]}
                         </span>
                       </td>
-                      <td style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
+                      <td className="hide-on-mobile" style={{ fontSize: 12, color: 'var(--admin-text-muted)' }}>
                         {new Date(order.createdAt).toLocaleString('vi-VN', {
                           day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'
                         })}
